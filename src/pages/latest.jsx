@@ -25,9 +25,9 @@ const Latest = () => {
 
         {/* Asosiy Karta */}
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center">
+          <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto] gap-10 items-center">
             {/* Avatar qismi */}
-            <div className="w-48 md:w-64 p-0 rounded-2xl bg-blue-100 flex items-center justify-center border-4 border-white shadow-lg overflow-hidden">
+            <div className="w-full sm:w-64 p-0 rounded-2xl bg-blue-100 flex items-center justify-center border-4 border-white shadow-lg overflow-hidden">
                 <img src={imge} className='w-full h-full object-cover' alt="Kamronbek Tursunmurodov" />
             </div>
             <div>
