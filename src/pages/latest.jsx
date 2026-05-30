@@ -1,81 +1,76 @@
 import React from 'react';
-
+import imge from "../assets/image.png";
 const Latest = () => {
-  const miniStats = [
-    { val: "3.92", label: "Reyting ball (5.0 dan)" },
-    { val: "1 yil", label: "Grant muddati" },
-    { val: "AAT", label: "Ish joyi kafolati" },
+  // Kamronbek uchun yangilangan ma'lumotlar
+  const achievements = [
+    "O'zbekiston Respublikasi Prezidenti davlat stipendiyasi",
+    "Alisher Navoiy nomli davlat stipendiyasi",
+    "“Yilning eng bilimdon talabasi” - 1-o‘rin",
+    "BAA xalqaro havo huquqi tanlovi - “Best Oralist”",
+    "Belarus xalqaro havo huquqi tanlovi - 2-o‘rin",
+    "“Bo‘lajak adliya xodimi” - “Eng notiq huquqshunos”"
   ];
 
   return (
-    <section id="latest" className="py-24 px-5 bg-slate-50 relative overflow-hidden">
-      <style>{`
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .pulse-ring {
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: .5; transform: scale(1.1); }
-        }
-      `}</style>
-
+    <section id="latest" className="py-24 px-5 bg-slate-50">
       <div className="max-w-[1100px] mx-auto">
         {/* Header qismi */}
         <div className="mb-16 text-center">
-          <div className="inline-block px-4 py-1.5 bg-[#0aacda]/10 text-[#0aacda] font-bold text-xs uppercase tracking-[0.2em] rounded-full mb-4">
-            So'nggi muvaffaqiyat
+          <div className="inline-block px-4 py-1.5 bg-blue-600/10 text-blue-600 font-bold text-xs uppercase tracking-[0.2em] rounded-full mb-4">
+            Muvaffaqiyat tarixi
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">2025 yil g'olibi</h2>
-          <div className="h-1 w-20 bg-[#0aacda] mx-auto rounded-full mb-6"></div>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Fondimizning eng iqtidorli talabasi Nodira Karimova bilan tanishing.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">2024-yil g‘olibi</h2>
+          <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full mb-6"></div>
         </div>
 
         {/* Asosiy Karta */}
-        <div className="animate-float bg-[#262626] p-8 md:p-12 shadow-2xl shadow-black/30 transition-all duration-500 hover:-translate-y-2">
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center">
             
-            {/* Chap tomon: Yashil chiziq va Matn */}
-            <div className="flex gap-6">
-              <div className="w-2 bg-[#84cc16] shrink-0"></div>
-              <div>
-                <h3 className="text-2xl font-black text-[#84cc16] mb-2 uppercase tracking-wide">Nodira Karimova</h3>
-                <p className="text-lg font-bold text-[#84cc16] mb-6 uppercase">Toshkent Davlat Texnika Universiteti</p>
-                <div className="text-slate-200 leading-relaxed max-w-xl text-lg italic">
-                  «Bu grant nafaqat moliyaviy yordam, balki kelajagim uchun mustahkam poydevor. Hozirda AAT Groupda amaliyot o'tamoqdaman va o'z imkoniyatlarimni namoyon etmoqdaman.»
-                </div>
+            <div>
+              <h3 className="text-3xl font-black text-slate-900 mb-2">Tursunmurodov Kamronbek</h3>
+              <p className="text-blue-600 font-bold text-lg mb-6 uppercase tracking-wider">Olim fondi stipendiati</p>
+              
+              <blockquote className="text-slate-600 italic text-xl border-l-4 border-blue-600 pl-4 py-2 mb-8">
+                "Olim fondi stipendiati bo‘lish menga hayotdagi eng muhim qoidalardan birini yana bir bor isbotladi — bu hech qachon taslim bo‘lmaslikdir."
+              </blockquote>
+
+              <div className="space-y-3">
+                <h4 className="font-bold text-slate-900">Asosiy yutuqlari:</h4>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {achievements.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-slate-700 text-sm">
+                      <span className="text-blue-600 font-bold">🏆</span> {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            {/* O'ng tomon: Avatar */}
-            <div className="relative mx-auto md:ml-auto">
-              <div className="w-48 h-48 rounded-full bg-slate-700 flex items-center justify-center border-4 border-[#333]">
-                <svg className="w-24 h-24 text-slate-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
-              </div>
+            {/* Avatar qismi */}
+            <div className="w-48 md:w-64 p-0 rounded-2xl bg-blue-100 flex items-center justify-center border-4 border-white shadow-lg overflow-hidden">
+                <img src={imge} className='w-full h-full object-cover' alt="Kamronbek Tursunmurodov" />
             </div>
           </div>
         </div>
 
-        {/* Stats qismi */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          {miniStats.map((m, idx) => (
-            <div 
-              key={idx} 
-              className="group bg-white p-6 text-center rounded-2xl border border-slate-200 shadow-sm transition-all hover:border-[#84cc16] hover:shadow-lg"
-            >
-              <div className="text-2xl font-black text-slate-900 group-hover:text-[#84cc16] transition-colors">{m.val}</div>
-              <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">{m.label}</div>
+        {/* Maslahat qismi */}
+        <div className="mt-12 bg-slate-900 text-white p-8 rounded-3xl">
+          <h3 className="text-2xl font-bold mb-6">Yoshlarga tavsiyalar:</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-4 border border-slate-700 rounded-xl hover:bg-slate-800 transition">
+              <p className="font-bold mb-2">1. Unikal bo'ling</p>
+              <p className="text-slate-400 text-sm">O‘zingizni boshqalar bilan taqqoslamang. "Compete to be unique."</p>
             </div>
-          ))}
+            <div className="p-4 border border-slate-700 rounded-xl hover:bg-slate-800 transition">
+              <p className="font-bold mb-2">2. Xatolardan qo'rqmang</p>
+              <p className="text-slate-400 text-sm">Muhimi — o‘sha xatodan saboq chiqarish va takrorlamaslik.</p>
+            </div>
+            <div className="p-4 border border-slate-700 rounded-xl hover:bg-slate-800 transition">
+              <p className="font-bold mb-2">3. Harakatdan to'xtamang</p>
+              <p className="text-slate-400 text-sm">Muvaffaqiyatsizlik vaqtinchalik. Yutqazsangiz ham, yana urinib ko‘ring.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
