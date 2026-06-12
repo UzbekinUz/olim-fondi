@@ -1,0 +1,618 @@
+{
+  "statistics": {
+    "applications": [
+      {
+        "year": "2021",
+        "total": 60,
+        "stage2": 48,
+        "stage3": 17,
+        "winners": 6
+      },
+      {
+        "year": "2022",
+        "total": 80,
+        "stage2": 61,
+        "stage3": 33,
+        "winners": 15
+      },
+      {
+        "year": "2023",
+        "total": 150,
+        "stage2": 90,
+        "stage3": 33,
+        "winners": 16
+      },
+      {
+        "year": "2024",
+        "total": 162,
+        "stage2": 137,
+        "stage3": 52,
+        "winners": 14
+      },
+      {
+        "year": "2025",
+        "total": 1000,
+        "stage2": 100,
+        "stage3": 50,
+        "winners": 14
+      }
+    ]
+  },
+  "criteria": [
+    {
+      "title": {
+        "uz": "Talabaning akademik bilimi (GPA)",
+        "ru": "Академические знания студента (GPA)",
+        "en": "Student's Academic Knowledge (GPA)"
+      },
+      "value": {
+        "uz": "60 BALL",
+        "ru": "60 БАЛЛОВ",
+        "en": "60 POINTS"
+      },
+      "desc": {
+        "uz": "Talabaning o'quv faoliyati va baholar ko'rsatkichi",
+        "ru": "Показатели учебной деятельности и оценок студента",
+        "en": "Indicators of student's academic performance and grades"
+      },
+      "color": "from-blue-600 to-cyan-500"
+    },
+    {
+      "title": {
+        "uz": "Ilmiy va innovatsion yutuqlar",
+        "ru": "Научные и инновационные достижения",
+        "en": "Scientific and Innovative Achievements"
+      },
+      "value": {
+        "uz": "10 BALL",
+        "ru": "10 БАЛЛОВ",
+        "en": "10 POINTS"
+      },
+      "desc": {
+        "uz": "Maqolalar, patentlar va loyihalardagi ishtirok",
+        "ru": "Статьи, патенты и участие в проектах",
+        "en": "Articles, patents, and participation in projects"
+      },
+      "color": "from-indigo-600 to-purple-500"
+    },
+    {
+      "title": {
+        "uz": "Qo'shimcha ko'rsatkichlar",
+        "ru": "Дополнительные показатели",
+        "en": "Additional Indicators"
+      },
+      "value": {
+        "uz": "10 BALL",
+        "ru": "10 БАЛЛОВ",
+        "en": "10 POINTS"
+      },
+      "desc": {
+        "uz": "Shaxsiy rivojlanish, til sertifikatlari (IELTS/CEFR)",
+        "ru": "Личное развитие, языковые сертификаты (IELTS/CEFR)",
+        "en": "Personal development, language certificates (IELTS/CEFR)"
+      },
+      "color": "from-emerald-600 to-teal-500"
+    },
+    {
+      "title": {
+        "uz": "Fond seminarlaridagi faollik",
+        "ru": "Активность на семинарах Фонда",
+        "en": "Activity in Fund Seminars"
+      },
+      "value": {
+        "uz": "10 BALL",
+        "ru": "10 БАЛЛОВ",
+        "en": "10 POINTS"
+      },
+      "desc": {
+        "uz": "Tashkil etilgan treninglar va darslardagi muntazam ishtirok",
+        "ru": "Регулярное участие в организованных тренингах и занятиях",
+        "en": "Regular participation in organized trainings and classes"
+      },
+      "color": "from-amber-500 to-orange-500"
+    },
+    {
+      "title": {
+        "uz": "Volontyorlik faoliyati",
+        "ru": "Волонтерская деятельность",
+        "en": "Volunteering Activity"
+      },
+      "value": {
+        "uz": "10 BALL",
+        "ru": "10 БАЛЛОВ",
+        "en": "10 POINTS"
+      },
+      "desc": {
+        "uz": "Ijtimoiy loyihalar va jamiyat rivojiga qo'shgan hissasi",
+        "ru": "Социальные проекты и вклад в развитие общества",
+        "en": "Social projects and contribution to the development of society"
+      },
+      "color": "from-rose-600 to-pink-500"
+    }
+  ],
+  "team": [
+    {
+      "name": {
+        "uz": "Zuhra Sharipova",
+        "ru": "Зухра Шарипова",
+        "en": "Zuhra Sharipova"
+      },
+      "role": {
+        "uz": "Ta'sischi",
+        "ru": "Учредитель",
+        "en": "Founder"
+      },
+      "category": "rahbariyat",
+      "img": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Odil Xasanov",
+        "ru": "Одил Хасанов",
+        "en": "Odil Khasanov"
+      },
+      "role": {
+        "uz": "Kuzatuv kengashi a'zosi",
+        "ru": "Член Наблюдательного совета",
+        "en": "Member of the Supervisory Board"
+      },
+      "category": "rahbariyat",
+      "img": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Xasan Xasanov",
+        "ru": "Хасан Хасанов",
+        "en": "Khasan Khasanov"
+      },
+      "role": {
+        "uz": "Kuzatuv kengashi a'zosi",
+        "ru": "Член Наблюдательного совета",
+        "en": "Member of the Supervisory Board"
+      },
+      "category": "rahbariyat",
+      "img": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Zarifa Muminova",
+        "ru": "Зарифа Муминова",
+        "en": "Zarifa Muminova"
+      },
+      "role": {
+        "uz": "Akademik faoliyat eksperti",
+        "ru": "Эксперт по академической деятельности",
+        "en": "Academic Activity Expert"
+      },
+      "category": "ekspertlar",
+      "img": "/modul/zarifa.png"
+    },
+    {
+      "name": {
+        "uz": "Azamat Akbarov",
+        "ru": "Азамат Акбаров",
+        "en": "Azamat Akbarov"
+      },
+      "role": {
+        "uz": "Strategik rivojlantirish eksperti",
+        "ru": "Эксперт по стратегическому развитию",
+        "en": "Strategic Development Expert"
+      },
+      "category": "ekspertlar",
+      "img": "/modul/azamat.png"
+    },
+    {
+      "name": {
+        "uz": "Javohir Batirov",
+        "ru": "Жавохир Батиров",
+        "en": "Javohir Batirov"
+      },
+      "role": {
+        "uz": "Moliyaviy ishlar eksperti",
+        "ru": "Эксперт по финансовым вопросам",
+        "en": "Financial Affairs Expert"
+      },
+      "category": "ekspertlar",
+      "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Zebo Sharipova",
+        "ru": "Зебо Шарипова",
+        "en": "Zebo Sharipova"
+      },
+      "role": {
+        "uz": "Kurator",
+        "ru": "Куратор",
+        "en": "Curator"
+      },
+      "category": "kuratorlar",
+      "img": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Bekzod Istamov",
+        "ru": "Бекзод Истамов",
+        "en": "Bekzod Istamov"
+      },
+      "role": {
+        "uz": "Kurator",
+        "ru": "Куратор",
+        "en": "Curator"
+      },
+      "category": "kuratorlar",
+      "img": "/modul/begzod.png"
+    },
+    {
+      "name": {
+        "uz": "Ozodbek Yo'ldoshev",
+        "ru": "Озодбек Юлдашев",
+        "en": "Ozodbek Yuldashev"
+      },
+      "role": {
+        "uz": "Kurator",
+        "ru": "Куратор",
+        "en": "Curator"
+      },
+      "category": "kuratorlar",
+      "img": "/modul/ozod.png"
+    },
+    {
+      "name": {
+        "uz": "Shaxzoda Abbosova",
+        "ru": "Шахзода Аббасова",
+        "en": "Shakhzoda Abbasova"
+      },
+      "role": {
+        "uz": "Kurator",
+        "ru": "Куратор",
+        "en": "Curator"
+      },
+      "category": "kuratorlar",
+      "img": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Faxriddin Burxonov",
+        "ru": "Фахриддин Бурханов",
+        "en": "Fakhriddin Burkhonov"
+      },
+      "role": {
+        "uz": "Volontyor",
+        "ru": "Волонтер",
+        "en": "Volunteer"
+      },
+      "category": "volontyorlar",
+      "img": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": {
+        "uz": "Jurabek Sodikov",
+        "ru": "Журабек Содиков",
+        "en": "Jurabek Sodikov"
+      },
+      "role": {
+        "uz": "Volontyor",
+        "ru": "Волонтер",
+        "en": "Volunteer"
+      },
+      "category": "volontyorlar",
+      "img": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80"
+    }
+  ],
+  "timeline": [
+    {
+      "year": {
+        "uz": "2020",
+        "ru": "2020",
+        "en": "2020"
+      },
+      "text": {
+        "uz": "Fond ochish niyati va maqsadi paydo bo'ldi. Olim fondi nomli xayriya jamg'armasi tashkil etildi.",
+        "ru": "Появилось намерение и цель открытия фонда. Был создан благотворительный фонд «Олим фонди».",
+        "en": "The intention and goal of opening a fund emerged. A charitable foundation named 'Olim fondi' was established."
+      }
+    },
+    {
+      "year": {
+        "uz": "2021",
+        "ru": "2021",
+        "en": "2021"
+      },
+      "text": {
+        "uz": "Fondning birinchi ochiq tanlovi e'lon qilindi. 6 nafar eng iqtidorli ilk fond g'oliblari saralab olindi.",
+        "ru": "Объявлен первый открытый конкурс фонда. Были отобраны 6 первых самых талантливых победителей фонда.",
+        "en": "The fund's first open competition was announced. The first 6 most talented winners of the fund were selected."
+      }
+    },
+    {
+      "year": {
+        "uz": "2022",
+        "ru": "2022",
+        "en": "2022"
+      },
+      "text": {
+        "uz": "Kuchli raqobat muhiti yuzaga keldi. Ko'plab iqtidorli nomzodlar orasidan ko'proq g'oliblar aniqlandi (15 nafar).",
+        "ru": "Возникла атмосфера сильной конкуренции. Среди множества талантливых кандидатов было выявлено больше победителей (15 человек).",
+        "en": "A highly competitive environment emerged. More winners (15 people) were identified among many talented candidates."
+      }
+    },
+    {
+      "year": {
+        "uz": "2023",
+        "ru": "2023",
+        "en": "2023"
+      },
+      "text": {
+        "uz": "Tizim sekin-asta mukammal shakllanayotgan davr. Birinchi qaldirg'ochlarimiz o'z natijalarini ko'rsatishni boshlashdi.",
+        "ru": "Период, когда система постепенно обретала совершенную форму. Наши первые выпускники начали показывать свои результаты.",
+        "en": "The period when the system was gradually taking perfect shape. Our first graduates started to showcase their results."
+      }
+    },
+    {
+      "year": {
+        "uz": "2024",
+        "ru": "2024",
+        "en": "2024"
+      },
+      "text": {
+        "uz": "Transformatsiya jarayoni boshlandi. Stipendiantlarimiz o'qish davridayoq nufuzli yutuqlarni namoyish qilishdi.",
+        "ru": "Начался процесс трансформации. Наши стипендиаты продемонстрировали престижные достижения еще в период учебы.",
+        "en": "The transformation process began. Our scholars demonstrated prestigious achievements during their studies."
+      }
+    },
+    {
+      "year": {
+        "uz": "2025",
+        "ru": "2025",
+        "en": "2025"
+      },
+      "text": {
+        "uz": "Mukammal tizim shakllandi. Maxsus jamoa shakllantirilib, har bir stipendiyantni har tomonlama rivojlantirishga e'tibor qaratildi.",
+        "ru": "Сформировалась идеальная система. Была создана специальная команда, ориентированная на всестороннее развитие каждого стипендиата.",
+        "en": "A perfect system was formed. A special team was established, focusing on the comprehensive development of each scholar."
+      }
+    },
+    {
+      "year": {
+        "uz": "2026",
+        "ru": "2026",
+        "en": "2026"
+      },
+      "text": {
+        "uz": "Yangiliklar davri. Ichki maxsus sovg'alar taqdim etiladigan tanlovlar, tizimlashtirilgan interaktiv baholash joriy etildi.",
+        "ru": "Эпоха инноваций. Были внедрены конкурсы с внутренними специальными призами и систематизированное интерактивное оценивание.",
+        "en": "An era of innovation. Competitions with internal special prizes and systematized interactive assessment were introduced."
+      }
+    },
+    {
+      "year": {
+        "uz": "Kelajak",
+        "ru": "Будущее",
+        "en": "Future"
+      },
+      "text": {
+        "uz": "Talabalarni har tomonlama qo'llab-quvvatlash, o'qish vaqtidanoq ishga yo'naltirish, nufuzli kadr qibly tayyorlash tizimi.",
+        "ru": "Система всесторонней поддержки студентов, направления их на работу еще во время учебы и подготовки престижных кадров.",
+        "en": "A system of comprehensive student support, career guidance during studies, and training of prestigious personnel."
+      }
+    }
+  ],
+  "graduates": [
+    {
+      "name": {
+        "uz": "Ozodbek Yo'ldoshev",
+        "ru": "Озодбек Юлдашев",
+        "en": "Ozodbek Yuldashev"
+      },
+      "awards": {
+        "uz": [
+          "Markaziy Bank maxsus stipendiyasi",
+          "Navoiy nomidagi davlat stipendiyasi",
+          "Muqimiy nomidagi maxsus stipendiyasi"
+        ],
+        "ru": [
+          "Специальная стипендия Центрального банка",
+          "Государственная стипендия имени Навои",
+          "Специальная стипендия имени Мукими"
+        ],
+        "en": [
+          "Central Bank Special Scholarship",
+          "State Scholarship named after Navoiy",
+          "Special Scholarship named after Muqimiy"
+        ]
+      }
+    },
+    {
+      "name": {
+        "uz": "Dilnoza Otamurotova",
+        "ru": "Дилноза Отамуротова",
+        "en": "Dilnoza Otamurotova"
+      },
+      "awards": {
+        "uz": [
+          "Islom Karimov nomidagi davlat stipendiyasi",
+          "Urganch davlat universiteti rektor stipendiyasi"
+        ],
+        "ru": [
+          "Государственная стипендия имени Ислама Каримова",
+          "Стипендия ректора Ургенчского государственного университета"
+        ],
+        "en": [
+          "State Scholarship named after Islam Karimov",
+          "Urgench State University Rector's Scholarship"
+        ]
+      }
+    },
+    {
+      "name": {
+        "uz": "Muhammadamin Mamanov",
+        "ru": "Мухаммадамин Маманов",
+        "en": "Muhammadamin Mamanov"
+      },
+      "awards": {
+        "uz": [
+          "Mahmudxo'ja Behbudiy nomidagi davlat stipendiyasi",
+          "O'zbekiston xalqaro islom akademiyasi rektori stipendiyasi"
+        ],
+        "ru": [
+          "Государственная стипендия имени Махмудходжи Бехбуди",
+          "Стипендия ректора Международной исламской академии Узбекистана"
+        ],
+        "en": [
+          "State Scholarship named after Mahmudkhoja Behbudiy",
+          "International Islamic Academy of Uzbekistan Rector's Scholarship"
+        ]
+      }
+    },
+    {
+      "name": {
+        "uz": "Jahongir Jo'rayev",
+        "ru": "Жахонгир Джураев",
+        "en": "Jahongir Jurayev"
+      },
+      "awards": {
+        "uz": [
+          "Raqamli texnologiyalar vazirligi stipendiyasi"
+        ],
+        "ru": [
+          "Стипендия Министерства цифровых технологий"
+        ],
+        "en": [
+          "Ministry of Digital Technologies Scholarship"
+        ]
+      }
+    },
+    {
+      "name": {
+        "uz": "Oysha Mirag'zamova",
+        "ru": "Ойша Мирагзамова",
+        "en": "Oysha Miragzamova"
+      },
+      "awards": {
+        "uz": [
+          "A. Faynberg nomidagi maxsus stipendiyasi"
+        ],
+        "ru": [
+          "Специальная стипендия имени А. Файнберга"
+        ],
+        "en": [
+          "Special Scholarship named after A. Feinberg"
+        ]
+      }
+    },
+    {
+      "name": {
+        "uz": "Visola To'lqinova",
+        "ru": "Висола Тулкинова",
+        "en": "Visola Tulkinova"
+      },
+      "awards": {
+        "uz": [
+          "Xadicha Sulaymonova nomidagi davlat stipendiyasi"
+        ],
+        "ru": [
+          "Государственная стипендия имени Хадичи Сулеймановой"
+        ],
+        "en": [
+          "State Scholarship named after Khadicha Sulaymanova"
+        ]
+      }
+    }
+  ],
+  "statsBreakdown": [
+    {
+      "title": {
+        "uz": "Davlat tashkilotlari va Vazirliklar",
+        "ru": "Государственные организации и Министерства",
+        "en": "Government Organizations and Ministries"
+      },
+      "percent": "61%",
+      "desc": {
+        "uz": "Vazirliklar (36.6%) va boshqa davlat idoralari (24.4%)",
+        "ru": "Министерства (36.6%) и другие государственные ведомства (24.4%)",
+        "en": "Ministries (36.6%) and other government agencies (24.4%)"
+      }
+    },
+    {
+      "title": {
+        "uz": "Xalqaro kompaniyalar",
+        "ru": "Международные компании",
+        "en": "International Companies"
+      },
+      "percent": "14.6%",
+      "desc": {
+        "uz": "Nufuzli transmilliy va xorijiy kompaniyalarda faoliyat",
+        "ru": "Деятельность в авторитетных транснациональных и зарубежных компаниях",
+        "en": "Employment in prestigious multinational and foreign companies"
+      }
+    },
+    {
+      "title": {
+        "uz": "Magistratura va OTMlar",
+        "ru": "Магистратура и ВУЗы",
+        "en": "Master's Studies and Higher Education Institutions"
+      },
+      "percent": "24.4%",
+      "desc": {
+        "uz": "Xalqaro va mahalliy universitetlar magistrantlari va OTM xodimlari",
+        "ru": "Магистранты международных и местных университетов, а также сотрудники ВУЗов",
+        "en": "Master's students of international and local universities, and HEI staff"
+      }
+    }
+  ],
+  "shans": [
+    {
+      "title": {
+        "uz": "Moliyaviy Yordam",
+        "ru": "Финансовая помощь",
+        "en": "Financial Support"
+      },
+      "desc": {
+        "uz": "Universitet shartnoma (kontrakt) summasini to'liq yoki qisman qoplab berish.",
+        "ru": "Полное или частичное покрытие стоимости обучения (контракта) в университете.",
+        "en": "Full or partial coverage of university tuition (contract) fees."
+      },
+      "color": "text-blue-600 bg-blue-50"
+    },
+    {
+      "title": {
+        "uz": "Seminar va Treninglar",
+        "ru": "Семинары и тренинги",
+        "en": "Seminars and Trainings"
+      },
+      "desc": {
+        "uz": "Shaxsiy rivojlanish, soft-skills, xalqaro tillar va yetakchilik qobiliyatlarini o'stirish darslari.",
+        "ru": "Занятия по личному развитию, soft-skills, международным языкам и развитию лидерских качеств.",
+        "en": "Classes for personal development, soft skills, international languages, and leadership skills cultivation."
+      },
+      "color": "text-indigo-600 bg-indigo-50"
+    },
+    {
+      "title": {
+        "uz": "Networking",
+        "ru": "Нетворкинг",
+        "en": "Networking"
+      },
+      "desc": {
+        "uz": "Muvaffaqiyatli mutaxassislar, nufuzli ekspertlar va bir xil fikrlaydigan iqtidorli tengdoshlar bilan mustahkam aloqalar.",
+        "ru": "Прочные связи с успешными специалистами, авторитетными экспертами и единомышленниками среди талантливых сверстников.",
+        "en": "Strong connections with successful professionals, prestigious experts, and like-minded talented peers."
+      },
+      "color": "text-cyan-600 bg-cyan-50"
+    },
+    {
+      "title": {
+        "uz": "Jamoaviy Ishlar",
+        "ru": "Командная работа",
+        "en": "Teamwork"
+      },
+      "desc": {
+        "uz": "Birgalikda ijtimoiy tashabbuslarni amalga oshirish va professional guruh loyihalarida faoliyat olib borish.",
+        "ru": "Совместная реализация социальных инициатив и деятельность в профессиональных групповых проектах.",
+        "en": "Joint implementation of social initiatives and collaboration in professional group projects."
+      },
+      "color": "text-emerald-600 bg-emerald-50"
+    }
+  ]
+}

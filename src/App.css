@@ -1,4 +1,28 @@
-body{
+body {
   background: #ffffff;
 }
+
 @import "tailwindcss";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Exo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body,
+html,
+button,
+input,
+textarea,
+select {
+  font-family: "Exo", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo-title,
+.heading-exo {
+  font-family: 'Exo', sans-serif !important;
+}

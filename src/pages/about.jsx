@@ -1,74 +1,86 @@
-function About() {
-  const features = [
-    {
-      icon: "📚",
-      title: "To'liq ta'lim granti",
-      desc: "Kontrakt mablag'larini to'liq yoki qisman qoplash imkoniyati.",
-    },
-    {
-      icon: "💼",
-      title: "Kafolatlangan ish o'rni",
-      desc: "Bitiruvchilar AAT Group kompaniyalar tarmog'iga ishga joylashish kafolatiga ega bo'ladilar.",
-    },
-    {
-      icon: "🌱",
-      title: "Uzoq muddatli hamkorlik",
-      desc: "Bu shunchaki bir martalik yordam emas — fond bitiruvchilar bilan aloqani saqlab boradi.",
-    },
-  ];
+import { CheckCircle2 } from "lucide-react";
+import {about} from "../data/txt.json";
+function About({L}) {
+    return ( 
+        <section id="about" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
+            {L(about.historyTitle)}
+          </h2>
+          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+            {L(about.mainTitle )}
+          </p>
+          <div className="w-16 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+        </div>
 
-  return (
-    <section id="about" className="py-20 px-5 bg-white">
-      <div className="max-w-[1100px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-          {/* Chap qism: Maqsad va Xususiyatlar */}
-          <div>
-            <div className="mb-10">
-              <div className="text-[#0aacda] font-bold text-xs uppercase tracking-[0.12em] mb-2">
-                Fondning maqsadi
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Portret (Representative of Olim Hasanov) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-linear-to-tr from-blue-600 to-indigo-600 rounded-2xl transform rotate-3 shadow-lg"></div>
+              <div className="relative bg-slate-950 rounded-2xl overflow-hidden shadow-xl border border-slate-800 max-w-sm">
+                <img
+                  src="/modul/creator.png"
+                  alt={L(about.portraitAlt)}
+                  className="w-full object-cover aspect-4/5 filter grayscale contrast-125 opacity-90 hover:opacity-100 hover:filter-none transition-all duration-500"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/90 to-transparent p-6 text-white text-center">
+                  <h3 className="text-xl font-bold">{L(about.personName)}</h3>
+                  <p className="text-xs text-slate-300 font-semibold uppercase mt-1 tracking-widest">
+                    {L(about.personRole)}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-4xl font-extrabold text-slate-900 mb-4 uppercase">
-                Kelajak kadrlariga investitsiya
-              </h2>
-              <p className="text-slate-500 text-lg leading-relaxed">
-                Fondning bosh maqsadi — bilimli, intiluvchan va salohiyatli
-                yoshlarga moliyaviy qiyinchiliklar sababli o'qishdan to'xtab
-                qolmasliklari uchun ko'maklashish.
+            </div>
+          </div>
+
+          {/* Fond matni */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="bg-slate-50 border-l-4 border-blue-600 p-6 rounded-r-xl">
+              <p className="text-lg text-slate-700 italic font-medium">
+                {L(about.quoteText)}
               </p>
             </div>
 
-            <ul className="space-y-6">
-              {features.map((f) => (
-                <li key={f.title} className="flex gap-4 items-start">
-                  <div className="w-10 h-10 flex-shrink-0 bg-sky-50 border border-[#0aacda]/20 flex items-center justify-center text-lg rounded-sm">
-                    {f.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1 uppercase tracking-wide">
-                      {f.title}
-                    </h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">
-                      {f.desc}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="space-y-4 text-slate-600 text-base leading-relaxed">
+              <p dangerouslySetInnerHTML={{ __html: L(about.descriptionParagraph1) }} />
+              <p dangerouslySetInnerHTML={{ __html: L(about.descriptionParagraph2) }} />
+            </div>
 
-          {/* O'ng qism: Fond Falsafasi */}
-          <div className="bg-slate-900 border-l-4 border-[#0aacda] p-8 md:p-10 shadow-xl">
-            <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic mb-6">
-              «Bilim — eng katta boylik. Bitta iqtidorli yoshga yordam berish —
-              butun jamiyatga investitsiya kiritish demakdir.»
-            </p>
-            <div className="text-xs text-[#0aacda] font-bold uppercase tracking-widest">
-              — Fond falsafasi
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 mt-1 shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">
+                    {L(about.feature1Title)}
+                  </h4>
+                  <p className="text-xs text-slate-500">
+                    {L(about.feature1Description)}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 mt-1 shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">
+                    {L(about.feature2Title)}
+                  </h4>
+                  <p className="text-xs text-slate-500">
+                    {L(about.feature2Description)}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+     );
 }
+
 export default About;
