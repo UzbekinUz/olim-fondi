@@ -15,6 +15,7 @@ import Apply from './components/apply';
 import UpButton from './components/upButton';
 import Footer from './pages/footer';
 import News from './components/news';
+import ApplicationForm from './components/applyTest';
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);  
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -70,7 +71,7 @@ export default function App() {
       {/* ARIZA TOPSHIRISH BO'LIMI (INTERACTIVE REGISTRATION FORM) */}
       {/* <Apply L={L} /> */}
       {/* FOOTER */}
-      <Apply  />
+      <ApplicationForm/>
       <Footer scrollToSection={scrollToSection} L={L} />
       {showScrollTop && (
         <UpButton/>
