@@ -113,6 +113,10 @@
             "uz": "Baholash",
             "ru": "Оценка",
             "en": "Criteria"
+        },"navNews": {
+            "uz": "Yangiliklar",
+            "ru": "Новости",
+            "en": "News"
         },
         "navStats": {
             "uz": "Statistika",

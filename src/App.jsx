@@ -14,6 +14,7 @@ import Chart from './pages/chart';
 import Apply from './components/apply';
 import UpButton from './components/upButton';
 import Footer from './pages/footer';
+import News from './components/news';
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);  
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -45,6 +46,9 @@ export default function App() {
       <Header scrollToSection={scrollToSection} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen } language={lang} setLanguage={setLang} L={L} />
       {/* HERO SECTION */}
       <Hero scrollToSection={scrollToSection} L={L} />
+
+      <News/>
+
       {/* FOND HAQIDA & OLIM HASANOV XOTIRASI */}
       <About scrollToSection={scrollToSection} L={L} />
       {/* MISSIYA VA QADRIYATLAR */}
@@ -66,6 +70,7 @@ export default function App() {
       {/* ARIZA TOPSHIRISH BO'LIMI (INTERACTIVE REGISTRATION FORM) */}
       {/* <Apply L={L} /> */}
       {/* FOOTER */}
+      <Apply  />
       <Footer scrollToSection={scrollToSection} L={L} />
       {showScrollTop && (
         <UpButton/>

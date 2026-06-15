@@ -11,6 +11,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
     { name: L(navbar.navStructure), id: "structure" },
     { name: L(navbar.navMission), id: "mission" },
     { name: L(navbar.navCriteria), id: "criteria" },
+    { name: L(navbar.navNews), id: "news" },
     { name: L(navbar.navStats), id: "stats" },
     { name: L(navbar.navTimeline), id: "timeline" },
   ];
