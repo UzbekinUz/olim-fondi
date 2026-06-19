@@ -57,14 +57,14 @@ function Criteria({L}) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-blue-50 border border-blue-100 p-6 rounded-2xl text-center">
               <div className="text-4xl sm:text-5xl font-black text-blue-600">
-                50%
+                60%
               </div>
               <h4 className="font-bold text-blue-950 mt-2">{L(criteria1.needTitle)}</h4>
               <p className="text-xs text-slate-500 mt-1">{L(criteria1.needDesc)}</p>
             </div>
             <div className="bg-indigo-50 border border-indigo-100 p-6 rounded-2xl text-center">
               <div className="text-4xl sm:text-5xl font-black text-indigo-600">
-                25%
+                20%
               </div>
               <h4 className="font-bold text-indigo-950 mt-2">
                 {L(criteria1.potentialTitle)}
@@ -75,7 +75,7 @@ function Criteria({L}) {
             </div>
             <div className="bg-cyan-50 border border-cyan-100 p-6 rounded-2xl text-center">
               <div className="text-4xl sm:text-5xl font-black text-cyan-600">
-                25%
+                20%
               </div>
               <h4 className="font-bold text-cyan-950 mt-2">
                 {L(criteria1.activityTitle)}
