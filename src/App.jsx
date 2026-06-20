@@ -18,6 +18,7 @@ import ApplicationForm from "./components/applyTest";
 import Auth from "./components/auth";
 import axios from "axios";
 import { API_LINK } from "./cfg";
+import ApplicationCard from "./components/application";
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,7 +58,23 @@ export default function App() {
     }
     setMobileMenuOpen(false);
   };
-
+  function applyCheck(userId) {
+    try {
+      // Backend API manzilingiz (o'zingiznikiga moslab olasiz)
+      axios.get(`${API_LINK}/apply/${userId}`).then((d) => {
+        const { ok,  data } = d.data;
+        
+        if (ok) {
+          setApp({ bor: true, ...app, data });
+        } else {
+          setApp({ bor: false });
+        }
+      });
+    } catch (error) {
+      console.error("Server bilan bog'lanishda xatolik:", error.message);
+      alert("Serverga ulanib bo'lmadi!");
+    }
+  }
   // Token mavjudligini va foydalanuvchi holatini tekshirish
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -78,37 +95,17 @@ export default function App() {
         const { ok, userInfo } = res.data;
         if (ok) {
           setAdmin({ auth: true, ...userInfo });
-          try {
-            // Backend API manzilingiz (o'zingiznikiga moslab olasiz)
-            axios
-              .get(
-                `${API_LINK}/apply/${userInfo.usernameId}`,
-              )
-              .then((d) => {
-                const { ok, msg, data } = d.data;
-                if (ok) {
-                  setApp({ bor: true, ...app, data });
-                } else {
-                  setApp({ bor: false });
-                  alert(msg);
-                }
-              });
-          } catch (error) {
-            console.error("Server bilan bog'lanishda xatolik:", error.message);
-            alert("Serverga ulanib bo'lmadi!");
-          }
+          applyCheck(userInfo.usernameId);
         } else {
-          console.log(res.data);
           setAdmin({ auth: false, usernameId: "", username: "" });
           localStorage.removeItem("access_token"); // Yaroqsiz tokenni o'chirish
         }
       })
-      .catch((err) => {
-        console.error("Auth check error:", err);
+      .catch(() => {
         setAdmin({ auth: false, usernameId: "", username: "" });
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authCheck]);
+
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
@@ -120,6 +117,10 @@ export default function App() {
         language={lang}
         setLanguage={setLang}
         L={L}
+        setUserInfo={setAdmin}
+        userInfo={admin}
+        authCheck={authCheck}
+        app={app}
         admin={admin} // Header ichida balki "Chiqish" yoki "Profil" tugmasi kerakdir
       />
 
@@ -159,8 +160,13 @@ export default function App() {
       {/* ARIZA TOPSHIRISH VA AUTH MANTIGI (SHARTLI RENDER) */}
       <div id="apply" className="py-10 bg-white">
         {admin.auth ? (
+          
           // Agar tizimga kirgan bo'lsa, ariza formasini ko'rsatamiz va unga usernameId ni dinamik beramiz
-          !app.bor?<ApplicationForm usernameId={admin.usernameId} />:"A'rizangiz tekshirilmoqda"
+          !app.bor ? (
+            <ApplicationForm applyCheck={applyCheck} usernameId={admin.usernameId} />
+          ) : (
+            <ApplicationCard application={app.data} />
+          )
         ) : (
           // Agar tizimga kirmagan bo'lsa, avval login/register qilishini so'raymiz
           <div className="flex flex-col items-center justify-center">

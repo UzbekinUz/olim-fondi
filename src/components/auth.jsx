@@ -1,11 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
+import { Loader2 } from "lucide-react"; // Yuklanish spinneri uchun
 import { API_LINK } from "../cfg";
 
 function Auth({ setRefresh, refresh }) {
   // true = Sign In (Kirish), false = Sign Up (Ro'yxatdan o'tish)
   const [isLoginMode, setIsLoginMode] = useState(true);
   
+  // Tugma bosilgandagi loading holati
+  const [isLoading, setIsLoading] = useState(false);
+
   // Server kodingizga mos state
   const [state, setState] = useState({
     username: "",
@@ -24,11 +28,12 @@ function Auth({ setRefresh, refresh }) {
     setToast({ show: true, msg, type });
     setTimeout(() => {
       setToast({ show: false, msg: "", type: "ok" });
-    }, 3000); // 3 soniyadan keyin yo'qoladi
+    }, 3000);
   }
 
   function Submit(e) {
     e.preventDefault();
+    setIsLoading(true); // Loadingni yoqish
 
     const endpoint = isLoginMode 
       ? `${API_LINK}/user/signin` 
@@ -42,6 +47,7 @@ function Auth({ setRefresh, refresh }) {
           const { ok, msg, access_token } = res.data;
           if (!ok) {
             showToast(msg, "error");
+            setIsLoading(false); // Xatolik bo'lsa loadingni o'chirish
           } else {
             showToast(msg, "ok");
             localStorage.setItem("access_token", access_token);
@@ -54,12 +60,13 @@ function Auth({ setRefresh, refresh }) {
           const { ok, msg } = res.data;
           if (!ok) {
             showToast(msg, "error");
+            setIsLoading(false); // Xatolik bo'lsa loadingni o'chirish
           } else {
             showToast(msg, "ok");
-            // Ro'yxatdan o'tgach, avtomatik Kirish rejimiga o'tkazish
             setTimeout(() => {
               setIsLoginMode(true);
               setState({ username: "", password: "" });
+              setIsLoading(false); // Amaliyot tugagach o'chirish
             }, 1500);
           }
         }
@@ -67,6 +74,7 @@ function Auth({ setRefresh, refresh }) {
       .catch((err) => {
         console.error(err);
         showToast("Qayta urinib ko'ring!", "warning");
+        setIsLoading(false); // Tarmoq xatosi bo'lsa loadingni o'chirish
       });
   }
 
@@ -86,11 +94,11 @@ function Auth({ setRefresh, refresh }) {
         </div>
       )}
 
-      <div className="flex items-center justify-between w-full max-w-237.5 bg-white rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-100">
+      <div className="flex items-center justify-between w-full max-w-[950px] bg-white rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-100">
         
-        {/* --- TOZA SVG ANIMATSIYA (Lottie o'rniga) --- */}
+        {/* --- SVG ANIMATSIYA --- */}
         <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-6 space-y-6">
-          <svg className="w-64 h-64 text-blue-600 animate-pulse" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className={`w-64 h-64 text-blue-600 ${isLoading ? "animate-spin duration-1000" : "animate-pulse"}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 22 12 2C12 2 12 2 12 2ZM12 6C13.66 6 15 7.34 15 9C15 10.66 13.66 12 12 12C10.34 12 9 10.66 9 9C9 7.34 10.34 6 12 6ZM12 20.2C9.33 20.2 6.96 18.84 5.56 16.77C5.6 14.78 9.6 13.7 12 13.7C14.39 13.7 18.39 14.78 18.44 16.77C17.04 18.84 14.67 20.2 12 20.2Z" fill="currentColor"/>
           </svg>
           <div className="text-center">
@@ -100,7 +108,7 @@ function Auth({ setRefresh, refresh }) {
         </div>
 
         {/* --- FORMA QISMI --- */}
-        <div className="w-full md:w-95 flex flex-col justify-center">
+        <div className="w-full md:w-[380px] flex flex-col justify-center">
           <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">
             {isLoginMode ? "Kirish" : "Ro'yxatdan o'tish"}
           </h2>
@@ -116,9 +124,10 @@ function Auth({ setRefresh, refresh }) {
               <input
                 type="text"
                 id="username"
+                disabled={isLoading}
                 value={state.username}
                 onChange={(e) => setState({ ...state, username: e.target.value })}
-                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent peer transition-all text-sm"
+                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 peer transition-all text-sm disabled:bg-gray-50 disabled:text-gray-400"
                 placeholder=" "
                 required
               />
@@ -135,9 +144,10 @@ function Auth({ setRefresh, refresh }) {
               <input
                 type="password"
                 id="password"
+                disabled={isLoading}
                 value={state.password}
                 onChange={(e) => setState({ ...state, password: e.target.value })}
-                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent peer transition-all text-sm"
+                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 peer transition-all text-sm disabled:bg-gray-50 disabled:text-gray-400"
                 placeholder=" "
                 required
               />
@@ -149,12 +159,16 @@ function Auth({ setRefresh, refresh }) {
               </label>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Button with Loading */}
             <button 
               type="submit" 
-              className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:shadow-xl transition-all duration-200 active:scale-[0.98] text-sm"
+              disabled={isLoading}
+              className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:shadow-xl transition-all duration-200 active:scale-[0.98] text-sm flex items-center justify-center gap-2"
             >
-              {isLoginMode ? "Kirish" : "Ro'yxatdan o'tish"}
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+              {isLoading 
+                ? (isLoginMode ? "Kirilmoqda..." : "Ro'yxatdan o'tilmoqda...") 
+                : (isLoginMode ? "Kirish" : "Ro'yxatdan o'tish")}
             </button>
 
             {/* Mode Switcher */}
@@ -162,22 +176,26 @@ function Auth({ setRefresh, refresh }) {
               {isLoginMode ? (
                 <>
                   Hisobingiz yo'qmi?{" "}
-                  <span
+                  <button
+                    type="button"
+                    disabled={isLoading}
                     onClick={() => { setIsLoginMode(false); setState({ username: "", password: "" }); }}
-                    className="font-bold text-blue-600 cursor-pointer hover:underline"
+                    className="font-bold text-blue-600 cursor-pointer hover:underline disabled:opacity-50"
                   >
                     Ro'yxatdan o'tish
-                  </span>
+                  </button>
                 </>
               ) : (
                 <>
                   Sizda allaqachon hisob bormi?{" "}
-                  <span
+                  <button
+                    type="button"
+                    disabled={isLoading}
                     onClick={() => { setIsLoginMode(true); setState({ username: "", password: "" }); }}
-                    className="font-bold text-blue-600 cursor-pointer hover:underline"
+                    className="font-bold text-blue-600 cursor-pointer hover:underline disabled:opacity-50"
                   >
                     Kirish
-                  </span>
+                  </button>
                 </>
               )}
             </p>

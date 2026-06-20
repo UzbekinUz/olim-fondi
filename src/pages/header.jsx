@@ -1,9 +1,35 @@
-import { Menu, X } from "lucide-react";
-import Logo from '../assets/logo.png';
-import { Globe } from "lucide-react";
-import {navbar} from "../data/txt.json";
-function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, setLanguage, L }) {
-  // Tarjimani olish uchun yordamchi funksiya
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, Globe, LogOut, FileText, ChevronDown } from "lucide-react";
+import Logo from "../assets/logo.png";
+import { navbar } from "../data/txt.json";
+import axios from "axios";
+import { API_LINK } from "../cfg";
+
+function Header({
+  scrollToSection,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+  language,
+  setLanguage,
+  L,
+  app,
+  authCheck, // Avtorizatsiya tekshiruvi yuklanayotgan holat uchun (ixtiyoriy)
+  userInfo,
+  setUserInfo, // Chiqish tugmasi bosilganda ishlaydigan funksiya
+}) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Tashqariga bosilganda dropdownni yopish
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Navigatsiya elementlari
   const navItems = [
@@ -16,6 +42,37 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
     { name: L(navbar.navTimeline), id: "timeline" },
   ];
 
+  const handleLogout = () => {
+    try {
+      // 1. Agar sizda axios interseptorlari bo'lmasa, tokenni sarlavhaga qo'shamiz
+      const token = localStorage.getItem("access_token");
+      axios
+        .get(`${API_LINK}/user/leave`, {
+          headers: {
+            "x-admin-token":token
+          },
+        })
+        .then((response) => {
+          if (response.data.ok) {
+            localStorage.removeItem("access_token");
+
+            // 3. React stateni boshlang'ich holatga qaytaramiz
+            setUserInfo({
+              auth: false,
+              usernameId: "",
+              username: "",
+            });
+          }
+        });
+    } catch (error) {
+      console.error(
+        "Chiqishda xatolik yuz berdi:",
+        error.response?.data?.msg || error.message,
+      );
+      alert("Profildan chiqishda xatolik yuz berdi. Qayta urinib ko'ring.");
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,11 +82,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <div>
-              <span className="text-xl font-black bg-linear-to-r from-blue-700 to-indigo-900 bg-clip-text text-transparent block tracking-wide">
-                <img src={Logo} className="h-15" alt="ligo" />
-              </span>
-            </div>
+            <img src={Logo} className="h-15" alt="logo" />
           </div>
 
           {/* Desktop Navigation */}
@@ -38,14 +91,14 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200"
+                className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200"
               >
                 {item.name}
               </button>
             ))}
           </nav>
 
-          {/* Desktop Actions: Language & Apply Button */}
+          {/* Desktop Actions: Language & Profil/Button */}
           <div className="hidden md:flex items-center space-x-6">
             {/* Language Changer */}
             <div className="flex items-center space-x-1 text-slate-600 hover:text-blue-600 transition-colors">
@@ -61,16 +114,66 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
               </select>
             </div>
 
-            <button
-              onClick={() => scrollToSection("apply")}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
-            >
-              {L(navbar.applyBtn)}
-            </button>
+            {/* Profil yoki Ariza topshirish tugmasi */}
+            {authCheck ? (
+              <div className="h-8 w-20 bg-slate-100 animate-pulse rounded-xl"></div>
+            ) : userInfo.auth ? (
+              /* Foydalanuvchi profili Dropdown (Desktop) */
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center space-x-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 transition-all"
+                >
+                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
+                    {userInfo.username?.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="max-w-30 truncate">
+                    {userInfo.username}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl py-2 z-50 animate-fadeIn">
+                    <button
+                      onClick={() => {
+                        scrollToSection("apply"); // Yoki tegishli bo'lim ID si
+                        setDropdownOpen(false);
+                      }}
+                      className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{app.bor ? "Arizam":"Ariza topshirish"}</span>
+                    </button>
+                    <hr className="border-slate-100 my-1" />
+                    <button
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        handleLogout();
+                      }}
+                      className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Chiqish</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Tizimga kirmagan bo'lsa - Ariza topshirish */
+              <button
+                onClick={() => scrollToSection("apply")}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+              >
+                {L(navbar.applyBtn)}
+              </button>
+            )}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-4">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-colors"
@@ -88,19 +191,61 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-6 bg-white border-b border-slate-200 space-y-2 animate-fadeIn">
+          {/* Mobil rejimda foydalanuvchi paneli (Tizimga kirgan bo'lsa eng tepada turadi) */}
+          {userInfo.auth && (
+            <div className="bg-slate-50 p-4 rounded-xl mb-4 border border-slate-100">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  {userInfo.username?.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-800">
+                    {userInfo.username}
+                  </h4>
+                  <p className="text-xs text-slate-400">
+                    ID: {userInfo.usernameId}
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => {
+                    scrollToSection("my-application");
+                    setMobileMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center space-x-1.5 bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-slate-600 active:bg-slate-50"
+                >
+                  <FileText className="w-3.5 h-3.5 text-blue-500" />
+                  <span>{app.bor ? "Arizam":"Ariza topshirish"}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    handleLogout()
+                  }}
+                  className="flex items-center justify-center space-x-1.5 bg-rose-50 py-2 rounded-lg text-xs font-bold text-rose-600 active:bg-rose-100"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Chiqish</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Menyu elementlari */}
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => {
                 scrollToSection(item.id);
-                setMobileMenuOpen(false); // Link bosilganda menyu yopilishi uchun
+                setMobileMenuOpen(false);
               }}
-              className="block w-full text-left px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+              className="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
             >
               {item.name}
             </button>
           ))}
-          
+
           {/* Mobile Language Switcher */}
           <div className="flex items-center justify-center space-x-6 py-4 border-t border-slate-100 mt-2">
             {["uz", "ru", "en"].map((lang) => (
@@ -118,17 +263,20 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, language, 
             ))}
           </div>
 
-          <div className="pt-2 px-4">
-            <button
-              onClick={() => {
-                scrollToSection("apply");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-center shadow-md shadow-blue-200 transition-all active:scale-95"
-            >
-              {L(navbar.applyBtn)}
-            </button>
-          </div>
+          {/* Agar tizimga kirmagan bo'lsa pastda Ariza tugmasi chiqadi */}
+          {!userInfo.auth && (
+            <div className="pt-2 px-4">
+              <button
+                onClick={() => {
+                  scrollToSection("apply");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-center shadow-md shadow-blue-200 transition-all active:scale-95"
+              >
+                {L(navbar.applyBtn)}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>

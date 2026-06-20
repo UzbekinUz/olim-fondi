@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
-
-const ApplicationForm = ({ usernameId }) => {
-  const API_LINK = 'http://localhost:5000/api';
+import { API_LINK } from '../cfg';
+const ApplicationForm = ({ usernameId, applyCheck }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
@@ -163,12 +162,15 @@ const ApplicationForm = ({ usernameId }) => {
             familyMembersCount: "", fatherFullName: "", fatherWorkPlace: "", fatherPosition: "", fatherBirthDate: "",
             motherFullName: "", motherWorkPlace: "", motherPosition: "", motherBirthDate: "", motivationLetter: "",
           });
+          applyCheck();
           setFiles({ cvFile: null, gpaFile: null, universityCertificate: null, passportFile: null });
           setSiblings([]);
           setCurrentStep(1);
         }
       })
       .catch((err) => {
+        console.log(err);
+        
         alert(err.response?.data?.msg || "Tizimda xatolik yuz berdi!");
       })
       .finally(() => setLoading(false));
