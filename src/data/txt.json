@@ -754,6 +754,130 @@
             "en": "Foundation Founder & Management"
         }
     },
+    "activitiesPage": {
+        "title": {
+            "uz": "Faoliyat Yo'nalishlari",
+            "ru": "Направления деятельности",
+            "en": "Areas of Activity"
+        },
+        "subtitle": {
+            "uz": "Jamg'armaning jamiyat va yoshlar rivoji yo'lidagi strategik strategiyasi",
+            "ru": "Стратегический план фонда на благо общества и развития молодежи",
+            "en": "The foundation's strategic plan for the benefit of society and youth development"
+        },
+        "mottoTitle": {
+            "uz": "Fondning shiori",
+            "ru": "Девиз фонда",
+            "en": "Foundation's Motto"
+        },
+        "mottoText": {
+            "uz": "«Ilm bilan yuksalamiz, ezgulik bilan birlashamiz.»",
+            "ru": "«Возвышаемся через знания, объединяемся через добро.»",
+            "en": "«We rise through knowledge, we unite through goodness.»"
+        },
+        "directions": [
+            {
+                "title": {
+                    "uz": "Ta'lim",
+                    "ru": "Образование",
+                    "en": "Education"
+                },
+                "color": "blue",
+                "items": [
+                    {
+                        "uz": "Iqtidorli va ehtiyojmand talabalar uchun stipendiyalar.",
+                        "ru": "Стипендии для одаренных и нуждающихся студентов.",
+                        "en": "Scholarships for talented and needy students."
+                    },
+                    {
+                        "uz": "Kitobxonlik va ta'lim loyihalari.",
+                        "ru": "Проекты по чтению книг и образованию.",
+                        "en": "Book reading and educational projects."
+                    },
+                    {
+                        "uz": "Ilmiy tadqiqotlar va yosh olimlarni qo'llab-quvvatlash.",
+                        "ru": "Поддержка научных исследований и молодых ученых.",
+                        "en": "Support for scientific research and young scientists."
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "uz": "Xayriya",
+                    "ru": "Благотворительность",
+                    "en": "Charity"
+                },
+                "color": "emerald",
+                "items": [
+                    {
+                        "uz": "Kam ta'minlangan oilalarga ko'mak.",
+                        "ru": "Помощь малообеспеченным семьям.",
+                        "en": "Assistance to low-income families."
+                    },
+                    {
+                        "uz": "Yetim va nogironligi bo'lgan bolalarni qo'llab-quvvatlash.",
+                        "ru": "Поддержка сирот и детей с инвалидностью.",
+                        "en": "Support for orphans and children with disabilities."
+                    },
+                    {
+                        "uz": "Tibbiy va ijtimoiy yordam loyihalari.",
+                        "ru": "Проекты медицинской и социальной помощи.",
+                        "en": "Medical and social assistance projects."
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "uz": "Yoshlar rivoji",
+                    "ru": "Развитие молодежи",
+                    "en": "Youth Development"
+                },
+                "color": "indigo",
+                "items": [
+                    {
+                        "uz": "Kasbiy ta'lim va malaka oshirish.",
+                        "ru": "Профессиональное обучение и повышение квалификации.",
+                        "en": "Vocational training and professional development."
+                    },
+                    {
+                        "uz": "Liderlik va tadbirkorlik dasturlari.",
+                        "ru": "Программы лидерства и предпринимательства.",
+                        "en": "Leadership and entrepreneurship programs."
+                    },
+                    {
+                        "uz": "Sport va madaniy tashabbuslar.",
+                        "ru": "Спортивные и культурные инициативы.",
+                        "en": "Sports and cultural initiatives."
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "uz": "Ma'naviy meros",
+                    "ru": "Духовное наследие",
+                    "en": "Spiritual Heritage"
+                },
+                "color": "amber",
+                "items": [
+                    {
+                        "uz": "Olimning hayoti va qadriyatlarini targ'ib qilish.",
+                        "ru": "Популяризация жизни и ценностей ученого.",
+                        "en": "Promoting the life and values of the scholar."
+                    },
+                    {
+                        "uz": "Ilmiy-ma'rifiy tadbirlar tashkil etish.",
+                        "ru": "Организация научно-просветительских мероприятий.",
+                        "en": "Organizing scientific and educational events."
+                    },
+                    {
+                        "uz": "Jamiyatda ezgulik va bag'rikenglik g'oyalarini mustahkamlash.",
+                        "ru": "Укрепление идей добра и толерантности в обществе.",
+                        "en": "Strengthening the ideas of goodness and tolerance in society."
+                    }
+                ]
+            }
+        ]
+    },
     "winners": {
         "subtitle": {
             "uz": "Biz faxrlanamiz",
