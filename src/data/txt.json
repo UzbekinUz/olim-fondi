@@ -59,6 +59,26 @@
             "uz": "Tajribali kuratorlar va ekspertlar tomonidan rivojlanish dasturlari olib boriladi.",
             "ru": "Проводятся программы развития опытными кураторами и экспертами.",
             "en": "Development programs are conducted by experienced curators and experts."
+        },
+        "missionTitle": {
+            "uz": "Bizning Oliy Maqsadimiz va Qadriyatimiz",
+            "ru": "Наша высшая цель и ценности",
+            "en": "Our Ultimate Goal and Values"
+        },
+        "missionParagraph1": {
+            "uz": "<strong>OLIM HASANOV FOUNDATION</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>OLIM HASANOV FOUNDATION</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>OLIM HASANOV FOUNDATION</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+        },
+        "missionParagraph2": {
+            "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
+            "ru": "Посредством своей деятельности фонд стремится создать возможности для каждого одаренного и стремящегося к знаниям студента для реализации своих копившихся желаний и мечтаний.",
+            "en": "Through its activities, the foundation aims to create opportunities for every talented and knowledge-seeking student to realize their dreams."
+        },
+        "missionQuote": {
+            "uz": "«Biz ishonamizki, ta'limga kiritilgan sarmoya — jamiyat kelajagiga kiritilgan eng muhim sarmoyadir.»",
+            "ru": "«Мы верим, что инвестиции в образование — это самые важные инвестиции в будущее общества.»",
+            "en": "«We believe that investment in education is the most important investment in the future of society.»"
         }
     },
     "chart1": {
@@ -113,7 +133,8 @@
             "uz": "Baholash",
             "ru": "Оценка",
             "en": "Criteria"
-        },"navNews": {
+        },
+        "navNews": {
             "uz": "Yangiliklar",
             "ru": "Новости",
             "en": "News"
@@ -146,9 +167,9 @@
             "en": "Scholarship Selection Evaluation System"
         },
         "description": {
-            "uz": "Saralashda talabaning yordamga muhtojligi (50%), yuqori potensiali (25%) va harakatchanlik darajasi (25%) inobatga olinadi.",
-            "ru": "При отборе учитывается нуждаемость студента в помощи (50%), высокий потенциал (25%) и уровень активности (25%).",
-            "en": "The selection process takes into account the student's need for assistance (50%), high potential (25%), and level of proactivity (25%)."
+            "uz": "Saralashda fond faoliyatining asosiy yo'nalishlari — ijtimoiy imkoniyati cheklangan talabalar (60%) hamda iqtidorli va yuqori salohiyatli yoshlar (40%) inobatga olinadi.",
+            "ru": "При отборе учитываются основные направления деятельности фонда — студенты с ограниченными социальными возможностями (60%) и одаренная, высокопотенциальная молодежь (40%).",
+            "en": "The selection process takes into account the main directions of the foundation's activities — students with limited social opportunities (60%) and talented, high-potential youth (40%)."
         },
         "criterionLabel": {
             "uz": "Mezon",
@@ -161,12 +182,12 @@
             "en": "Maximum score"
         },
         "bannerTitle": {
-            "uz": "Talabalarni Tanlab Olish Foiz Natijalari",
-            "ru": "Процентные результаты отбора студентов",
-            "en": "Student Selection Percentage Breakdown"
+            "uz": "Saralash mezonlari (Talaba baholash tizimi)",
+            "ru": "Критерии отбора (Система оценки студентов)",
+            "en": "Selection Criteria (Student Evaluation System)"
         },
         "needTitle": {
-            "uz": "Himoya reystoriga mansub",
+            "uz": "Himoya reyestriga mansub",
             "ru": "Нуждаемость в помощи",
             "en": "Need for Assistance"
         },
@@ -194,6 +215,77 @@
             "uz": "Jamoaviy ishlarga moyilligi, shaxsiy tashabbuskorligi va faollik darajasi",
             "ru": "Склонность к командной работе, личная инициатива и уровень активности",
             "en": "Propensity for teamwork, personal initiative, and level of activity"
+        },
+        "directionTitle": {
+            "uz": "Fond faoliyatining asosiy yo'nalishlari",
+            "ru": "Основные направления деятельности фонда",
+            "en": "Main Directions of the Foundation's Activities"
+        },
+        "socialTitle": {
+            "uz": "Ijtimoiy imkoniyati cheklangan talabalar",
+            "ru": "Студенты с ограниченными социальными возможностями",
+            "en": "Students with Limited Social Opportunities"
+        },
+        "socialDesc": {
+            "uz": "Fondning asosiy ustuvor yo'nalishi — moddiy yoki ijtimoiy qiyinchiliklarga duch kelgan, ammo ta'lim olishga intilayotgan talabalarni qo'llab-quvvatlash.",
+            "ru": "Основной приоритет фонда — поддержка студентов, столкнувшихся с материальными или социальными трудностями, но стремящихся к образованию.",
+            "en": "The main priority of the foundation is to support students facing financial or social difficulties but striving for education."
+        },
+        "socialItems": {
+            "uz": [
+                "Ta'lim grantlari",
+                "Kontrakt to'lovlarida ko'mak",
+                "Stipendiyalar",
+                "O'quv qurollari va resurslar",
+                "Mentorlik va kasbiy rivojlanish dasturlari"
+            ],
+            "ru": [
+                "Образовательные гранты",
+                "Помощь в оплате контрактов",
+                "Стипендии",
+                "Учебные пособия и ресурсы",
+                "Программы менторства и профессионального развития"
+            ],
+            "en": [
+                "Educational grants",
+                "Assistance with tuition fees",
+                "Scholarships",
+                "Educational tools and resources",
+                "Mentorship and professional development programs"
+            ]
+        },
+        "talentedTitle": {
+            "uz": "Iqtidorli va yuqori salohiyatli talabalar",
+            "ru": "Одаренные и высокопотенциальные студенты",
+            "en": "Talented and High-Potential Students"
+        },
+        "talentedDesc": {
+            "uz": "Fond yuqori akademik natijalarga erishgan, innovatsion g'oyalarga ega va kelajakda jamiyat taraqqiyotiga hissa qo'shish imkoniyati yuqori bo'lgan talabalarni ham qo'llab-quvvatlaydi.",
+            "ru": "Фонд также поддерживает студентов, достигших высоких академических результатов, имеющих инновационные идеи и высокий потенциал вклада в развитие общества.",
+            "en": "The foundation also supports students who have achieved high academic results, possess innovative ideas, and have a high potential to contribute to society."
+        },
+        "talentedItems": {
+            "uz": [
+                "Maxsus stipendiyalar",
+                "Ilmiy va innovatsion loyihalar",
+                "Xalqaro ta'lim imkoniyatlari",
+                "Liderlik dasturlari",
+                "Startap va tadqiqot tashabbuslari"
+            ],
+            "ru": [
+                "Специальные стипендии",
+                "Научные и инновационные проекты",
+                "Международные образовательные возможности",
+                "Лидерские программы",
+                "Стартап и исследовательские инициативы"
+            ],
+            "en": [
+                "Special scholarships",
+                "Scientific and innovative projects",
+                "International educational opportunities",
+                "Leadership programs",
+                "Startup and research initiatives"
+            ]
         }
     },
     "footer1": {
@@ -378,19 +470,39 @@
     },
     "mission": {
         "badge": {
-            "uz": "Jamg'arma Missiyasi",
-            "ru": "Миссия фонда",
-            "en": "Foundation Mission"
+            "uz": "Jamg'arma Missiyasi & Strategiyasi",
+            "ru": "Миссия и стратегия фонда",
+            "en": "Foundation Mission & Strategy"
         },
-        "title": {
-            "uz": "Bizning Bosh Maqsadimiz",
-            "ru": "Наша главная цель",
-            "en": "Our Main Goal"
+        "missionTitle": {
+            "uz": "Bizning Missiyamiz",
+            "ru": "Наша миссия",
+            "en": "Our Mission"
         },
-        "description": {
-            "uz": "\"Yuqori salohiyatga ega, yordamga muhtoj yoshlarni har taraflama qo'llab-quvvatlash, kuchli ishonch berish va kerakli yo'l-yo'riqlarni taqdim etish orqali jamiyatga yetuk kadr sifatida tayyorlashdir.\"",
-            "ru": "\"Всесторонняя поддержка нуждающейся в помощи молодежи с высоким потенциалом, придание им сильной уверенности и предоставление необходимых направлений для подготовки их как зрелых кадров для общества.\"",
-            "en": "\"To comprehensively support high-potential youth in need of assistance, instilling strong confidence and providing necessary guidance to prepare them as mature professionals for society.\""
+        "missionDesc": {
+            "uz": "Yoshlarning ta'lim olish imkoniyatlarini kengaytirish, iqtidor va salohiyatni rivojlantirish hamda ijtimoiy tenglikni ta'minlash orqali kelajak liderlari, olimlari va mutaxassislarini tarbiyalash.",
+            "ru": "Воспитывать будущих лидеров, ученых и специалистов путем расширения образовательных возможностей молодежи, развития талантов и потенциала, а также обеспечения социального равенства.",
+            "en": "To nurture future leaders, scientists, and professionals by expanding educational opportunities for youth, developing talent and potential, and ensuring social equality."
+        },
+        "goalTitle": {
+            "uz": "Bizning Maqsadimiz",
+            "ru": "Наша цель",
+            "en": "Our Goal"
+        },
+        "goalDesc": {
+            "uz": "Talabalarning bilim olishi, shaxsiy va kasbiy rivojlanishi uchun munosib shart-sharoitlar yaratish hamda ularning jamiyat taraqqiyotiga munosib hissa qo'shishiga ko'maklashish.",
+            "ru": "Создание достойных условий для образования, личного и профессионального развития студентов, а также содействие их достойному вкладу в развитие общества.",
+            "en": "To create decent conditions for students' education, personal, and professional development, and to assist them in making a worthy contribution to the progress of society."
+        },
+        "dreamTitle": {
+            "uz": "Bizning Orzuyimiz",
+            "ru": "Наша мечта",
+            "en": "Our Dream"
+        },
+        "dreamDesc": {
+            "uz": "Hech bir iqtidorli talaba moddiy qiyinchiliklar sababli ta'limdan chetda qolmasligi, har bir iqtidor esa o'z imkoniyatini to'liq namoyon qilishi uchun munosib muhit yaratish.",
+            "ru": "Создать достойную среду для того, чтобы ни один талантливый студент не остался вне образования из-за материальных трудностей, а каждый талант смог полностью реализовать свой потенциал.",
+            "en": "To create a decent environment so that no talented student is left out of education due to financial difficulties, and every talent can fully realize their potential."
         },
         "principlesSubtitle": {
             "uz": "Biz amal qiladigan prinsiplar",
@@ -405,50 +517,62 @@
         "values": [
             {
                 "title": {
-                    "uz": "Masuliyatlilik",
+                    "uz": "Ta'lim",
+                    "ru": "Образование",
+                    "en": "Education"
+                },
+                "desc": {
+                    "uz": "Ta'lim – taraqqiyotning asosi.",
+                    "ru": "Образование – основа прогресса.",
+                    "en": "Education is the foundation of progress."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Teng imkoniyat",
+                    "ru": "Равные возможности",
+                    "en": "Equal Opportunity"
+                },
+                "desc": {
+                    "uz": "Har bir yosh o'z salohiyatini namoyon qilish huquqiga ega.",
+                    "ru": "Каждый молодой человек имеет право проявить свой потенциал.",
+                    "en": "Every young person has the right to demonstrate their potential."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Adolat",
+                    "ru": "Справедливость",
+                    "en": "Justice"
+                },
+                "desc": {
+                    "uz": "Shaffof va xolis tanlov.",
+                    "ru": "Прозрачный и объективный отбор.",
+                    "en": "Transparent and unbiased selection."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Inson kapitali",
+                    "ru": "Человеческий капитал",
+                    "en": "Human Capital"
+                },
+                "desc": {
+                    "uz": "Millatning eng katta boyligi.",
+                    "ru": "Самое большое богатство нации.",
+                    "en": "The greatest wealth of the nation."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Mas'uliyat",
                     "ru": "Ответственность",
                     "en": "Responsibility"
                 },
                 "desc": {
-                    "uz": "Zimmamizga olgan har bir vazifani va har bir iqtidor kelajagini mas'uliyat bilan bajaramiz.",
-                    "ru": "Мы ответственно выполняем каждую взятую на себя задачу и заботимся о будущем каждого таланта.",
-                    "en": "We responsibly fulfill every task we undertake and care for the future of every talent."
-                }
-            },
-            {
-                "title": {
-                    "uz": "E'tiborlilik",
-                    "ru": "Внимательность",
-                    "en": "Attentiveness"
-                },
-                "desc": {
-                    "uz": "Har bir stipendiyantning ijtimoiy holati, muammolari va rivojlanish istaklariga alohida e'tibor beriladi.",
-                    "ru": "Особое внимание уделяется социальному положению, проблемам и стремлениям к развитию каждого стипендиата.",
-                    "en": "Special attention is given to the social status, problems, and development aspirations of each scholar."
-                }
-            },
-            {
-                "title": {
-                    "uz": "Hurmat qilish",
-                    "ru": "Уважение",
-                    "en": "Respect"
-                },
-                "desc": {
-                    "uz": "Talabalarning shaxsiy qarashlari, intilishlari va qiziqishlariga cheksiz hurmat ko'rsatamiz.",
-                    "ru": "Мы проявляем безграничное уважение к личным взглядам, стремлениям и интересам студентов.",
-                    "en": "We show boundless respect for the personal views, aspirations, and interests of the students."
-                }
-            },
-            {
-                "title": {
-                    "uz": "Halollik",
-                    "ru": "Честность",
-                    "en": "Honesty"
-                },
-                "desc": {
-                    "uz": "Barcha bosqichdagi saralashlarimiz va moliyaviy ajratmalarimiz to'liq ochiq, adolatli va halol o'tkaziladi.",
-                    "ru": "Наши отборы на всех этапах и финансовые выделения проводятся полностью открыто, справедливо и честно.",
-                    "en": "Our selections at all stages and financial allocations are conducted completely openly, fairly, and honestly."
+                    "uz": "Kelajak avlod oldidagi burch.",
+                    "ru": "Долг перед будущим поколением.",
+                    "en": "A duty to the future generation."
                 }
             }
         ]
@@ -581,6 +705,53 @@
             "uz": "• bosqich",
             "ru": "• этап",
             "en": "• stage"
+        }
+    },
+    "founder": {
+        "pageTitle": {
+            "uz": "Ta'sischi Murojaati",
+            "ru": "Обращение основателя",
+            "en": "Founder's Appeal"
+        },
+        "greeting": {
+            "uz": "Aziz yoshlar!",
+            "ru": "Дорогие молодые люди!",
+            "en": "Dear Youth!"
+        },
+        "paragraph1": {
+            "uz": "Har bir buyuk yutuq ortida bilim, mehnat va imkoniyat turadi. Ammo hayotda shunday iqtidorli yoshlar borki, ular moddiy yoki ijtimoiy sharoit tufayli o'z orzulariga erishishda qiyinchiliklarga duch kelishadi. Yana shunday talabalar borki, ularning iste'dodi va salohiyati mamlakatimiz kelajagi uchun katta ahamiyatga ega.",
+            "ru": "За каждым великим достижением стоят знания, труд и возможности. Однако в жизни есть такие талантливые молодые люди, которые из-за материальных или социальных условий сталкиваются с трудностями в достижении своих копившихся мечтаний. Есть также студенты, чей талант и потенциал имеют огромное значение для будущего нашей страны.",
+            "en": "Behind every great achievement lies knowledge, hard work, and opportunity. However, there are talented youth in life who face difficulties in achieving their dreams due to financial or social circumstances. There are also students whose talent and potential are of great importance for the future of our country."
+        },
+        "accentText": {
+            "uz": "OLIM HASANOV FOUNDATION aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
+            "ru": "Фонд OLIM HASANOV FOUNDATION был создан именно для поддержки таких молодых людей.",
+            "en": "The OLIM HASANOV FOUNDATION was established specifically to support these young individuals."
+        },
+        "paragraph2": {
+            "uz": "Bizning ishonchimiz komilki, ta'limga kiritilgan har bir sarmoya – millat kelajagiga qo'shilgan eng qimmatli hissadir. Biz nafaqat talabalarga moddiy ko'mak berishni, balki ularning bilimli, vatanparvar va mas'uliyatli shaxs bo'lib yetishishiga hissa qo'shishni o'z oldimizga maqsad qilib qo'yganmiz.",
+            "ru": "Мы убеждены, что каждая инвестиция в образование — это самый ценный вклад в будущее нации. Мы стремимся не только оказывать финансовую помощь студентам, но и способствовать их становлению как образованных, патриотичных и ответственных личностей.",
+            "en": "We are confident that every investment in education is the most valuable contribution to the future of the nation. We aim not only to provide financial support to students but also to contribute to their development as educated, patriotic, and responsible individuals."
+        },
+        "paragraph3": {
+            "uz": "Bizning orzuyimiz – hech bir iqtidorli yosh imkoniyatsiz qolmasligi va har bir mehnatkash talaba o'z salohiyatini to'liq namoyon eta olishi.",
+            "ru": "Наша мечта — чтобы ни один талантливый молодой человек не остался без возможностей, и чтобы каждый трудолюбивый студент мог полностью реализовать свой потенциал.",
+            "en": "Our dream is that no talented young person is left without opportunity, and every hardworking student can fully demonstrate their potential."
+        },
+        "closing": {
+            "uz": "OLIM HASANOV FOUNDATION – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
+            "ru": "OLIM HASANOV FOUNDATION — это не просто фонд, это движение знаний, добра и веры в будущее.",
+            "en": "The OLIM HASANOV FOUNDATION is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
+        },
+        "imageAlt": {
+            "uz": "Fond ta'sischisi portreti",
+            "ru": "Портрет основателя фонда",
+            "en": "Portrait of the Foundation Founder"
+        },
+        "signatureTitle": {
+            "uz": "Fond Ta'sischisi va Rahbariyati",
+            "ru": "Основатель и руководство фонда",
+            "en": "Foundation Founder & Management"
         }
     },
     "winners": {

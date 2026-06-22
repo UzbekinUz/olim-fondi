@@ -1,7 +1,6 @@
 import { criteria } from "../data/static.json";
-import {criteria1} from "../data/txt.json";
-function Criteria({L}) {
-
+import { criteria1 } from "../data/txt.json";
+function Criteria({ L }) {
   return (
     <section id="criteria" className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +31,7 @@ function Criteria({L}) {
                   {L(item.title)}
                 </h4>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  {L(item.desc) }
+                  {L(item.desc)}
                 </p>
               </div>
               <div
@@ -50,37 +49,78 @@ function Criteria({L}) {
         </div>
 
         {/* Admission Percentage breakdown banner */}
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-10 shadow-sm">
-          <h3 className="text-xl font-bold text-slate-900 mb-6 text-center sm:text-left">
-            {L(criteria1.bannerTitle)}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-blue-50 border border-blue-100 p-6 rounded-2xl text-center">
-              <div className="text-4xl sm:text-5xl font-black text-blue-600">
-                60%
-              </div>
-              <h4 className="font-bold text-blue-950 mt-2">{L(criteria1.needTitle)}</h4>
-              <p className="text-xs text-slate-500 mt-1">{L(criteria1.needDesc)}</p>
+        <div className="space-y-12">
+          {/* Fond faoliyatining asosiy yo'nalishlari (60% / 40%) */}
+          <div className="bg-slate-50/70 rounded-3xl border border-slate-200/60 p-6 sm:p-10">
+            <div className="text-center md:text-left mb-8">
+              <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+                {L(criteria1.directionTitle)}
+              </h3>
+              <div className="w-12 h-1 bg-blue-600 mt-3 rounded-full mx-auto md:mx-0"></div>
             </div>
-            <div className="bg-indigo-50 border border-indigo-100 p-6 rounded-2xl text-center">
-              <div className="text-4xl sm:text-5xl font-black text-indigo-600">
-                20%
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* 60% — Ijtimoiy imkoniyati cheklanganlar */}
+              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-black mb-4">
+                    60%
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-3">
+                    {L(criteria1.socialTitle)}
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                    {L(criteria1.socialDesc)}
+                  </p>
+                </div>
+
+                {/* Ro'yxat punktlari */}
+                <ul className="space-y-2.5 border-t border-slate-100 pt-4">
+                  {criteria1.socialItems &&
+                  Array.isArray(L(criteria1.socialItems))
+                    ? L(criteria1.socialItems).map((item, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-xs sm:text-sm text-slate-700"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2.5 shrink-0"></span>
+                          {item}
+                        </li>
+                      ))
+                    : null}
+                </ul>
               </div>
-              <h4 className="font-bold text-indigo-950 mt-2">
-                {L(criteria1.potentialTitle)}
-              </h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {L(criteria1.potentialDesc)}
-              </p>
-            </div>
-            <div className="bg-cyan-50 border border-cyan-100 p-6 rounded-2xl text-center">
-              <div className="text-4xl sm:text-5xl font-black text-cyan-600">
-                20%
+
+              {/* 40% — Iqtidorli va yuqori salohiyatli */}
+              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-100 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-black mb-4">
+                    40%
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-3">
+                    {L(criteria1.talentedTitle)}
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                    {L(criteria1.talentedDesc)}
+                  </p>
+                </div>
+
+                {/* Ro'yxat punktlari */}
+                <ul className="space-y-2.5 border-t border-slate-100 pt-4">
+                  {criteria1.talentedItems &&
+                  Array.isArray(L(criteria1.talentedItems))
+                    ? L(criteria1.talentedItems).map((item, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-xs sm:text-sm text-slate-700"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2.5 shrink-0"></span>
+                          {item}
+                        </li>
+                      ))
+                    : null}
+                </ul>
               </div>
-              <h4 className="font-bold text-cyan-950 mt-2">
-                {L(criteria1.activityTitle)}
-              </h4>
-              <p className="text-xs text-slate-500 mt-1">{L(criteria1.activityDesc)}</p>
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ import Auth from "./components/auth";
 import axios from "axios";
 import { API_LINK } from "./cfg";
 import ApplicationCard from "./components/application";
+import FounderAppeal from "./pages/founder";
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -135,7 +136,7 @@ export default function App() {
 
       {/* MISSIYA VA QADRIYATLAR */}
       <Mission L={L} />
-
+      <FounderAppeal L={L} />
       {/* TASHKILIY TUZILMA */}
       <Structure L={L} />
 
