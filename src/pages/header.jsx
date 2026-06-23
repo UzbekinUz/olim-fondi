@@ -39,7 +39,7 @@ function Header({
   const navItems = [
     { name: L(navbar.navAbout), path: "/about-olim-foundation" },
     { name: L(navbar.navStructure), path: "/structure" },
-    { name: L(navbar.navMission), path: "/", sectionId: "mission" }, // Bosh sahifadagi bo'lim bo'lsa
+    { name: L(navbar.navMission), path: "/main-winner-elements" }, // Bosh sahifadagi bo'lim bo'lsa
     { name: L(navbar.navCriteria), path: "/main-criteria-elements"},
     { name: L(navbar.navNews), path: "/", sectionId: "news" }, // Bosh sahifadagi bo'lim bo'lsa
     { name: L(navbar.navStats), path: "/statistics" },
