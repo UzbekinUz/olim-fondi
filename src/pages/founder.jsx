@@ -3,105 +3,70 @@ import { founder } from "../data/txt.json";
 
 function FounderAppeal({ L }) {
   return (
-    <section className="py-20 bg-slate-50 min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-slate-50 min-h-screen flex items-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Sahifa Sarlavhasi */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
+          <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
             {L(founder.signatureTitle)}
           </h2>
-          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {L(founder.pageTitle)}
-          </p>
+          </h1>
           <div className="w-16 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        {/* Asosiy Grid Konteyner */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Murojaat Kontenti (Markazlashgan va Mukammal Kenglikda) */}
+        <div className="bg-white rounded-3xl shadow-xs border border-slate-100 p-8 sm:p-12 space-y-8 relative overflow-hidden">
           
-          {/* O'NG TOMON (Responsive holatda TEPADA turadi: order-1) */}
-          <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
-            <div className="relative w-full max-w-sm sm:max-w-md">
-              
-              {/* Orqa fondagi chiroyli geometrik gradient bezak */}
-              <div className="absolute inset-0 bg-linear-to-tr from-blue-600 via-indigo-600 to-indigo-800 rounded-3xl transform rotate-3 scale-102 shadow-xl opacity-90"></div>
-              
-              {/* Rasm ramkasi */}
-              <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 p-3">
-                <div className="rounded-2xl overflow-hidden aspect-4/5 relative group">
-                  <img
-                    src="/modul/founder.jpg" /* Ta'sischi rasmi manzili */
-                    alt={L(founder.imageAlt)}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent"></div>
-                </div>
-                
-                {/* Rasm ostidagi imzo yoki kichik sarlavha bloki */}
-                <div className="p-4 text-center">
-                  <h4 className="font-bold text-slate-900 text-lg">OLIM HASANOV FOUNDATION</h4>
-                  <p className="text-xs text-blue-600 font-semibold uppercase tracking-wider mt-0.5">
-                    {L(founder.signatureTitle)}
-                  </p>
-                </div>
-              </div>
+          {/* Orqa fondagi nafis dekorativ element */}
+          <div className="absolute -right-12 -top-12 w-40 h-40 bg-blue-50 rounded-full blur-2xl pointer-events-none"></div>
 
-              {/* Kichik chiroyli ma'lumot ko'rsatkichi */}
-              <div className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-2xl p-4 hidden sm:flex items-center space-x-3 border border-slate-100 max-w-xs animate-bounce-slow">
-                <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 shrink-0">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <p className="text-xs text-slate-700 font-medium leading-tight">
-                  Ta'limga tikilgan sarmoya — kelajakka ishonchdir.
-                </p>
-              </div>
-
-            </div>
+          {/* Salomlashish bloki */}
+          <div className="flex items-center space-x-3 text-blue-600">
+            <Quote className="w-10 h-10 rotate-180 text-blue-600/20 shrink-0" />
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              {L(founder.greeting)}
+            </h3>
           </div>
 
-          {/* CHAP TOMON (Responsive holatda PASTDA turadi: order-2) */}
-          <div className="lg:col-span-7 space-y-6 order-2 lg:order-1">
+          {/* Asosiy Murojaat matnlari */}
+          <div className="space-y-6 text-slate-700 text-base sm:text-lg leading-relaxed text-justify sm:text-left">
+            <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-blue-600 first-letter:mr-1">
+              {L(founder.paragraph1)}
+            </p>
+
+            {/* Urg'u berilgan, ajralib turuvchi o'rta ctc blok */}
+            <div className="bg-linear-to-r from-blue-600 to-indigo-700 text-white p-6 rounded-2xl shadow-md font-semibold text-base sm:text-lg flex items-start space-x-4 my-8 border border-blue-700/50">
+              <Award className="w-6 h-6 text-blue-200 shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                {L(founder.accentText)}
+              </p>
+            </div>
+
+            <p>
+              {L(founder.paragraph2)}
+            </p>
+
+            <p className="italic font-medium text-slate-800 border-l-4 border-amber-500 pl-5 py-2 bg-amber-50/60 rounded-r-2xl">
+              {L(founder.paragraph3)}
+            </p>
+          </div>
+
+          {/* Yakuniy ta'sirchan iqtibos va imzo o'rni */}
+          <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p className="text-slate-900 font-bold text-base sm:text-lg flex items-center gap-2 max-w-xl">
+              <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0"></span>
+              {L(founder.closing)}
+            </p>
             
-            {/* Salomlashish bloki */}
-            <div className="flex items-center space-x-3 text-blue-600">
-              <Quote className="w-8 h-8 rotate-180 text-blue-600/30 shrink-0" />
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                {L(founder.greeting)}
-              </h3>
+            {/* Rasm yo'qligini to'ldiruvchi rasmiy imzo bloki */}
+            <div className="text-left sm:text-right shrink-0">
+              <p className="text-sm font-black text-slate-900 tracking-tight">OLIM HASANOV</p>
+              <p className="text-xs text-slate-400 font-medium">{L(founder.signatureTitle)}</p>
             </div>
-
-            {/* Asosiy Murojaat matnlari */}
-            <div className="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed text-justify sm:text-left">
-              <p>
-                {L(founder.paragraph1)}
-              </p>
-
-              {/* Urg'u berilgan, ajralib turuvchi o'rta ctc blok */}
-              <div className="bg-blue-600 text-white p-5 rounded-2xl shadow-xs font-semibold text-base flex items-start space-x-3.5 my-6 border border-blue-700/50">
-                <Award className="w-6 h-6 text-blue-200 shrink-0 mt-0.5" />
-                <p className="leading-relaxed">
-                  {L(founder.accentText)}
-                </p>
-              </div>
-
-              <p>
-                {L(founder.paragraph2)}
-              </p>
-
-              <p className="italic font-medium text-slate-800 border-l-4 border-amber-500 pl-4 py-1 bg-amber-50/50 rounded-r-xl">
-                {L(founder.paragraph3)}
-              </p>
-            </div>
-
-            {/* Yakuniy ta'sirchan iqtibos */}
-            <div className="pt-4 border-t border-slate-200">
-              <p className="text-slate-900 font-bold text-base sm:text-lg flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                {L(founder.closing)}
-              </p>
-            </div>
-
           </div>
 
         </div>

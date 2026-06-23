@@ -1,24 +1,27 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Globe, LogOut, FileText, ChevronDown } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Sahifalararo o'tish uchun qo'shildi
 import Logo from "../assets/logo.png";
 import { navbar } from "../data/txt.json";
 import axios from "axios";
 import { API_LINK } from "../cfg";
 
 function Header({
-  scrollToSection,
+  scrollToSection, // Agar Home ichida silliq o'tish kerak bo'lsa hali ham ishlaydi
   mobileMenuOpen,
   setMobileMenuOpen,
   language,
   setLanguage,
   L,
   app,
-  authCheck, // Avtorizatsiya tekshiruvi yuklanayotgan holat uchun (ixtiyoriy)
+  authCheck,
   userInfo,
-  setUserInfo, // Chiqish tugmasi bosilganda ishlaydigan funksiya
+  setUserInfo,
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const location = useLocation(); // Hozir qaysi sahifadaligini aniqlash uchun
+  const navigate = useNavigate();
 
   // Tashqariga bosilganda dropdownni yopish
   useEffect(() => {
@@ -31,71 +34,110 @@ function Header({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Navigatsiya elementlari
+  // Yangi Routelarga moslangan Navigatsiya elementlari
+  // Bosh sahifada qoladigan elementlar uchun id, alohida page bo'lganlar uchun path yozildi
   const navItems = [
-    { name: L(navbar.navAbout), id: "about" },
-    { name: L(navbar.navStructure), id: "structure" },
-    { name: L(navbar.navMission), id: "mission" },
-    { name: L(navbar.navCriteria), id: "criteria" },
-    { name: L(navbar.navNews), id: "news" },
-    { name: L(navbar.navStats), id: "stats" },
-    { name: L(navbar.navTimeline), id: "timeline" },
+    { name: L(navbar.navAbout), path: "/about-olim-foundation" },
+    { name: L(navbar.navStructure), path: "/structure" },
+    { name: L(navbar.navMission), path: "/", sectionId: "mission" }, // Bosh sahifadagi bo'lim bo'lsa
+    { name: L(navbar.navCriteria), path: "/main-criteria-elements"},
+    { name: L(navbar.navNews), path: "/", sectionId: "news" }, // Bosh sahifadagi bo'lim bo'lsa
+    { name: L(navbar.navStats), path: "/statistics" },
+    { name: L(navbar.navTimeline), path: "/history-timeline" },
   ];
+
+  // Element bosilganda sahifani tekshirib harakat qilish funksiyasi
+  const handleNavClick = (item) => {
+    setMobileMenuOpen(false);
+
+    if (item.sectionId) {
+      // Agar element bosh sahifadagi section bo'lsa
+      if (location.pathname !== "/") {
+        // Agar boshqa sahifada bo'lsak, avval bosh sahifaga o'tamiz, keyin scroll qilamiz
+        navigate("/");
+        setTimeout(() => {
+          scrollToSection?.(item.sectionId);
+        }, 100);
+      } else {
+        // Agar allaqachon bosh sahifada bo'lsak, shunchaki scroll
+        scrollToSection?.(item.sectionId);
+      }
+    }
+  };
 
   const handleLogout = () => {
     try {
-      // 1. Agar sizda axios interseptorlari bo'lmasa, tokenni sarlavhaga qo'shamiz
       const token = localStorage.getItem("access_token");
       axios
         .get(`${API_LINK}/user/leave`, {
           headers: {
-            "x-admin-token":token
+            "x-admin-token": token,
           },
         })
         .then((response) => {
           if (response.data.ok) {
             localStorage.removeItem("access_token");
-
-            // 3. React stateni boshlang'ich holatga qaytaramiz
             setUserInfo({
               auth: false,
               usernameId: "",
               username: "",
             });
+            navigate("/"); // Chiqqandan keyin bosh sahifaga yo'naltirish
           }
         });
     } catch (error) {
       console.error(
         "Chiqishda xatolik yuz berdi:",
-        error.response?.data?.msg || error.message,
+        error.response?.data?.msg || error.message
       );
       alert("Profildan chiqishda xatolik yuz berdi. Qayta urinib ko'ring.");
     }
+  };
+
+  // Ariza tugmasi bosilganda ishlash (Alohida route yoki section bo'lishiga qarab)
+  const handleApplyClick = () => {
+    setMobileMenuOpen(false);
+    navigate("/main-enterence"); // Kirish/Ariza sahifangizga yo'naltirish
   };
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div
-            className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
+          
+          {/* Logo - Bosh sahifaga qaytaradi */}
+          <Link to="/" className="flex items-center space-x-3 cursor-pointer">
             <img src={Logo} className="h-15" alt="logo" />
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-1">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200"
-              >
-                {item.name}
-              </button>
-            ))}
+            {navItems.map((item, index) => {
+              const isSection = !!item.sectionId;
+              const isActive = location.pathname === item.path && !isSection;
+
+              return isSection ? (
+                <button
+                  key={index}
+                  onClick={() => handleNavClick(item)}
+                  className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200"
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={index}
+                  to={item.path}
+                  className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${
+                    isActive
+                      ? "text-blue-600 bg-blue-50/60"
+                      : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop Actions: Language & Profil/Button */}
@@ -127,11 +169,11 @@ function Header({
                   <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
                     {userInfo.username?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="max-w-30 truncate">
-                    {userInfo.username}
-                  </span>
+                  <span className="max-w-30 truncate">{userInfo.username}</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 text-slate-400 transition-transform ${
+                      dropdownOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
 
@@ -139,13 +181,13 @@ function Header({
                   <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl py-2 z-50 animate-fadeIn">
                     <button
                       onClick={() => {
-                        scrollToSection("apply"); // Yoki tegishli bo'lim ID si
                         setDropdownOpen(false);
+                        handleApplyClick();
                       }}
                       className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
                     >
                       <FileText className="w-4 h-4" />
-                      <span>{app.bor ? "Arizam":"Ariza topshirish"}</span>
+                      <span>{app.bor ? "Arizam" : "Ariza topshirish"}</span>
                     </button>
                     <hr className="border-slate-100 my-1" />
                     <button
@@ -162,9 +204,9 @@ function Header({
                 )}
               </div>
             ) : (
-              /* Tizimga kirmagan bo'lsa - Ariza topshirish */
+              /* Tizimga kirmagan bo'lsa - Ariza topshirish (Main Entrancega o'tadi) */
               <button
-                onClick={() => scrollToSection("apply")}
+                onClick={handleApplyClick}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
               >
                 {L(navbar.applyBtn)}
@@ -191,7 +233,6 @@ function Header({
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-6 bg-white border-b border-slate-200 space-y-2 animate-fadeIn">
-          {/* Mobil rejimda foydalanuvchi paneli (Tizimga kirgan bo'lsa eng tepada turadi) */}
           {userInfo.auth && (
             <div className="bg-slate-50 p-4 rounded-xl mb-4 border border-slate-100">
               <div className="flex items-center space-x-3 mb-3">
@@ -209,19 +250,16 @@ function Header({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <button
-                  onClick={() => {
-                    scrollToSection("my-application");
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={handleApplyClick}
                   className="flex items-center justify-center space-x-1.5 bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-slate-600 active:bg-slate-50"
                 >
                   <FileText className="w-3.5 h-3.5 text-blue-500" />
-                  <span>{app.bor ? "Arizam":"Ariza topshirish"}</span>
+                  <span>{app.bor ? "Arizam" : "Ariza topshirish"}</span>
                 </button>
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    handleLogout()
+                    handleLogout();
                   }}
                   className="flex items-center justify-center space-x-1.5 bg-rose-50 py-2 rounded-lg text-xs font-bold text-rose-600 active:bg-rose-100"
                 >
@@ -232,19 +270,28 @@ function Header({
             </div>
           )}
 
-          {/* Menyu elementlari */}
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                scrollToSection(item.id);
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
-            >
-              {item.name}
-            </button>
-          ))}
+          {/* Menyu elementlari (Mobil rejim) */}
+          {navItems.map((item, index) => {
+            const isSection = !!item.sectionId;
+            return isSection ? (
+              <button
+                key={index}
+                onClick={() => handleNavClick(item)}
+                className="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+              >
+                {item.name}
+              </button>
+            ) : (
+              <Link
+                key={index}
+                to={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+              >
+                {item.name}
+              </Link>
+            );
+          })}
 
           {/* Mobile Language Switcher */}
           <div className="flex items-center justify-center space-x-6 py-4 border-t border-slate-100 mt-2">
@@ -263,14 +310,11 @@ function Header({
             ))}
           </div>
 
-          {/* Agar tizimga kirmagan bo'lsa pastda Ariza tugmasi chiqadi */}
+          {/* Agar tizimga kirmagan bo'lsa pastda Ariza tugmasi */}
           {!userInfo.auth && (
             <div className="pt-2 px-4">
               <button
-                onClick={() => {
-                  scrollToSection("apply");
-                  setMobileMenuOpen(false);
-                }}
+                onClick={handleApplyClick}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-center shadow-md shadow-blue-200 transition-all active:scale-95"
               >
                 {L(navbar.applyBtn)}

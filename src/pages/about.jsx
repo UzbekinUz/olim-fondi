@@ -1,4 +1,4 @@
-import { CheckCircle2, Target, Award } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { about } from "../data/txt.json";
 
 function About({ L }) {
@@ -89,40 +89,7 @@ function About({ L }) {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* YANGI QO'SHILGAN QISM: Fondning Oliy Maqsadi & Missiyasi */}
-        <div className="mt-16 pt-12 border-t border-slate-100">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-6 lg:pl-4">
-              <div className="space-y-4 text-slate-600 text-base leading-relaxed">
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: L(about.missionParagraph1),
-                  }}
-                />
-                <p>{L(about.missionParagraph2)}</p>
-              </div>
-            </div>
-            {/* Chap tomon: Chiroyli vizual iqtibos bloki */}
-            <div className="lg:col-span-5 bg-linear-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-md relative overflow-hidden group">
-              <div className="absolute -right-10 -bottom-10 text-white/5 transform group-hover:scale-110 transition-transform duration-500">
-                <Target className="w-48 h-48" />
-              </div>
-              <div className="relative z-10 space-y-4">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                  <Award className="w-5 h-5 text-blue-200" />
-                </div>
-                <p className="text-xl font-medium italic leading-relaxed pt-2">
-                  {L(about.missionQuote)}
-                </p>
-                <div className="w-12 h-1 bg-white/30 rounded-full"></div>
-              </div>
-            </div>
-
-            {/* O'ng tomon: Missiya matnlari */}
-          </div>
-        </div>
+        </div> 
       </div>
     </section>
   );

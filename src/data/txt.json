@@ -66,6 +66,28 @@
             "en": "Our Ultimate Goal and Values"
         },
         "missionParagraph1": {
+            "uz": "<strong>OLIM  FOUNDATION</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>OLIM  FOUNDATION</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>OLIM  FOUNDATION</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+        },
+        "missionParagraph2": {
+            "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
+            "ru": "Посредством своей деятельности фонд стремится создать возможности для каждого одаренного и стремящегося к знаниям студента для реализации своих копившихся желаний и мечтаний.",
+            "en": "Through its activities, the foundation aims to create opportunities for every talented and knowledge-seeking student to realize their dreams."
+        },
+        "missionQuote": {
+            "uz": "«Biz ishonamizki, ta'limga kiritilgan sarmoya — jamiyat kelajagiga kiritilgan eng muhim sarmoyadir.»",
+            "ru": "«Мы верим, что инвестиции в образование — это самые важные инвестиции в будущее общества.»",
+            "en": "«We believe that investment in education is the most important investment in the future of society.»"
+        }
+    },
+    "aboutM":{
+        "missionTitle": {
+            "uz": "Bizning Oliy Maqsadimiz va Qadriyatimiz",
+            "ru": "Наша высшая цель и ценности",
+            "en": "Our Ultimate Goal and Values"
+        },
+        "missionParagraph1": {
             "uz": "<strong>OLIM HASANOV FOUNDATION</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
             "ru": "<strong>OLIM HASANOV FOUNDATION</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
             "en": "<strong>OLIM HASANOV FOUNDATION</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
@@ -79,6 +101,41 @@
             "uz": "«Biz ishonamizki, ta'limga kiritilgan sarmoya — jamiyat kelajagiga kiritilgan eng muhim sarmoyadir.»",
             "ru": "«Мы верим, что инвестиции в образование — это самые важные инвестиции в будущее общества.»",
             "en": "«We believe that investment in education is the most important investment in the future of society.»"
+        },
+        "teamTag": {
+            "uz": "Bizning Ahil Jamoamiz",
+            "ru": "Наша дружная команда",
+            "en": "Our Dedicated Team"
+        },
+        "teamTitle": {
+            "uz": "Xayrli ishlar ortida turgan insonlar",
+            "ru": "Люди, стоящие за добрыми делами",
+            "en": "The People Behind the Good Deeds"
+        },
+        "teamDescription": {
+            "uz": "Fondimiz jamoasi — ta'lim kelajagiga befarq bo'lmagan, yoshlarni qo'llab-quvvatlash yo'lida bir maqsad sari birlashgan professionallar va fidoyi ko'ngillilardan iborat. Biz birgalikda har bir yosh iqtidor egasiga to'g'ri yo'l ko'rsatish va imkoniyatlar eshigini ochish uchun mehnat qilamiz.",
+            "ru": "Команда нашего фонда состоит из профессионалов и преданных своему делу волонтеров, которым небезразлично будущее образования и которые объединены одной целью — поддержкой молодежи. Вместе мы работаем над тем, чтобы направить каждого молодого таланта и открыть для него двери возможностей.",
+            "en": "The team at our foundation consists of professionals and dedicated volunteers who care deeply about the future of education and are united under one goal: supporting youth. Together, we work to guide every young talent and open doors of opportunity for them."
+        },
+        "feature1Title": {
+            "uz": "Shaffoflik va Ishonch",
+            "ru": "Прозрачность и Доверие",
+            "en": "Transparency & Trust"
+        },
+        "feature1Desc": {
+            "uz": "Har bir loyiha va xayriya sarmoyalari to'liq shaffof amalga oshiriladi.",
+            "ru": "Каждый проект и благотворительные инвестиции осуществляются полностью прозрачно.",
+            "en": "Every project and charitable investment is executed with complete transparency."
+        },
+        "feature2Title": {
+            "uz": "Aniq Natijalar",
+            "ru": "Конкретные Результаты",
+            "en": "Tangible Impact"
+        },
+        "feature2Desc": {
+            "uz": "Biz jarayonga emas, yoshlar hayotidagi real va ijobiy o'zgarishlarga intilamiz.",
+            "ru": "Мы стремимся не к процессу, а к реальным и позитивным изменениям в жизни молодежи.",
+            "en": "We strive for real and positive changes in the lives of youth, not just the process."
         }
     },
     "chart1": {
@@ -724,9 +781,9 @@
             "en": "Behind every great achievement lies knowledge, hard work, and opportunity. However, there are talented youth in life who face difficulties in achieving their dreams due to financial or social circumstances. There are also students whose talent and potential are of great importance for the future of our country."
         },
         "accentText": {
-            "uz": "OLIM HASANOV FOUNDATION aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
-            "ru": "Фонд OLIM HASANOV FOUNDATION был создан именно для поддержки таких молодых людей.",
-            "en": "The OLIM HASANOV FOUNDATION was established specifically to support these young individuals."
+            "uz": "OLIM  FOUNDATION aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
+            "ru": "OLIM FOUNDATION был создан именно для поддержки таких молодых людей.",
+            "en": "OLIM FOUNDATION was established specifically to support these young individuals."
         },
         "paragraph2": {
             "uz": "Bizning ishonchimiz komilki, ta'limga kiritilgan har bir sarmoya – millat kelajagiga qo'shilgan eng qimmatli hissadir. Biz nafaqat talabalarga moddiy ko'mak berishni, balki ularning bilimli, vatanparvar va mas'uliyatli shaxs bo'lib yetishishiga hissa qo'shishni o'z oldimizga maqsad qilib qo'yganmiz.",
@@ -739,9 +796,9 @@
             "en": "Our dream is that no talented young person is left without opportunity, and every hardworking student can fully demonstrate their potential."
         },
         "closing": {
-            "uz": "OLIM HASANOV FOUNDATION – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
-            "ru": "OLIM HASANOV FOUNDATION — это не просто фонд, это движение знаний, добра и веры в будущее.",
-            "en": "The OLIM HASANOV FOUNDATION is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
+            "uz": "OLIM FOUNDATION – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
+            "ru": "OLIM FOUNDATION — это не просто фонд, это движение знаний, добра и веры в будущее.",
+            "en": "OLIM FOUNDATION is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
         },
         "imageAlt": {
             "uz": "Fond ta'sischisi portreti",
@@ -894,5 +951,97 @@
             "ru": "Во время учебы наши студенты были удостоены самых престижных именных государственных стипендий нашей страны.",
             "en": "During their studies, our students were awarded the most prestigious state scholarships in our country."
         }
+    },
+    "auth": {
+    "titleLogin": {
+      "uz": "Xush kelibsiz",
+      "ru": "Добро пожаловать",
+      "en": "Welcome"
+    },
+    "titleRegister": {
+      "uz": "Ro'yxatdan o'tish",
+      "ru": "Регистрация",
+      "en": "Sign Up"
+    },
+    "subtitleLogin": {
+      "uz": "Platformaga kirish uchun ma'lumotlarni kiriting",
+      "ru": "Введите данные для входа в платформу",
+      "en": "Enter your details to access the platform"
+    },
+    "subtitleRegister": {
+      "uz": "Yangi mas'ul boshqaruvchi profilini yarating",
+      "ru": "Создайте профиль нового администратора",
+      "en": "Create a new administrator profile"
+    },
+    "labelUsername": {
+      "uz": "Foydalanuvchi nomi",
+      "ru": "Имя пользователя",
+      "en": "Username"
+    },
+    "labelPassword": {
+      "uz": "Maxfiy parol",
+      "ru": "Секретный пароль",
+      "en": "Password"
+    },
+    "placeholderUsername": {
+      "uz": "Masalan: admin_olim",
+      "ru": "Например: admin_olim",
+      "en": "e.g., admin_olim"
+    },
+    "btnLoadingLogin": {
+      "uz": "Kirilmoqda...",
+      "ru": "Вход...",
+      "en": "Logging in..."
+    },
+    "btnLoadingRegister": {
+      "uz": "Profil yaratilmoqda...",
+      "ru": "Создание профиля...",
+      "en": "Creating profile..."
+    },
+    "btnSubmitLogin": {
+      "uz": "Tizimga kirish",
+      "ru": "Войти в систему",
+      "en": "Sign In"
+    },
+    "btnSubmitRegister": {
+      "uz": "Ro'yxatdan o'tkazish",
+      "ru": "Зарегистрировать",
+      "en": "Register"
+    },
+    "switchNeedAccount": {
+      "uz": "Yangi hisob kerakmi?",
+      "ru": "Нужен новый аккаунт?",
+      "en": "Need an account?"
+    },
+    "switchHaveAccount": {
+      "uz": "Allaqachon profilingiz bormi?",
+      "ru": "Уже есть профиль?",
+      "en": "Already have a profile?"
+    },
+    "switchActionRegister": {
+      "uz": "Ro'yxatdan o'tish",
+      "ru": "Зарегистрироваться",
+      "en": "Sign Up"
+    },
+    "switchActionLogin": {
+      "uz": "Kirish rejimiga o'tish",
+      "ru": "Перейти к входу",
+      "en": "Switch to Login"
+    },
+    "panelTitle": {
+      "uz": "Olim Fondi Tizimi",
+      "ru": "Система Фонда Олим",
+      "en": "Olim Foundation System"
+    },
+    "panelDesc": {
+      "uz": "Boshqaruv paneli va mas'ul xodimlar uchun xavfsiz autentifikatsiya tarmog'i.",
+      "ru": "Безопасная сеть аутентификации для панели управления и ответственных сотрудников.",
+      "en": "Secure authentication network for the dashboard and authorized personnel."
+    },
+    "toastErrorConnection": {
+      "uz": "Tizimga ulanishda xatolik. Qayta urinib ko'ring!",
+      "ru": "Ошибка подключения к системе. Попробуйте еще раз!",
+      "en": "System connection error. Please try again!"
     }
+  }
 }

@@ -1,29 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
-import { Loader2 } from "lucide-react"; // Yuklanish spinneri uchun
+import { Loader2, Eye, EyeOff, ShieldCheck, User, Lock } from "lucide-react";
 import { API_LINK } from "../cfg";
-
-function Auth({ setRefresh, refresh }) {
-  // true = Sign In (Kirish), false = Sign Up (Ro'yxatdan o'tish)
+import {auth} from "../data/txt.json"
+// lang — joriy til (masalan: "uz", "ru", "en"). Odatiy qiymat "uz" qilib ketildi.
+function Auth({ setRefresh, refresh, L }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
-  
-  // Tugma bosilgandagi loading holati
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Server kodingizga mos state
   const [state, setState] = useState({
     username: "",
     password: "",
   });
 
-  // Custom Toast xabarlari uchun state
   const [toast, setToast] = useState({
     show: false,
     msg: "",
-    type: "ok", // "ok", "error", "warning"
+    type: "ok",
   });
 
-  // Xabarlarni ko'rsatish funksiyasi (Custom Toast)
   function showToast(msg, type = "ok") {
     setToast({ show: true, msg, type });
     setTimeout(() => {
@@ -31,9 +27,12 @@ function Auth({ setRefresh, refresh }) {
     }, 3000);
   }
 
+  // Safe translation helper: Agar obyekt kelsa, tanlangan tilni oladi, aks holda default 'uz'
+
+
   function Submit(e) {
     e.preventDefault();
-    setIsLoading(true); // Loadingni yoqish
+    setIsLoading(true);
 
     const endpoint = isLoginMode 
       ? `${API_LINK}/user/signin` 
@@ -43,11 +42,10 @@ function Auth({ setRefresh, refresh }) {
       .post(endpoint, state)
       .then((res) => {
         if (isLoginMode) {
-          // SIGN IN
           const { ok, msg, access_token } = res.data;
           if (!ok) {
             showToast(msg, "error");
-            setIsLoading(false); // Xatolik bo'lsa loadingni o'chirish
+            setIsLoading(false);
           } else {
             showToast(msg, "ok");
             localStorage.setItem("access_token", access_token);
@@ -56,149 +54,184 @@ function Auth({ setRefresh, refresh }) {
             }, 1200);
           }
         } else {
-          // SIGN UP
           const { ok, msg } = res.data;
           if (!ok) {
             showToast(msg, "error");
-            setIsLoading(false); // Xatolik bo'lsa loadingni o'chirish
+            setIsLoading(false);
           } else {
             showToast(msg, "ok");
             setTimeout(() => {
               setIsLoginMode(true);
               setState({ username: "", password: "" });
-              setIsLoading(false); // Amaliyot tugagach o'chirish
+              setIsLoading(false);
             }, 1500);
           }
         }
       })
       .catch((err) => {
         console.error(err);
-        showToast("Qayta urinib ko'ring!", "warning");
-        setIsLoading(false); // Tarmoq xatosi bo'lsa loadingni o'chirish
+        showToast(t("auth.toastErrorConnection"), "warning");
+        setIsLoading(false);
       });
   }
 
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-gray-50 px-4 relative overflow-hidden">
+    <div className="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-gradient-to-tr from-blue-50/70 via-slate-50 to-sky-50/40 px-4 py-8 relative overflow-hidden font-sans">
       
+      <div className="absolute top-10 left-10 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none"></div>
+
       {/* --- CUSTOM TOAST NOTIFICATION --- */}
       {toast.show && (
-        <div className={`fixed top-5 right-5 z-50 flex items-center p-4 rounded-xl shadow-xl border text-white font-medium transform transition-all duration-300 animate-bounce ${
-          toast.type === "ok" ? "bg-emerald-600 border-emerald-500" :
-          toast.type === "error" ? "bg-rose-600 border-rose-500" : "bg-amber-600 border-amber-500"
+        <div className={`fixed top-6 right-6 z-50 flex items-center p-4 rounded-xl shadow-xl border text-white font-medium backdrop-blur-sm transform transition-all duration-300 ${
+          toast.type === "ok" ? "bg-emerald-600/95 border-emerald-500" :
+          toast.type === "error" ? "bg-rose-600/95 border-rose-500" : "bg-amber-500/95 border-amber-400"
         }`}>
-          <span className="mr-2">
-            {toast.type === "ok" ? "✅" : toast.type === "error" ? "❌" : "⚠️"}
+          <span className="mr-2.5 text-lg">
+            {toast.type === "ok" ? "⚡" : toast.type === "error" ? "🛑" : "⚠️"}
           </span>
           {toast.msg}
         </div>
       )}
 
-      <div className="flex items-center justify-between w-full max-w-[950px] bg-white rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-100">
+      {/* Asosiy Kontrener */}
+      <div className="flex items-center justify-between w-full max-w-md md:max-w-5xl bg-white/90 backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-2xl shadow-blue-900/5 border border-white/60 transition-all duration-300">
         
-        {/* --- SVG ANIMATSIYA --- */}
-        <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-6 space-y-6">
-          <svg className={`w-64 h-64 text-blue-600 ${isLoading ? "animate-spin duration-1000" : "animate-pulse"}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 22 12 2C12 2 12 2 12 2ZM12 6C13.66 6 15 7.34 15 9C15 10.66 13.66 12 12 12C10.34 12 9 10.66 9 9C9 7.34 10.34 6 12 6ZM12 20.2C9.33 20.2 6.96 18.84 5.56 16.77C5.6 14.78 9.6 13.7 12 13.7C14.39 13.7 18.39 14.78 18.44 16.77C17.04 18.84 14.67 20.2 12 20.2Z" fill="currentColor"/>
-          </svg>
-          <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-700">Xavfsiz Tizim</h3>
-            <p className="text-gray-400 text-sm mt-1">Ma'lumotlaringiz xavfsiz himoyalangan</p>
+        {/* --- LEFT VISUAL PANEL --- */}
+        <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-blue-50/60 rounded-xl border border-slate-100 min-h-[500px]">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-44 h-44 bg-blue-200/40 rounded-full blur-3xl animate-pulse"></div>
+            <svg 
+              className={`w-52 h-52 text-blue-600 relative z-10 transition-transform duration-700 ${isLoading ? "rotate-180 scale-95" : "hover:scale-105"}`} 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="text-center mt-8 max-w-sm">
+            <h3 className="text-xl font-bold text-slate-800 flex items-center justify-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-blue-600" /> {L(auth.panelTitle)}
+            </h3>
+            <p className="text-slate-500 text-sm mt-2 leading-relaxed">
+              {L(auth.panelDesc)}
+            </p>
           </div>
         </div>
 
-        {/* --- FORMA QISMI --- */}
-        <div className="w-full md:w-[380px] flex flex-col justify-center">
-          <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">
-            {isLoginMode ? "Kirish" : "Ro'yxatdan o'tish"}
-          </h2>
-          <p className="text-xs text-gray-400 mt-2 mb-8 font-medium uppercase tracking-wider">
-            {isLoginMode 
-              ? "Tizimga kirish faqat mas'ul xodimlar uchun !!!" 
-              : "Yangi mas'ul xodimni ro'yxatdan o'tkazish"}
-          </p>
+        {/* --- FORM PANEL --- */}
+        <div className="w-full md:w-[420px] flex flex-col justify-center px-1 md:px-6">
+          
+          <div className="flex md:hidden items-center justify-center mb-6">
+            <div className="w-14 h-14 bg-gradient-to-tr from-blue-600 to-sky-400 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 transform rotate-6">
+              <ShieldCheck className="w-7 h-7 text-white transform -rotate-6" />
+            </div>
+          </div>
 
-          <form onSubmit={Submit} className="space-y-5">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
+              {isLoginMode ? L(auth.titleLogin) : L(auth.titleRegister)}
+            </h2>
+            <p className="text-sm text-slate-400 mt-2 mb-6 md:mb-8 font-medium">
+              {isLoginMode ? L(auth.subtitleLogin) : L(auth.subtitleRegister)}
+            </p>
+          </div>
+
+          <form onSubmit={Submit} className="space-y-4 md:space-y-5">
+            
             {/* Username Input */}
-            <div className="relative">
-              <input
-                type="text"
-                id="username"
-                disabled={isLoading}
-                value={state.username}
-                onChange={(e) => setState({ ...state, username: e.target.value })}
-                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 peer transition-all text-sm disabled:bg-gray-50 disabled:text-gray-400"
-                placeholder=" "
-                required
-              />
-              <label 
-                htmlFor="username"
-                className="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-3 pointer-events-none"
-              >
-                Username
+            <div className="space-y-1.5">
+              <label htmlFor="username" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block pl-1">
+                {L(auth.labelUsername)}
               </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <User className="w-4 h-4" />
+                </div>
+                <input
+                  type="text"
+                  id="username"
+                  disabled={isLoading}
+                  value={state.username}
+                  onChange={(e) => setState({ ...state, username: e.target.value })}
+                  className="block pl-10 pr-4 py-3 w-full text-slate-800 bg-slate-50/50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white transition-all text-sm disabled:bg-slate-50 disabled:text-slate-400 shadow-sm"
+                  placeholder={L(auth.placeholderUsername)}
+                  required
+                />
+              </div>
             </div>
 
             {/* Password Input */}
-            <div className="relative">
-              <input
-                type="password"
-                id="password"
-                disabled={isLoading}
-                value={state.password}
-                onChange={(e) => setState({ ...state, password: e.target.value })}
-                className="block px-4 py-3.5 w-full text-gray-900 bg-transparent rounded-xl border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 peer transition-all text-sm disabled:bg-gray-50 disabled:text-gray-400"
-                placeholder=" "
-                required
-              />
-              <label 
-                htmlFor="password"
-                className="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-3 pointer-events-none"
-              >
-                Parol
+            <div className="space-y-1.5">
+              <label htmlFor="password" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block pl-1">
+                {L(auth.labelPassword)}
               </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  disabled={isLoading}
+                  value={state.password}
+                  onChange={(e) => setState({ ...state, password: e.target.value })}
+                  className="block pl-10 pr-11 py-3 w-full text-slate-800 bg-slate-50/50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white transition-all text-sm disabled:bg-slate-50 disabled:text-slate-400 shadow-sm"
+                  placeholder="••••••••"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
 
-            {/* Submit Button with Loading */}
+            {/* Submit Button */}
             <button 
               type="submit" 
               disabled={isLoading}
-              className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:shadow-xl transition-all duration-200 active:scale-[0.98] text-sm flex items-center justify-center gap-2"
+              className="w-full mt-2 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-blue-400 disabled:to-indigo-400 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-200 active:scale-[0.99] text-sm flex items-center justify-center gap-2"
             >
               {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
               {isLoading 
-                ? (isLoginMode ? "Kirilmoqda..." : "Ro'yxatdan o'tilmoqda...") 
-                : (isLoginMode ? "Kirish" : "Ro'yxatdan o'tish")}
+                ? (isLoginMode ? L(auth.btnLoadingLogin) : L(auth.btnLoadingRegister)) 
+                : (isLoginMode ? L(auth.btnSubmitLogin) : L(auth.btnSubmitRegister))}
             </button>
 
             {/* Mode Switcher */}
-            <p className="text-center text-sm text-gray-500 mt-5">
+            <div className="text-center text-sm text-slate-500 mt-6 pt-3 border-t border-slate-100">
               {isLoginMode ? (
-                <>
-                  Hisobingiz yo'qmi?{" "}
+                <p>
+                  {L(auth.switchNeedAccount)}{" "}
                   <button
                     type="button"
                     disabled={isLoading}
                     onClick={() => { setIsLoginMode(false); setState({ username: "", password: "" }); }}
-                    className="font-bold text-blue-600 cursor-pointer hover:underline disabled:opacity-50"
+                    className="font-bold text-blue-600 hover:text-blue-700 cursor-pointer transition-colors inline-block"
                   >
-                    Ro'yxatdan o'tish
+                    {L(auth.switchActionRegister)}
                   </button>
-                </>
+                </p>
               ) : (
-                <>
-                  Sizda allaqachon hisob bormi?{" "}
+                <p>
+                  {L(auth.switchHaveAccount)}{" "}
                   <button
                     type="button"
                     disabled={isLoading}
                     onClick={() => { setIsLoginMode(true); setState({ username: "", password: "" }); }}
-                    className="font-bold text-blue-600 cursor-pointer hover:underline disabled:opacity-50"
+                    className="font-bold text-blue-600 hover:text-blue-700 cursor-pointer transition-colors inline-block"
                   >
-                    Kirish
+                    {L(auth.switchActionLogin)}
                   </button>
-                </>
+                </p>
               )}
-            </p>
+            </div>
           </form>
         </div>
 
