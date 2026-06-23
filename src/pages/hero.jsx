@@ -38,7 +38,7 @@ function Hero({ L }) {
                 {L(hero.applyBtn)}
               </Link>
               <Link
-                to="/abou-olim-foundation"
+                to="/about-olim-foundation"
                 className="bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 px-8 py-4 rounded-xl font-bold text-base shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 {L(hero.moreBtn)}

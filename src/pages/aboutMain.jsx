@@ -47,7 +47,7 @@ export default function AboutM({ L }) {
             {/* Rasm konteyneri */}
             <div className="relative w-full rounded-2xl overflow-hidden shadow-lg border border-slate-100/80 group flex-1">
               <img
-                src="/images/team-photo.jpg" // Jamoangiz rasmining manzili
+                src="/jamoa.jpg" // Jamoangiz rasmining manzili
                 alt="Bizning jamoa"
                 className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-700"
               />

@@ -1,66 +1,132 @@
-import { GraduationCap, Mail, MapPin, Phone } from "lucide-react";
-import { footer1 } from "../data/txt.json";
-function Footer({scrollToSection, L}) {
+import { Bot, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+import {footer1} from "../data/txt.json"
 
+function Footer({ scrollToSection, L }) {
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           
+          {/* Logo va qisqacha tavsif */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <span className="text-lg font-black tracking-wider text-white">OLIM FONDI</span>
+              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <img src="/logo.png" className="h-15" alt="logo" />
+              </Link>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">{L(footer1.description)}</p>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              {L(footer1.description)}
+            </p>
             <div className="text-xs text-slate-400 font-bold uppercase tracking-wider pt-2">
               LIVE • LEARN • EVOLVE
             </div>
           </div>
 
+          {/* App.jsx dagi yo'nalishlarga mos keladigan navigatsiya */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">{L(footer1.footerLinksTitle)}</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              {L(footer1.footerLinksTitle)}
+            </h4>
             <ul className="space-y-2 text-xs">
-              <li><button onClick={() => scrollToSection("about")} className="hover:text-white transition">{L(footer1.linkAbout)}</button></li>
-              <li><button onClick={() => scrollToSection("structure")} className="hover:text-white transition">{L(footer1.linkStructure)}</button></li>
-              <li><button onClick={() => scrollToSection("mission")} className="hover:text-white transition">{L(footer1.linkMission)}</button></li>
-              <li><button onClick={() => scrollToSection("criteria")} className="hover:text-white transition">{L(footer1.linkCriteria)}</button></li>
-              <li><button onClick={() => scrollToSection("apply")} className="hover:text-white transition">{L(footer1.linkApply)}</button></li>
+              <li>
+                <Link
+                  to="/about-olim-foundation"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="hover:text-white transition block"
+                >
+                  {L(footer1.linkAbout)}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/structure"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="hover:text-white transition block"
+                >
+                  {L(footer1.linkStructure)}
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("mission")}
+                  className="hover:text-white transition text-left cursor-pointer"
+                >
+                  {L(footer1.linkMission)}
+                </button>
+              </li>
+              <li>
+                <Link
+                  to="/main-criteria-elements"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="hover:text-white transition block"
+                >
+                  {L(footer1.linkCriteria)}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/main-enterence"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="hover:text-white transition block"
+                >
+                  {L(footer1.linkApply)}
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Statistika yoki Loyihalar bo'limi */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">{L(footer1.statsTitle)}</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              {L(footer1.statsTitle)}
+            </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li>• {L(footer1.stat1)}</li>
+              <li>
+                <Link to="/statistics" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hover:text-slate-200">
+                  • {L(footer1.stat1)}
+                </Link>
+              </li>
               <li>• {L(footer1.stat2)}</li>
               <li>• {L(footer1.stat3)}</li>
               <li>• {L(footer1.stat4)}</li>
             </ul>
           </div>
 
+          {/* Kontaktlar paneli */}
           <div className="space-y-3 text-xs">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">{L(footer1.contactTitle)}</h4>
-            <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 text-blue-500" />
-              <span>+998 (90) 123-45-67</span>
-            </div>
-            <div className="flex items-center space-x-2">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              {L(footer1.contactTitle)}
+            </h4>
+            <a
+              href="https://t.me/Olimfondi_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 hover:text-white transition"
+            >
+              <Bot className="w-4 h-4 text-blue-500" />
+              <span>@Olimfondi_bot</span>
+            </a>
+            <a
+              href="mailto:info@olimfondi.uz"
+              className="flex items-center space-x-2 hover:text-white transition"
+            >
               <Mail className="w-4 h-4 text-blue-500" />
               <span>info@olimfondi.uz</span>
-            </div>
+            </a>
             <div className="flex items-start space-x-2">
               <MapPin className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
-              <span>{L(footer1.address)}</span>
+              <span className="leading-relaxed">{L(footer1.address)}</span>
             </div>
           </div>
-
         </div>
 
+        {/* Mualliflik huquqi */}
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} {L(footer1.copyright)}</p>
+          <p>
+            © {new Date().getFullYear()} {L(footer1.copyright)}
+          </p>
         </div>
       </div>
     </footer>
