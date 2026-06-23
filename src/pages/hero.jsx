@@ -1,6 +1,7 @@
-import {hero} from "../data/txt.json"; // Tarjimalar faylini to'g'ri yo'ldan chaqiring
+import { Link } from "react-router-dom";
+import { hero } from "../data/txt.json"; // Tarjimalar faylini to'g'ri yo'ldan chaqiring
 
-function Hero({ scrollToSection, L }) {
+function Hero({ L }) {
   return (
     <section className="relative overflow-hidden bg-linear-to-b from-blue-50/70 via-white to-slate-50 py-20 sm:py-24 lg:py-32">
       {/* Subtle decorative background grids */}
@@ -30,18 +31,18 @@ function Hero({ scrollToSection, L }) {
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-              <button
-                onClick={() => scrollToSection("apply")}
+              <Link
+                to="/main-enterence"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-300/50 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
               >
                 {L(hero.applyBtn)}
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
+              </Link>
+              <Link
+                to="/abou-olim-foundation"
                 className="bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 px-8 py-4 rounded-xl font-bold text-base shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 {L(hero.moreBtn)}
-              </button>
+              </Link>
             </div>
 
             {/* Quick stats tags */}
@@ -85,9 +86,7 @@ function Hero({ scrollToSection, L }) {
                 <span className="text-xs font-semibold tracking-wider uppercase text-blue-300">
                   {L(hero.mottoTitle)}
                 </span>
-                <p className="text-lg font-bold mt-1">
-                  {L(hero.mottoText)}
-                </p>
+                <p className="text-lg font-bold mt-1">{L(hero.mottoText)}</p>
               </div>
             </div>
             {/* Back decoration */}
