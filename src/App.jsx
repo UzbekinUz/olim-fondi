@@ -15,6 +15,11 @@ import MainEnterence from "./Routes/mainEnterance";
 import { Route, Routes } from "react-router-dom";
 import AboutPage from "./Routes/aboutPage";
 import ScrollToTop from "./helper/scrollTop";
+
+// AOS kutubxonasini va uning CSS-ni import qilamiz
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -22,24 +27,31 @@ export default function App() {
   const [authCheck, setAuthCheck] = useState(false);
   const [app, setApp] = useState({ bor: false });
 
-  // Admin (foydalanuvchi) holati
   const [admin, setAdmin] = useState({
     auth: false,
     usernameId: "",
     username: "",
   });
 
-  // Tilni almashtirish funksiyasi (Optimallashtirildi)
+  // AOS-ni bir marta sayt yuklanganda ishga tushiramiz
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animatsiya davomiyligi (ms)
+      once: true,     // animatsiya scroll qilganda faqat 1 marta ishlaydi
+      offset: 100,    // element ekranga necha px yig'indida ko'ringanda animatsiya boshlanishi
+      easing: "ease-in-out", // animatsiya silliqligi
+    });
+  }, []);
+
   function L(element) {
     if (!element) return "";
-    return element[lang] || element["uz"]; // Agar tanlangan til bo'lmasa, default 'uz' qaytaradi
+    return element[lang] || element["uz"];
   }
+
   function applyCheck(userId) {
     try {
-      // Backend API manzilingiz (o'zingiznikiga moslab olasiz)
       axios.get(`${API_LINK}/apply/${userId}`).then((d) => {
         const { ok, data } = d.data;
-
         if (ok) {
           setApp({ bor: true, ...app, data });
         } else {
@@ -51,17 +63,15 @@ export default function App() {
       alert("Serverga ulanib bo'lmadi!");
     }
   }
-  // Scroll hodisasini kuzatish (Scroll-to-top tugmasi uchun)
+
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Sekin (smooth) scroll qilish funksiyasi
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -70,22 +80,16 @@ export default function App() {
     setMobileMenuOpen(false);
   };
 
-  // Token mavjudligini va foydalanuvchi holatini tekshirish
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-
-    // Agar token bo'lmasa, serverga so'rov yuborib o'tirmaymiz
     if (!token) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAdmin({ auth: false, usernameId: "", username: "" });
       return;
     }
 
     axios
       .get(`${API_LINK}/user/check`, {
-        headers: {
-          "x-admin-token": token,
-        },
+        headers: { "x-admin-token": token },
       })
       .then((res) => {
         const { ok, userInfo } = res.data;
@@ -94,17 +98,17 @@ export default function App() {
           applyCheck(userInfo.usernameId);
         } else {
           setAdmin({ auth: false, usernameId: "", username: "" });
-          localStorage.removeItem("access_token"); // Yaroqsiz tokenni o'chirish
+          localStorage.removeItem("access_token");
         }
       })
       .catch(() => {
         setAdmin({ auth: false, usernameId: "", username: "" });
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authCheck]);
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
-        <ScrollToTop />
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+      <ScrollToTop />
       
       <Header
         scrollToSection={scrollToSection}
@@ -117,31 +121,22 @@ export default function App() {
         userInfo={admin}
         authCheck={authCheck}
         app={app}
-        admin={admin} // Header ichida balki "Chiqish" yoki "Profil" tugmasi kerakdir
+        admin={admin}
       />
 
       <Routes>
         <Route path="/about-olim-foundation" element={<AboutPage L={L} />}/>
-        <Route
-          path="/"
-          element={<Home scrollToSection={scrollToSection} L={L} />}
-        />
+        <Route path="/" element={<Home scrollToSection={scrollToSection} L={L} />} />
         <Route path="/structure" element={<Structure L={L} />} />
-        <Route
-          path="/main-criteria-elements"
-          element={<MainCriterias L={L} />}
-        />
+        <Route path="/main-criteria-elements" element={<MainCriterias L={L} />} />
         <Route path="/statistics" element={<Stats L={L} />} />
-        <Route
-          path="/main-winner-elements"
-          element={<MainWinners L={L} lang={lang} />}
-        />
+        <Route path="/main-winner-elements" element={<MainWinners L={L} lang={lang} />} />
         <Route path="/history-timeline" element={<Timeline L={L} />} />
         <Route
           path="/main-enterence"
           element={
             <MainEnterence
-            L={L}
+              L={L}
               setAuthCheck={setAuthCheck}
               admin={admin}
               app={app}

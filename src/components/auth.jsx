@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Loader2, Eye, EyeOff, ShieldCheck, User, Lock } from "lucide-react";
 import { API_LINK } from "../cfg";
-import {auth} from "../data/txt.json"
-// lang — joriy til (masalan: "uz", "ru", "en"). Odatiy qiymat "uz" qilib ketildi.
+import { auth } from "../data/txt.json";
+
 function Auth({ setRefresh, refresh, L }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +26,6 @@ function Auth({ setRefresh, refresh, L }) {
       setToast({ show: false, msg: "", type: "ok" });
     }, 3000);
   }
-
-  // Safe translation helper: Agar obyekt kelsa, tanlangan tilni oladi, aks holda default 'uz'
-
 
   function Submit(e) {
     e.preventDefault();
@@ -70,7 +67,7 @@ function Auth({ setRefresh, refresh, L }) {
       })
       .catch((err) => {
         console.error(err);
-        showToast(t("auth.toastErrorConnection"), "warning");
+        showToast("Tizimga ulanishda xatolik yuz berdi!", "warning");
         setIsLoading(false);
       });
   }
@@ -94,8 +91,13 @@ function Auth({ setRefresh, refresh, L }) {
         </div>
       )}
 
-      {/* Asosiy Kontrener */}
-      <div className="flex items-center justify-between w-full max-w-md md:max-w-5xl bg-white/90 backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-2xl shadow-blue-900/5 border border-white/60 transition-all duration-300">
+      {/* Asosiy Konteyner - Rejim o'zgarganda silliq animatsiya bo'lishi uchun key va AOS biriktirildi */}
+      <div 
+        key={isLoginMode}
+        data-aos="fade-up"
+        data-aos-duration="600"
+        className="flex items-center justify-between w-full max-w-md md:max-w-5xl bg-white/90 backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-2xl shadow-blue-900/5 border border-white/60 transition-all duration-300"
+      >
         
         {/* --- LEFT VISUAL PANEL --- */}
         <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-blue-50/60 rounded-xl border border-slate-100 min-h-[500px]">
@@ -157,7 +159,7 @@ function Auth({ setRefresh, refresh, L }) {
                   value={state.username}
                   onChange={(e) => setState({ ...state, username: e.target.value })}
                   className="block pl-10 pr-4 py-3 w-full text-slate-800 bg-slate-50/50 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white transition-all text-sm disabled:bg-slate-50 disabled:text-slate-400 shadow-sm"
-                  placeholder={L(auth.placeholderUsername)}
+                  placeholder='username'
                   required
                 />
               </div>

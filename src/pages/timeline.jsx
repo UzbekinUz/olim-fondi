@@ -1,27 +1,50 @@
 import { timeline } from "../data/static.json";
-import {timeline1} from "../data/txt.json"; // Tarjimalar fayli
+import { timeline1 } from "../data/txt.json"; // Tarjimalar fayli
 
-function Timeline({ L}) {
-
+function Timeline({ L }) {
   return (
     <section id="timeline" className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Yuqori sarlavhalar qismi */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
+          <h2 
+            className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3"
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
             {L(timeline1.subtitle)}
           </h2>
-          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+          <p 
+            className="text-3xl sm:text-4xl font-extrabold text-slate-900"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             {L(timeline1.title)}
           </p>
-          <div className="w-16 h-1 bg-blue-600 mx-auto mt-3 rounded-full"></div>
-          <p className="text-slate-500 mt-4">
+          <div 
+            className="w-16 h-1 bg-blue-600 mx-auto mt-3 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          ></div>
+          <p 
+            className="text-slate-500 mt-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             {L(timeline1.description)}
           </p>
         </div>
 
+        {/* Vaqt chizig'i (Timeline) bloki */}
         <div className="relative border-l-2 border-slate-200 ml-4 sm:ml-8 lg:ml-32 space-y-12 max-w-5xl mx-auto">
           {timeline.map((item, idx) => (
-            <div key={idx} className="relative pl-8 sm:pl-12 group">
+            <div 
+              key={idx} 
+              className="relative pl-8 sm:pl-12 group"
+              data-aos="fade-right"
+              data-aos-delay={300 + idx * 150}
+            >
               {/* Year Marker */}
               <div className="absolute -left-3 sm:-left-4 top-1.5 w-6 sm:w-8 h-8 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center z-10 group-hover:bg-blue-600 transition-colors duration-200">
                 <div className="w-2 h-2 rounded-full bg-blue-600 group-hover:bg-white"></div>
@@ -38,7 +61,6 @@ function Timeline({ L}) {
                   </span>
                 </div>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  {/* static.json ichidagi ob'ektdan joriy tilni o'qish */}
                   {L(item.text)}
                 </p>
               </div>

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { API_LINK } from '../cfg';
+
 const ApplicationForm = ({ usernameId, applyCheck }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -66,7 +67,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
   const validateCurrentStep = () => {
     if (!formRef.current) return false;
     
-    // Faqat joriy step ichidagi inputlarni topamiz va tekshiramiz
     const stepContainer = formRef.current.querySelector(`#step-${currentStep}`);
     if (stepContainer) {
       const inputs = stepContainer.querySelectorAll('input[required], textarea[required], select[required]');
@@ -170,7 +170,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
       })
       .catch((err) => {
         console.log(err);
-        
         alert(err.response?.data?.msg || "Tizimda xatolik yuz berdi!");
       })
       .finally(() => setLoading(false));
@@ -180,8 +179,13 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
 
   return (
     <section id="apply" className="w-full min-h-[100vh] flex items-center justify-center px-4 py-8 bg-[#ebf4ff]">
-      {/* Rasmga mos ravishda asosiy oq oyna (rounded-[20px] va shadow) */}
-      <form ref={formRef} onSubmit={(e) => e.preventDefault()} className="w-full max-w-[850px] bg-white rounded-[20px] shadow-lg p-8 flex flex-col gap-6">
+      <form 
+        ref={formRef} 
+        onSubmit={(e) => e.preventDefault()} 
+        data-aos="fade-up" 
+        data-aos-duration="600"
+        className="w-full max-w-[850px] bg-white rounded-[20px] shadow-lg p-8 flex flex-col gap-6"
+      >
         
         {/* Top Navigatsiya bosqichlari */}
         <div className="w-full flex flex-col gap-2">
@@ -197,17 +201,19 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
           </div>
         </div>
 
-        {/* Formaning ichki kontenti */}
-        <div className="w-full min-h-[350px]">
+        {/* Formaning ichki kontenti - AOS Animatsiyasi bilan o'raldi */}
+        <div 
+          key={currentStep} 
+          data-aos="fade-in" 
+          data-aos-duration="400" 
+          className="w-full min-h-[350px]"
+        >
           
           {/* STEP 1: SHAXSIY MA'LUMOTLAR */}
           {currentStep === 1 && (
             <div id="step-1" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">1. Shaxsiy ma'lumotlar</h3>
               
-              {/* Tizim foydalanuvchisi ID info */}
-              
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-gray-600">Talabaning F.I.SH (To'liq)*</label>
@@ -429,7 +435,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
 
         </div>
 
-        {/* Navigatsiya tugmalari (Pastki o'ng va chap tomon dizayni) */}
+        {/* Navigatsiya tugmalari */}
         <div className="flex items-center justify-between border-t pt-4 mt-2">
           <button 
             type="button" 

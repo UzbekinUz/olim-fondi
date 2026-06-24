@@ -3,10 +3,11 @@ import { about } from "../data/txt.json";
 
 function About({ L }) {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Sarlavha bloki */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        
+        {/* Sarlavha bloki - Tepadan pastga qarab chiqadi */}
+        <div className="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
           <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
             {L(about.historyTitle)}
           </h2>
@@ -18,28 +19,27 @@ function About({ L }) {
 
         {/* Asosiy Grid: Portret va Tarix */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
-          {/* Portret qismi */}
-          <div className="lg:col-span-5 flex justify-center">
+          
+          {/* Portret qismi - Chapdan o'ngga chiqadi */}
+          <div className="lg:col-span-5 flex justify-center" data-aos="fade-right" data-aos-delay="100">
             <div className="relative">
               <div className="absolute inset-0 bg-linear-to-tr from-blue-600 to-indigo-600 rounded-2xl transform rotate-3 shadow-lg"></div>
               <div className="relative bg-slate-950 rounded-2xl overflow-hidden shadow-xl border border-slate-800 max-w-sm">
                 <img
-                  src="/modul/creator.png"
+                  src="/image.png"
                   alt={L(about.portraitAlt)}
                   className="w-full object-cover aspect-4/5 filter grayscale contrast-125 opacity-90 hover:opacity-100 hover:filter-none transition-all duration-500"
                 />
                 <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/90 to-transparent p-6 text-white text-center">
                   <h3 className="text-xl font-bold">{L(about.personName)}</h3>
-                  <p className="text-xs text-slate-300 font-semibold uppercase mt-1 tracking-widest">
-                    {L(about.personRole)}
-                  </p>
+                  
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Fond tarixi va matnlari */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Fond tarixi va matnlari - O'ngdan chapga chiqadi */}
+          <div className="lg:col-span-7 space-y-6" data-aos="fade-left" data-aos-delay="200">
             <div className="bg-slate-50 border-l-4 border-blue-600 p-6 rounded-r-xl shadow-xs">
               <p className="text-lg text-slate-700 italic font-medium leading-relaxed">
                 {L(about.quoteText)}
@@ -59,9 +59,9 @@ function About({ L }) {
               />
             </div>
 
-            {/* Imkoniyatlar */}
+            {/* Imkoniyatlar (Features) - Birin ketin chiqishi uchun alohida delay berildi */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="300">
                 <div className="w-6 h-6 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 mt-1 shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
@@ -74,7 +74,8 @@ function About({ L }) {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3">
+              
+              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="400">
                 <div className="w-6 h-6 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 mt-1 shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
@@ -88,6 +89,7 @@ function About({ L }) {
                 </div>
               </div>
             </div>
+
           </div>
         </div> 
       </div>

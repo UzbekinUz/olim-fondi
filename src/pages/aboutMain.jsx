@@ -4,15 +4,20 @@ import { aboutM as about } from "../data/txt.json";
 
 export default function AboutM({ L }) {
   return (
-    <div className="bg-slate-50/50 py-16 sm:py-24">
-      {/* Konteyner qo'shildi: tarkib chekkalarga yopishib qolmasligi va markazda turishi uchun */}
+    <div className="bg-slate-50/50   overflow-hidden">
+      {/* Konteyner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
           {/* Chap tomon: Missiya matnlari va Vizual iqtibos bloki */}
           <div className="lg:col-span-7 flex flex-col justify-between space-y-8">
-            <div className="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            
+            {/* Matnlar - Birinchi bo'lib pastdan tepaga chiqadi */}
+            <div 
+              className="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed"
+              data-aos="fade-up"
+            >
               <p
                 className="prose prose-slate max-w-none"
                 dangerouslySetInnerHTML={{
@@ -22,8 +27,12 @@ export default function AboutM({ L }) {
               <p>{L(about.missionParagraph2)}</p>
             </div>
 
-            {/* Chiroyli vizual iqtibos bloki */}
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-md relative overflow-hidden group mt-auto">
+            {/* Chiroyli vizual iqtibos bloki - Matndan biroz keyinroq pastdan tepaga chiqadi */}
+            <div 
+              className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-md relative overflow-hidden group mt-auto"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
               <div className="absolute -right-10 -bottom-10 text-white/5 transform group-hover:scale-110 transition-transform duration-500">
                 <Target className="w-48 h-48" />
               </div>
@@ -39,15 +48,19 @@ export default function AboutM({ L }) {
             </div>
           </div>
 
-          {/* O'ng tomon: Jamoaning umumiy rasmi */}
-          <div className="lg:col-span-5 relative min-h-[350px] lg:min-h-full flex">
+          {/* O'ng tomon: Jamoaning umumiy rasmi - Eng oxirida pastdan tepaga chiqadi */}
+          <div 
+            className="lg:col-span-5 relative min-h-[350px] lg:min-h-full flex"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             {/* Rasm orqasidagi yengil vizual effekt */}
             <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl opacity-10 blur-xl"></div>
 
             {/* Rasm konteyneri */}
             <div className="relative w-full rounded-2xl overflow-hidden shadow-lg border border-slate-100/80 group flex-1">
               <img
-                src="/jamoa.jpg" // Jamoangiz rasmining manzili
+                src="/jamoa.jpg" 
                 alt="Bizning jamoa"
                 className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-700"
               />

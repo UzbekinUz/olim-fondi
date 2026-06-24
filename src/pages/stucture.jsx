@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {structure} from "../data/txt.json"; // Tarjimalar fayli
+import { structure } from "../data/txt.json"; // Tarjimalar fayli
 import axios from "axios";
 import { API_LINK, SITE_LINK } from "../cfg";
 
@@ -13,7 +13,6 @@ function Structure({ L }) {
     const fetchTeamData = async () => {
       try {
         setLoading(true);
-        // Siz yozgan backend getAll funksiyasiga mos so'rov yuboramiz
         const response = await axios.get(`${API_LINK}/webdata/getall`);
         if (response.data.ok) {
           setTeam(response.data.data);
@@ -45,21 +44,43 @@ function Structure({ L }) {
   return (
     <section id="structure" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Sarlavhalar - Har biri bosqichma-bosqich chiqadi */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
+          <h2 
+            className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3"
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
             {L(structure.title)}
           </h2>
-          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+          <p 
+            className="text-3xl sm:text-4xl font-extrabold text-slate-900"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             {L(structure.subtitle)}
           </p>
-          <div className="w-16 h-1 bg-blue-600 mx-auto mt-3 rounded-full"></div>
-          <p className="text-slate-500 mt-4">
+          <div 
+            className="w-16 h-1 bg-blue-600 mx-auto mt-3 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          ></div>
+          <p 
+            className="text-slate-500 mt-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             {L(structure.description)}
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        {/* Filter tugmalari */}
+        <div 
+          className="flex flex-wrap justify-center gap-2 mb-10"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           {tabsList.map((tab) => (
             <button
               key={tab.id}
@@ -75,7 +96,7 @@ function Structure({ L }) {
           ))}
         </div>
 
-        {/* Team Grid */}
+        {/* Jamoa Grid qismi */}
         {loading ? (
           <div className="text-center py-10 text-slate-500 font-semibold">
             Yuklanmoqda...
@@ -85,12 +106,14 @@ function Structure({ L }) {
             {filteredTeam.map((member, idx) => (
               <div
                 key={member._id || idx}
+                data-aos="fade-up"
+                data-aos-delay={100 + (idx % 8) * 80}
                 className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 group hover:border-blue-400 hover:bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Rasmni to'liq yumaloq (doira) qilish bo'limi */}
+                {/* Rasm */}
                 <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto bg-slate-200 relative overflow-hidden rounded-full border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-300">
                   <img
-                    src={`${SITE_LINK}${member.photo}`} // Backend'dagi photo maydonidan rasm manzili
+                    src={`${SITE_LINK}${member.photo}`}
                     alt={member.name}
                     className="w-full h-full object-cover"
                     onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }}
@@ -106,10 +129,10 @@ function Structure({ L }) {
                   </div>
 
                   <h4 className="font-extrabold text-slate-900 text-base group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
-                    {member.name} {/* Backend ma'lumoti matn bo'lgani uchun L() tarjimasiz berildi */}
+                    {member.name}
                   </h4>
                   <p className="text-xs text-slate-500 font-semibold mt-1 line-clamp-2">
-                    {member.position} {/* Backend modelidagi 'position' maydoni */}
+                    {member.position}
                   </p>
                 </div>
               </div>

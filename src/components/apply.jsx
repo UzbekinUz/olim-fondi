@@ -94,13 +94,18 @@ const Apply = () => {
 
   return (
     <section id="apply" className="min-h-screen bg-slate-50 p-4 md:p-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+      <div 
+        data-aos="fade-up"
+        data-aos-duration="500"
+        className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200"
+      >
         <div className="p-6 border-b bg-slate-50">
           <h1 className="text-2xl font-bold text-blue-900">Grant Arizasi</h1>
           <p className="text-slate-500 text-sm mt-1">Qadam {step} / 6</p>
         </div>
 
-        <div className="p-6">
+        {/* key={step} qo'shildi: qadam o'zgarganda AOS animatsiyasi qayta ishga tushadi */}
+        <div key={step} data-aos="fade-in" data-aos-duration="300" className="p-6">
           {/* Step 1: Shaxsiy */}
           {step === 1 && (
             <div className="space-y-4">
@@ -297,7 +302,7 @@ const Apply = () => {
                 {formData.siblings.map((s, i) => (
                   <div
                     key={i}
-                    className="p-4 border rounded-xl bg-slate-50 mb-4 relative shadow-sm"
+                    className="p-4 border rounded-xl bg-slate-50 mb-4 relative shadow-sm animate-fadeIn"
                   >
                     <button
                       onClick={() => removeSibling(i)}
@@ -348,15 +353,9 @@ const Apply = () => {
                 <MessageSquare size={20} /> 5. Motivatsion qism
               </h2>
               <textarea
-                  className="w-full p-3 border rounded-lg h-44"
-                  placeholder="
-•	Sizning yaqin kelajak uchun belgilagan rejalaringiz
-•	Sizning oliy ma’lumotli bo‘lishingiz sizga,oilangizga va jamiyatga qanday yordam ko‘rsatadi?
-•	 Bizning fond sizning maqsadlaringizga qanday yordam ko‘rsatadi?
-•	O‘zingizni haqiqatdan munosibman deb o‘ylaysizmi?
-•	Nima uchun aynan siz stipendiya g`olibi bo‘lishingiz kerak?
-"                 
-                />
+                className="w-full p-3 border rounded-lg h-44 outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="• Sizning yaqin kelajak uchun belgilagan rejalaringiz&#10;• Sizning oliy ma’lumotli bo‘lishingiz sizga, oilangizga va jamiyatga qanday yordam ko‘rsatadi?&#10;• Bizning fond sizning maqsadlaringizga qanday yordam ko‘rsatadi?&#10;• O‘zingizni haqiqatdan munosibman deb o‘ylaysizmi?&#10;• Nima uchun aynan siz stipendiya g'olibi bo‘lishingiz kerak?"
+              />
             </div>
           )}
 
@@ -399,7 +398,7 @@ const Apply = () => {
             {step > 1 && (
               <button
                 onClick={prevStep}
-                className="flex items-center gap-2 bg-slate-100 px-6 py-2 rounded-lg hover:bg-slate-200 transition"
+                className="flex items-center gap-2 bg-slate-100 px-6 py-2 rounded-lg hover:bg-slate-200 transition cursor-pointer"
               >
                 <ChevronLeft size={18} /> Orqaga
               </button>
@@ -408,7 +407,7 @@ const Apply = () => {
               onClick={
                 step === 6 ? () => alert("Arizangiz yuborildi!") : nextStep
               }
-              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg ml-auto hover:bg-blue-700 transition"
+              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg ml-auto hover:bg-blue-700 transition cursor-pointer"
             >
               {step === 6 ? (
                 "Yuborish"

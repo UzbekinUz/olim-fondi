@@ -28,7 +28,7 @@
         "quoteText": {
             "uz": "\"Olim fondi — Olim Hasanov xotirasiga bag'ishlab tashkil etilgan xayriya jamg'armasi boʻlib, yordamga muhtoj, ammo iqtidorli va faol talabalarni qo'llab-quvvatlashni maqsad qiladi. Bu fond 2020-yilda tashkil etilgan.\"",
             "ru": "\"Фонд Олима — это благотворительный фонд, созданный в память об Олиме Хасанове, целью которого является поддержка нуждающихся, но одаренных и активных студентов. Этот фонд был основан в 2020 году.\"",
-            "en": "\"The Olim Foundation is a charitable foundation established in memory of Olim Hasanov, aiming to support students in need who are talented and active. This foundation was established in 2020.\""
+            "en": "\"The Olim fondi is a charitable foundation established in memory of Olim Hasanov, aiming to support students in need who are talented and active. This foundation was established in 2020.\""
         },
         "descriptionParagraph1": {
             "uz": "Fond tashkil etilishining sababi shuki, Olim Xasanov juda iqtidorli inson bo'lib, kelajakda iqtidorli talabalarning universitet kontraktlarini to'lab berish kabi keng ko'lamli xayriya ishlarini amalga oshirishni rejalashtirib yurgan edi. Afsuski, umrining qisqaligi sababli bu rejalari to'liq amalga oshmay qolgan.",
@@ -38,7 +38,7 @@
         "descriptionParagraph2": {
             "uz": "Shuning uchun uning oila a'zolari va yaqinlari uning ushbu ezgu niyatini davom ettirish maqsadida Olim fondini tashkil etishgan va shu orqali iqtidorli talabalarga ta'lim olish, jamiyatga munosib kadr bo'lib yetishish imkoniyatini yaratib berishmoqda.",
             "ru": "Поэтому члены его семьи и близкие создали фонд Олима, чтобы продолжить его благие намерения, и тем самым создают возможности для одаренных студентов получить образование и стать достойными кадрами для общества.",
-            "en": "Therefore, his family members and loved ones established the Olim Foundation to continue his noble intentions, thereby creating opportunities for talented students to receive an education and become worthy professionals for society."
+            "en": "Therefore, his family members and loved ones established the Olim fondi to continue his noble intentions, thereby creating opportunities for talented students to receive an education and become worthy professionals for society."
         },
         "feature1Title": {
             "uz": "Universitet kontraktlari",
@@ -66,9 +66,9 @@
             "en": "Our Ultimate Goal and Values"
         },
         "missionParagraph1": {
-            "uz": "<strong>OLIM  FOUNDATION</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
-            "ru": "<strong>OLIM  FOUNDATION</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
-            "en": "<strong>OLIM  FOUNDATION</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+            "uz": "<strong>Olim fondi</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>Olim fondi</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>Olim fondi</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
         },
         "missionParagraph2": {
             "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
@@ -88,9 +88,9 @@
             "en": "Our Ultimate Goal and Values"
         },
         "missionParagraph1": {
-            "uz": "<strong>OLIM  FOUNDATION</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
-            "ru": "<strong>OLIM  FOUNDATION</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
-            "en": "<strong>OLIM  FOUNDATION</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+            "uz": "<strong>Olim fondi</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>Olim fondi</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>Olim fondi</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
         },
         "missionParagraph2": {
             "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
@@ -347,9 +347,9 @@
     },
     "footer1": {
         "description": {
-            "uz": "Olim Hasanov xotirasiga bag'ishlab tashkil etilgan xayriya jamg'armasi bo'lib, iqtidorli yoshlarni qo'llab-quvvatlaydi.",
-            "ru": "Благотворительный фонд, созданный в память об Олиме Хасанове, поддерживает талантливую молодежь.",
-            "en": "A charitable foundation established in memory of Olim Hasanov, supporting talented youth."
+            "uz": "Olim Fondi - iqtidorli yoshlarni qo'llab-quvvatlaydi.",
+            "ru": "Olim Fondi - поддерживает талантливую молодежь.",
+            "en": "Olim Fondi - supporting talented youth."
         },
         "footerLinksTitle": {
             "uz": "Foydali havolalar",
@@ -475,7 +475,7 @@
         "badge": {
             "uz": "OLIM FONDI — 6 YOSHDA",
             "ru": "ФОНД ОЛИМ — 6 ЛЕТ",
-            "en": "OLIM FOUNDATION — 6 YEARS OLD"
+            "en": "Olim fondi — 6 YEARS OLD"
         },
         "description": {
             "uz": "Mamlakat yoshlarini parvoz etishiga imkoniyat ochib beruvchi qoʻllar! Iqtidorli, harakatchan va ko'makka muhtoj talabalarning kelajagiga sarmoya kiritamiz.",
@@ -781,9 +781,9 @@
             "en": "Behind every great achievement lies knowledge, hard work, and opportunity. However, there are talented youth in life who face difficulties in achieving their dreams due to financial or social circumstances. There are also students whose talent and potential are of great importance for the future of our country."
         },
         "accentText": {
-            "uz": "OLIM  FOUNDATION aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
-            "ru": "OLIM FOUNDATION был создан именно для поддержки таких молодых людей.",
-            "en": "OLIM FOUNDATION was established specifically to support these young individuals."
+            "uz": "Olim fondi aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
+            "ru": "Olim fondi был создан именно для поддержки таких молодых людей.",
+            "en": "Olim fondi was established specifically to support these young individuals."
         },
         "paragraph2": {
             "uz": "Bizning ishonchimiz komilki, ta'limga kiritilgan har bir sarmoya – millat kelajagiga qo'shilgan eng qimmatli hissadir. Biz nafaqat talabalarga moddiy ko'mak berishni, balki ularning bilimli, vatanparvar va mas'uliyatli shaxs bo'lib yetishishiga hissa qo'shishni o'z oldimizga maqsad qilib qo'yganmiz.",
@@ -796,9 +796,9 @@
             "en": "Our dream is that no talented young person is left without opportunity, and every hardworking student can fully demonstrate their potential."
         },
         "closing": {
-            "uz": "OLIM FOUNDATION – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
-            "ru": "OLIM FOUNDATION — это не просто фонд, это движение знаний, добра и веры в будущее.",
-            "en": "OLIM FOUNDATION is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
+            "uz": "Olim fondi – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
+            "ru": "Olim fondi — это не просто фонд, это движение знаний, добра и веры в будущее.",
+            "en": "Olim fondi is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
         },
         "imageAlt": {
             "uz": "Fond ta'sischisi portreti",
@@ -860,31 +860,6 @@
             },
             {
                 "title": {
-                    "uz": "Xayriya",
-                    "ru": "Благотворительность",
-                    "en": "Charity"
-                },
-                "color": "emerald",
-                "items": [
-                    {
-                        "uz": "Kam ta'minlangan oilalarga ko'mak.",
-                        "ru": "Помощь малообеспеченным семьям.",
-                        "en": "Assistance to low-income families."
-                    },
-                    {
-                        "uz": "Yetim va nogironligi bo'lgan bolalarni qo'llab-quvvatlash.",
-                        "ru": "Поддержка сирот и детей с инвалидностью.",
-                        "en": "Support for orphans and children with disabilities."
-                    },
-                    {
-                        "uz": "Tibbiy va ijtimoiy yordam loyihalari.",
-                        "ru": "Проекты медицинской и социальной помощи.",
-                        "en": "Medical and social assistance projects."
-                    }
-                ]
-            },
-            {
-                "title": {
                     "uz": "Yoshlar rivoji",
                     "ru": "Развитие молодежи",
                     "en": "Youth Development"
@@ -916,11 +891,7 @@
                 },
                 "color": "amber",
                 "items": [
-                    {
-                        "uz": "Olimning hayoti va qadriyatlarini targ'ib qilish.",
-                        "ru": "Популяризация жизни и ценностей ученого.",
-                        "en": "Promoting the life and values of the scholar."
-                    },
+                    
                     {
                         "uz": "Ilmiy-ma'rifiy tadbirlar tashkil etish.",
                         "ru": "Организация научно-просветительских мероприятий.",
@@ -1031,7 +1002,7 @@
         "panelTitle": {
             "uz": "Olim Fondi Tizimi",
             "ru": "Система Фонда Олим",
-            "en": "Olim Foundation System"
+            "en": "Olim fondi System"
         },
         "panelDesc": {
             "uz": "Boshqaruv paneli va mas'ul xodimlar uchun xavfsiz autentifikatsiya tarmog'i.",

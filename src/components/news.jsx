@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Calendar, Tag, ChevronRight, Search, Loader2 } from "lucide-react";
 import axios from "axios";
-import { API_LINK, SITE_LINK } from "../cfg"; // Rasm linki uchun SITE_LINK qo'shildi
+import { API_LINK, SITE_LINK } from "../cfg";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -11,7 +11,6 @@ export default function News() {
 
   // 1. BACKEND'DAN MA'LUMOTLARNI YUKLASH
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoad(true);
     axios
       .get(`${API_LINK}/news/getall`)
@@ -53,6 +52,8 @@ export default function News() {
   return (
     <section
       id="news"
+      data-aos="fade-up"
+      data-aos-duration="800"
       className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-200"
     >
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -102,11 +103,11 @@ export default function News() {
           </div>
         ) : filteredNews.length > 0 ? (
           /* YANGILIKLAR RO'YXATI CARD PANELI */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300">
             {filteredNews.map((item) => (
               <article
                 key={item._id || item.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-100 flex flex-col group"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col group"
               >
                 {/* Rasm qismi */}
                 <div className="relative h-56 overflow-hidden bg-slate-100">
@@ -142,12 +143,7 @@ export default function News() {
                     {item.content}
                   </p>
 
-                  <div className="mt-auto pt-4 border-t border-slate-100">
-                    <button className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors duration-200 group/btn">
-                      Batafsil o'qish
-                      <ChevronRight className="w-4 h-4 ml-1 transform group-hover/btn:translate-x-1 transition-transform duration-200" />
-                    </button>
-                  </div>
+                 
                 </div>
               </article>
             ))}
@@ -162,7 +158,7 @@ export default function News() {
               Hech narsa topilmadi
             </h3>
             <p className="text-slate-500">
-              Kiritilgan so'rov yoki tanlangan kategoriya bo'yicha yangiliklar mavjud emas.
+              Kiritilgan so'rov yoki tanlangan kategoriya bo'yicha yangiliklar maryud emas.
             </p>
             <button
               onClick={() => {

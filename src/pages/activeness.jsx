@@ -26,10 +26,11 @@ const bulletColors = {
 
 function Activities({ L }) {
   return (
-    <section className="py-24 bg-white min-h-screen">
+    <section className="py-24 bg-white min-h-screen overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Qadriyatlar */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        
+        {/* Qadriyatlar Sarlavhasi */}
+        <div className="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
           <h2 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
             {L(mission.principlesSubtitle)}
           </h2>
@@ -39,11 +40,14 @@ function Activities({ L }) {
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Qadriyatlar Grid - Har bir karta kechikish bilan chiqadi */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {mission?.values?.map((value, idx) => (
             <div
               key={idx}
               className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100} // 0ms, 100ms, 200ms, 300ms kechikish
             >
               <h4 className="text-lg font-bold text-slate-900 mb-2">
                 {L(value.title)}
@@ -54,8 +58,9 @@ function Activities({ L }) {
             </div>
           ))}
         </div>
-        {/* Sahifa Sarlavhasi */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+
+        {/* Sahifa Asosiy Sarlavhasi */}
+        <div className="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {L(activitiesPage.title)}
           </h2>
@@ -65,7 +70,7 @@ function Activities({ L }) {
           <div className="w-12 h-1 bg-slate-900 mx-auto mt-5 rounded-full"></div>
         </div>
 
-        {/* Yo'nalishlar Grid Tizimi */}
+        {/* Yo'nalishlar Grid Tizimi - 2 tadan bo'lib ketma-ket chiqadi */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           {activitiesPage.directions.map((direction, idx) => {
             const colorKey = direction.color || "blue";
@@ -73,6 +78,8 @@ function Activities({ L }) {
               <div
                 key={idx}
                 className={`border border-slate-100 p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between ${colorStyles[colorKey]}`}
+                data-aos="fade-up"
+                data-aos-delay={idx * 150} // Chap va o'ng qator tartib bilan ko'tariladi
               >
                 <div>
                   {/* Ikonka va Sarlavha boshi */}
@@ -101,7 +108,11 @@ function Activities({ L }) {
         </div>
 
         {/* FOND SHIORI - PREMIUM BANNER */}
-        <div className="bg-linear-to-tr from-slate-900 via-slate-950 to-blue-950 rounded-3xl text-white p-8 sm:p-12 text-center relative overflow-hidden shadow-xl border border-slate-800">
+        <div 
+          className="bg-linear-to-tr from-slate-900 via-slate-950 to-blue-950 rounded-3xl text-white p-8 sm:p-12 text-center relative overflow-hidden shadow-xl border border-slate-800"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           {/* Orqa fon nur bezaklari */}
           <div className="absolute -right-24 -bottom-24 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl"></div>
           <div className="absolute -left-24 -top-24 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>

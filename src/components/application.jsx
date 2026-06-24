@@ -11,11 +11,14 @@ import {
 // application propiga default o'laroq null beramiz: { application = null }
 const ApplicationCard = ({ application }) => {
   
-  // 1. Agarda ma'lumot hali yuklanmagan bo'lsa (undefined yoki null bo'lsa), skrinshotdagi xatolikni bermasligi uchun tekshiruv:
+  // 1. Agarda ma'lumot hali yuklanmagan bo'lsa skeleton animatsiyasi
   if (!application) {
-    
     return (
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center text-slate-500">
+      <div 
+        data-aos="fade-up"
+        data-aos-duration="400"
+        className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center text-slate-500 my-6"
+      >
         <div className="animate-pulse flex flex-col items-center space-y-3">
           <div className="h-4 bg-slate-200 rounded w-1/4"></div>
           <div className="h-8 bg-slate-200 rounded w-1/2"></div>
@@ -31,13 +34,13 @@ const ApplicationCard = ({ application }) => {
     status,
     createdAt,
     studentFullName,
-    studyForm ,
-    studyField ,
-    universityName ,
-    currentCourse ,
-    contractAmount ,
-    phoneNumber ,
-    emailAddress ,
+    studyForm,
+    studyField,
+    universityName,
+    currentCourse,
+    contractAmount,
+    phoneNumber,
+    emailAddress,
     cvFile,
     gpaFile,
     universityCertificate,
@@ -56,7 +59,11 @@ const ApplicationCard = ({ application }) => {
   }) : "Sana ko'rsatilmagan";
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden my-6">
+    <div 
+      data-aos="fade-up"
+      data-aos-duration="500"
+      className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden my-6"
+    >
       {/* Status qismi */}
       <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
