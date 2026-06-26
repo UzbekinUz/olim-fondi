@@ -2,16 +2,16 @@ import ApplicationCard from "../components/application";
 import ApplicationForm from "../components/applyTest";
 import Auth from "../components/auth";
 
-function MainEnterence({admin,app,applyCheck, authCheck,setAuthCheck,L}) {
+function MainEnterence({admin,app,applyCheck, authCheck,setAuthCheck,L,bor}) {
     return ( 
         <div id="apply" className="py-10 bg-white">
         {admin.auth ? (
           
           // Agar tizimga kirgan bo'lsa, ariza formasini ko'rsatamiz va unga usernameId ni dinamik beramiz
-          !app.bor ? (
+          !bor ? (
             <ApplicationForm applyCheck={applyCheck} usernameId={admin.usernameId} />
           ) : (
-            <ApplicationCard application={app.data} />
+            <ApplicationCard application={app} />
           )
         ) : (
           // Agar tizimga kirmagan bo'lsa, avval login/register qilishini so'raymiz

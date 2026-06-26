@@ -126,39 +126,7 @@ const ApplicationCard = ({ application }) => {
           </div>
         </div>
 
-        {/* Hujjatlar */}
-        <div>
-          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-            <FileCheck className="w-4 h-4" /> Yuklangan hujjatlar
-          </h4>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {[
-              { name: 'CV', file: cvFile },
-              { name: 'GPA', file: gpaFile },
-              { name: 'Ma\'lumotnoma', file: universityCertificate },
-              { name: 'Pasport nusxasi', file: passportFile },
-            ].map((doc, idx) => (
-              doc.file ? (
-                <a
-                  key={idx}
-                  href={doc.file}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col items-center justify-center p-3 border border-slate-200 rounded-xl hover:bg-slate-50 hover:border-blue-300 transition text-center group"
-                >
-                  <FileText className="w-5 h-5 text-slate-400 group-hover:text-blue-500 mb-1" />
-                  <span className="text-xs font-medium text-slate-600 group-hover:text-slate-900 truncate w-full px-1">
-                    {doc.name}
-                  </span>
-                </a>
-              ) : (
-                <div key={idx} className="p-3 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-400">
-                  {doc.name} yo'q
-                </div>
-              )
-            ))}
-          </div>
-        </div>
+        
       </div>
     </div>
   );

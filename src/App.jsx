@@ -25,7 +25,8 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [lang, setLang] = useState("uz");
   const [authCheck, setAuthCheck] = useState(false);
-  const [app, setApp] = useState({ bor: false });
+  const [app, setApp] = useState({ });
+  const [bor, setBor] = useState(false)
 
   const [admin, setAdmin] = useState({
     auth: false,
@@ -52,10 +53,13 @@ export default function App() {
     try {
       axios.get(`${API_LINK}/apply/${userId}`).then((d) => {
         const { ok, data } = d.data;
+        
         if (ok) {
-          setApp({ bor: true, ...app, data });
+          setBor(true);
+          setApp(data);
+          
         } else {
-          setApp({ bor: false });
+          setBor(false );
         }
       });
     } catch (error) {
@@ -140,6 +144,7 @@ export default function App() {
               setAuthCheck={setAuthCheck}
               admin={admin}
               app={app}
+              bor={bor}
               applyCheck={applyCheck}
               authCheck={authCheck}
             />
