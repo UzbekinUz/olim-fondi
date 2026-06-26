@@ -19,6 +19,7 @@ import ScrollToTop from "./helper/scrollTop";
 // AOS kutubxonasini va uning CSS-ni import qilamiz
 import AOS from "aos";
 import "aos/dist/aos.css";
+import AppAdmin from "./adminPanel/App";
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -115,6 +116,7 @@ export default function App() {
       <ScrollToTop />
       
       <Header
+      bor={bor}
         scrollToSection={scrollToSection}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
@@ -150,6 +152,7 @@ export default function App() {
             />
           }
         />
+        <Route path="/adminpanellalalalalalalalal" element={<AppAdmin/>}/>
       </Routes>
 
       <Footer scrollToSection={scrollToSection} L={L} />

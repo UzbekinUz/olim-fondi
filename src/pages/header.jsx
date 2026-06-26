@@ -14,6 +14,7 @@ function Header({
   setLanguage,
   L,
   app,
+  bor,
   authCheck,
   userInfo,
   setUserInfo,
@@ -195,7 +196,7 @@ function Header({
                         className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
                       >
                         <FileText className="w-4 h-4" />
-                        <span>{app.bor ? "Arizam" : "Ariza topshirish"}</span>
+                        <span>{bor ? "Arizam" : "Ariza topshirish"}</span>
                       </button>
                       <hr className="border-slate-100 my-1" />
                       <button
@@ -262,7 +263,7 @@ function Header({
                   className="flex items-center justify-center space-x-1.5 bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-slate-600 active:bg-slate-50"
                 >
                   <FileText className="w-3.5 h-3.5 text-blue-500" />
-                  <span>{app.bor ? "Arizam" : "Ariza topshirish"}</span>
+                  <span>{bor ? "Arizam" : "Ariza topshirish"}</span>
                 </button>
                 <button
                   onClick={() => {
