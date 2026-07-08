@@ -142,7 +142,7 @@ function Dashboard({ setCurrentTab, setSelectedApp,adminInfo }) {
                         </button>
                     </div>
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse min-w-[500px]">
+                        <table className="w-full text-left border-collapse min-w-125">
                             <thead>
                                 <tr className="bg-slate-50/50 text-slate-400 text-xs font-semibold uppercase">
                                     <th className="py-3 px-5">F.I.SH</th>
@@ -162,7 +162,7 @@ function Dashboard({ setCurrentTab, setSelectedApp,adminInfo }) {
                                                 {app.emailAddress || "E-pochta yo'q"}
                                             </div>
                                         </td>
-                                        <td className="py-4 px-5 text-slate-600 max-w-[150px] truncate">
+                                        <td className="py-4 px-5 text-slate-600 max-w-37.5 truncate">
                                             {app.universityName}
                                         </td>
                                         <td className="py-4 px-5 text-slate-600 font-medium">
@@ -205,7 +205,7 @@ function Dashboard({ setCurrentTab, setSelectedApp,adminInfo }) {
                                 {news.length} ta
                             </span>
                         </div>
-                        <div className="space-y-4 max-h-[280px] overflow-y-auto pr-1">
+                        <div className="space-y-4 max-h-70 overflow-y-auto pr-1">
                             {news.slice(0, 3).map((item) => (
                                 <div
                                     key={item._id || item.id}

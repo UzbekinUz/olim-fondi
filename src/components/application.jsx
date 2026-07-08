@@ -6,8 +6,10 @@ import {
   Phone, 
   Mail, 
   Calendar, 
-  Pen
+  Pen,
+  Download
 } from 'lucide-react';
+import { SITE_LINK } from '../cfg';
 
 // application propiga default o'laroq null beramiz: { application = null }
 const ApplicationCard = ({ application }) => {
@@ -123,6 +125,134 @@ const ApplicationCard = ({ application }) => {
             </div>
           </div>
         </div>
+        <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
+                <Download className="w-4 h-4" /> Biriktirilgan akademik
+                hujjatlar
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-red-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        CV (Tarjimai hol)
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href={`${SITE_LINK}${application.cvFile}`}
+                    download={`${application.usernameId}cv.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    <Download className="w-5 h-5" />
+                  </a>
+                </div>
+
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-emerald-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        GPA Transkript
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    onClick={() =>
+                      triggerToast(
+                        "GPA transkript yuklab olinmoqda...",
+                        <Download className="w-5 h-5" />,
+                        "text-sky-400",
+                      )
+                    }
+                    href={`${SITE_LINK}${application.gpaFile}`} // Haqiqiy GPA fayl manzilini qo'yish tavsiya etiladi
+                    download={`${application.usernameId}gpa.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    <Download className="w-5 h-5" />
+                  </a>
+                </div>
+
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-blue-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        OTM Ma'lumotnoma
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href={`${SITE_LINK}${application.universityCertificate}`} // Haqiqiy ma'lumotnoma fayl manzilini qo'yish tavsiya etiladi
+                    download={`${application.usernameId}otm_info.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    <Download className="w-5 h-5" />
+                  </a>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-slate-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        Passport nusxasi
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href={`${SITE_LINK}${application.passportFile}`} // Haqiqiy ma'lumotnoma fayl manzilini qo'yish tavsiya etiladi
+                    download={`${application.usernameId}passport_copy.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    <Download className="w-5 h-5" />
+                  </a>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-yellow-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        Imtiyoz hujjatlari
+                      </span>
+                    </div>
+                  </div>
+                  {!application.imtiyoz || application.imtiyoz.length === 0 ? (
+                    <span className="text-[10px] text-slate-400 italic">
+                      Imtiyoz hujjatlari mavjud emas
+                    </span>
+                  ) : (
+                    <a
+                      href={`${SITE_LINK}${application.imtiyoz}`}
+                      download={`${application.usernameId}privilege_docs.pdf`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-400 hover:text-indigo-600 transition-colors"
+                    >
+                      <Download className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
         <div>
           <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <Pen className="w-4 h-4" /> Izoh

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Check, Eye, FlaskConical, Mail, Phone, X } from "lucide-react";
+import { Check, Eye, Mail, Phone, X, Search } from "lucide-react"; // Search ikonkasi qo'shildi
 import { useState } from "react";
 import { API_LINK } from "../cfg";
 
@@ -11,6 +11,7 @@ function Application({
   adminInfo,
 }) {
   const [stat, setStat] = useState("pending");
+  const [searchTerm, setSearchTerm] = useState(""); // Qidiruv so'zi uchun state
   const [loadingId, setLoadingId] = useState(null); // API so'rov bajarilayotganda bloklash uchun
 
   function ChangeStatus(id, newStat) {
@@ -46,16 +47,22 @@ function Application({
         setLoadingId(null); // Yuklanishni tugatish
       });
   }
-  // Massivni oldindan filtrlash (Samaradorlik va to'g'ri HTML tuzilishi uchun)
-  const filteredApps = apps.filter(
-    (app) => stat === "all" || app.status === stat,
-  );
+
+  // Massivni oldindan filtrlash (Status va Qidiruv so'zi bo'yicha)
+  const filteredApps = apps.filter((app) => {
+    const matchesStatus = stat === "all" || app.status === stat;
+    
+    const searchString = `${app.studentFullName || ""} ${app.universityName || ""} ${app.phoneNumber || ""} ${app.emailAddress || ""}`.toLowerCase();
+    const matchesSearch = searchString.includes(searchTerm.toLowerCase());
+
+    return matchesStatus && matchesSearch;
+  });
 
   return (
     <div className="space-y-6">
       {/* Filter paneli */}
       <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-y-0">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-y-0 gap-4">
           <div>
             <h2 className="text-xl font-bold text-slate-800">
               Arizalar reyestri
@@ -66,26 +73,48 @@ function Application({
             </p>
           </div>
 
-          {/* Filter tabs */}
-          <div className="flex p-1 bg-slate-100 rounded-xl space-x-1 text-xs font-semibold text-slate-600 border border-slate-200 max-w-max">
-            {[
-              { id: "all", label: "Barchasi" },
-              { id: "pending", label: "Kutilmoqda" },
-              { id: "approved", label: "Qabul qilindi" },
-              { id: "rejected", label: "Rad etildi" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setStat(tab.id)}
-                className={`px-4 py-2 rounded-lg transition-all ${
-                  stat === tab.id
-                    ? "bg-white text-indigo-700 shadow-sm"
-                    : "hover:text-slate-800"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+            {/* Qidiruv inputi */}
+            <div className="relative flex-1 sm:w-64">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Qidirish (ism, oliygoh, tel...)"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-indigo-500 focus:bg-white transition-all text-slate-700"
+              />
+              {searchTerm && (
+                <button 
+                  onClick={() => setSearchTerm("")} 
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* Filter tabs */}
+            <div className="flex p-1 bg-slate-100 rounded-xl space-x-1 text-xs font-semibold text-slate-600 border border-slate-200 max-w-max self-start lg:self-auto">
+              {[
+                { id: "all", label: "Barchasi" },
+                { id: "pending", label: "Kutilmoqda" },
+                { id: "approved", label: "Qabul qilindi" },
+                { id: "rejected", label: "Rad etildi" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setStat(tab.id)}
+                  className={`px-4 py-2 rounded-lg transition-all ${
+                    stat === tab.id
+                      ? "bg-white text-indigo-700 shadow-sm"
+                      : "hover:text-slate-800"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -204,7 +233,7 @@ function Application({
                           Qabul qilindi
                         </span>
                       )}
-                      {app.status === "rejected" && (
+                      {244 === "rejected" && (
                         <span className="inline-flex items-center px-2.5 py-1.5 rounded-full text-xs font-semibold bg-white text-rose-700 ">
                           <span className="w-1.5 h-1.5 bg-rose-500 rounded-full mr-1.5"></span>
                           Rad etildi

@@ -5,7 +5,7 @@ import { useState } from "react";
 function Profile({adminInfo,setAdmin,handleRef, addToast}) {
   const [username, setUsername] = useState(adminInfo?.username || "");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(adminInfo?.role || "");
+  const role=adminInfo?.role || "";
   const [loadingProfile, setLoadingProfile] = useState(false);
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
