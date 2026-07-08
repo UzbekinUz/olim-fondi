@@ -3,7 +3,7 @@ import { Calendar, ChevronRight, Eye, FileCheck, FileText, FileX, Newspaper, Plu
 import { useEffect, useState } from "react";
 import { API_LINK, SITE_LINK } from "../cfg";
 
-function Dashboard({ setCurrentTab, setSelectedApp }) {
+function Dashboard({ setCurrentTab, setSelectedApp,adminInfo }) {
     // 1. LOCAL STATE'LAR
     const [news, setNews] = useState([]);
     const [apps, setApps] = useState([]);
@@ -70,7 +70,7 @@ function Dashboard({ setCurrentTab, setSelectedApp }) {
             {/* Sarlavha qismi */}
             <div>
                 <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
-                    Xush kelibsiz, Bekzodbek!
+                    {`Xush kelibsiz, ${adminInfo?.username || "Foydalanuvchi"}!`}
                 </h2>
                 <p className="text-sm text-slate-500">
                     Bugungi arizalar oqimi va jamg'armaning dolzarb yangiliklari tahlili.

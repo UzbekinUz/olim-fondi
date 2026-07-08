@@ -16,10 +16,6 @@ function MainEnterence({admin,app,applyCheck, authCheck,setAuthCheck,L,bor}) {
         ) : (
           // Agar tizimga kirmagan bo'lsa, avval login/register qilishini so'raymiz
           <div className="flex flex-col items-center justify-center">
-            <p className="text-center text-rose-500 font-semibold mb-4">
-              Ariza topshirishdan oldin tizimga kirishingiz yoki ro'yxatdan
-              o'tishingiz shart!
-            </p>
             <Auth L={L} refresh={authCheck} setRefresh={setAuthCheck} />
           </div>
         )}

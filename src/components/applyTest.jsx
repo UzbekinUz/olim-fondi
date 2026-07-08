@@ -7,13 +7,16 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
   
+  // Maksimal motivatsiya xati uzunligi
+  const MAX_MOTIVATION_LENGTH = 3000;
+
   // Markazlashgan tekstli state
   const [state, setState] = useState({
     studentFullName: "",
     birthDate: "",
     nationality: "O'zbekiston",
     permanentAddress: "",
-    phoneNumber: "+998", // Dastlabki qiymat
+    phoneNumber: "+998", 
     emailAddress: "",
     passportSeria: "",
     passportNumber: "",
@@ -25,7 +28,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     studyForm: "Kunduzgi",
     studyField: "",
     currentCourse: "",
-    contractAmount: "",
+    contractAmount: "", // Formatlangan ko'rinishda saqlanadi
     isDoingResearch: false,
     researchDetails: "",
     hasConferenceParticipation: false,
@@ -42,7 +45,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     motherPosition: "",
     motherBirthDate: "",
     motivationLetter: "",
-    hasPrivilege: false, // Imtiyoz bor-yo'qligi uchun state
+    hasPrivilege: false, 
   });
 
   // Fayllar uchun state
@@ -51,7 +54,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     gpaFile: null,
     universityCertificate: null,
     passportFile: null,
-    privilegeFile: null // Imtiyoz fayli uchun state
+    privilegeFile: null 
   });
 
   // Aka-uka (siblings) uchun state
@@ -65,11 +68,19 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     setSiblings(updated);
   };
 
+  // Kontrakt miqdorini formatlash funksiyasi (Masalan: 12,000,000)
+  const handleContractChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Faqat raqamlarni qoldiramiz
+    const formattedValue = value ? Number(value).toLocaleString('en-US') : ""; // Vergul bilan formatlash
+    // Agar bo'shliq bilan formatlashni xohlasangiz 'fr-FR' dan foydalanishingiz mumkin
+    
+    setState({ ...state, contractAmount: formattedValue });
+  };
+
   // Telefon raqam formatlagich (+998 (90) 123-45-67 ko'rinishida)
   const handlePhoneChange = (e) => {
-    let input = e.target.value.replace(/\D/g, ""); // Faqat raqamlarni qoldiramiz
+    let input = e.target.value.replace(/\D/g, ""); 
     
-    // Agar foydalanuvchi +998 ni o'chirib yubormoqchi bo'lsa, kodni qayta tiklaymiz
     if (!input.startsWith("998")) {
       input = "998" + input;
     }
@@ -88,8 +99,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
       formatted += "-" + input.substring(10, 12);
     }
 
-    // Telefon to'liq kiritilgandagina HTML custom validity xatoligini tozalash
-    if (input.length === 12) {
+    if (input.length === 12 && formatted.length === 19) {
       e.target.setCustomValidity("");
     } else {
       e.target.setCustomValidity("Telefon raqamini to'liq kiriting (masalan: +998 (90) 123-45-67)");
@@ -150,7 +160,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
       "studentFullName", "birthDate", "nationality", "permanentAddress", "phoneNumber", "emailAddress",
       "universityName", "studyForm", "studyField", "currentCourse", "isDoingResearch", "researchDetails",
       "hasConferenceParticipation", "hasPublications", "usedPreviousGrants", "previousGrantDetails",
-      "contractAmount", "familyMembersCount", "fatherFullName", "fatherWorkPlace", "fatherPosition",
+      "familyMembersCount", "fatherFullName", "fatherWorkPlace", "fatherPosition",
       "fatherBirthDate", "motherFullName", "motherWorkPlace", "motherPosition", "motherBirthDate",
       "motivationLetter", "hasPrivilege"
     ];
@@ -158,6 +168,10 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     textFields.forEach(field => {
       form.append(field, state[field]);
     });
+
+    // Kontrakt miqdorini serverga toza raqam ko'rinishida yuborish
+    const cleanContractAmount = state.contractAmount.replace(/,/g, "");
+    form.append("contractAmount", cleanContractAmount);
 
     const passportObj = {
       passportSeria: state.passportSeria.toUpperCase(),
@@ -175,7 +189,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     form.append("universityCertificate", files.universityCertificate);
     form.append("passportFile", files.passportFile);
 
-    // Agar imtiyoz mavjud bo'lsa va fayl tanlangan bo'lsa, jo'natamiz
     if (state.hasPrivilege && files.privilegeFile) {
       form.append("privilegeFile", files.privilegeFile);
     }
@@ -219,13 +232,13 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
   const stepsHeader = ["1. Shaxsiy", "2. Pasport", "3. Ta'lim", "4. Oila", "5. Motivatsiya", "6. Hujjatlar"];
 
   return (
-    <section id="apply" className="w-full min-h-[100vh] flex items-center justify-center px-4 py-8 bg-[#ebf4ff]">
+    <section id="apply" className="w-full min-h-screen flex items-center justify-center px-4 py-8 bg-[#ebf4ff]">
       <form 
         ref={formRef} 
         onSubmit={(e) => e.preventDefault()} 
         data-aos="fade-up" 
         data-aos-duration="600"
-        className="w-full max-w-[850px] bg-white rounded-[20px] shadow-lg p-8 flex flex-col gap-6"
+        className="w-full max-w-212.5 bg-white rounded-[20px] shadow-lg p-8 flex flex-col gap-6"
       >
         
         {/* Top Navigatsiya bosqichlari */}
@@ -234,7 +247,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             {stepsHeader.map((stepName, index) => (
               <span 
                 key={index} 
-                className={`pb-1 transition-all duration-200 ${currentStep === index + 1 ? "text-blue-600 font-bold border-b-2 border-blue-600" : ""}`}
+                className={`pb-1 transition-all duration-200 ${currentStep === index + 1 ? "text-blue-600 font-bold border-b-2 border-blue-600" : "hidden"}`}
               >
                 {stepName}
               </span>
@@ -242,7 +255,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
           </div>
         </div>
 
-        {/* Formaning ichki kontenti - AOS Animatsiyasi bilan o'raldi */}
+        {/* Formaning ichki kontenti */}
         <div 
           key={currentStep} 
           data-aos="fade-in" 
@@ -296,7 +309,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 2, 3, 4, 5 (O'zgarishsiz qoladi...) */}
+          {/* STEP 2 */}
           {currentStep === 2 && (
             <div id="step-2" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">2. Pasport / ID-karta ma'lumotlari</h3>
@@ -329,6 +342,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
+          {/* STEP 3: TA'LIM VA KONTRAKT MIQDORI */}
           {currentStep === 3 && (
             <div id="step-3" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">3. Oliy ta'lim va Ilmiy faoliyat</h3>
@@ -346,14 +360,24 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <input required type="text" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.studyField} onChange={(e) => setState({ ...state, studyField: e.target.value })} />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-gray-600">Hozirgi bosqich / Kurs*</label>
+                  <label className="text-xs font-semibold text-gray-600">Bo'lg'usi bosqich / Kurs*</label>
                   <input required type="text" placeholder="Masalan: 3-kurs" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.currentCourse} onChange={(e) => setState({ ...state, currentCourse: e.target.value })} />
                 </div>
               </div>
+              
+              {/* Formatlangan Kontrakt Miqdori Inputi */}
               <div className="flex flex-col gap-1 md:w-1/2">
                 <label className="text-xs font-semibold text-gray-600">Yillik kontrakt miqdori (so'mda)*</label>
-                <input required type="text" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.contractAmount} onChange={(e) => setState({ ...state, contractAmount: e.target.value })} />
+                <input 
+                  required 
+                  type="text" 
+                  placeholder="Masalan: 12,000,000"
+                  className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white focus:border-blue-500" 
+                  value={state.contractAmount} 
+                  onChange={handleContractChange} 
+                />
               </div>
+
               <div className="w-full space-y-3 border-t pt-4 mt-2 text-sm text-gray-700">
                 <label className="flex items-center gap-2 cursor-pointer font-medium">
                   <input type="checkbox" checked={state.isDoingResearch} onChange={(e) => setState({ ...state, isDoingResearch: e.target.checked })} className="w-4 h-4 cursor-pointer" />
@@ -377,6 +401,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
+          {/* STEP 4 */}
           {currentStep === 4 && (
             <div id="step-4" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">4. Oila a'zolari haqida ma'lumot</h3>
@@ -423,17 +448,32 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
+          {/* STEP 5: MOTIVATSION XAT VA LIMIT ELEMENTI */}
           {currentStep === 5 && (
             <div id="step-5" className="flex flex-col gap-4">
-              <h3 className="text-xl font-bold text-blue-600 mb-2">5. Motivatsion xat</h3>
+              <div className="flex justify-between items-end mb-2">
+                <h3 className="text-xl font-bold text-blue-600">5. Motivatsion xat</h3>
+                {/* Qolgan belgilar hisoblagichi */}
+                <span className={`text-xs font-semibold ${state.motivationLetter.length >= MAX_MOTIVATION_LENGTH ? 'text-red-500' : 'text-gray-400'}`}>
+                  {state.motivationLetter.length} / {MAX_MOTIVATION_LENGTH} belgi
+                </span>
+              </div>
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-gray-600">Nima uchun aynan siz ushbu grantga munosibsiz?*</label>
-                <textarea required placeholder="Fikrlaringizni batafsil bayon qiling..." rows="10" className="w-full border border-gray-200 p-3 rounded-[10px] text-sm outline-none bg-gray-50/50 focus:bg-white focus:border-blue-500 font-sans leading-relaxed resize-none" value={state.motivationLetter} onChange={(e) => setState({ ...state, motivationLetter: e.target.value })}></textarea>
+                <textarea 
+                  required 
+                  maxLength={MAX_MOTIVATION_LENGTH}
+                  placeholder="Fikrlaringizni batafsil bayon qiling..." 
+                  rows="10" 
+                  className="w-full border border-gray-200 p-3 rounded-[10px] text-sm outline-none bg-gray-50/50 focus:bg-white focus:border-blue-500 font-sans leading-relaxed resize-none" 
+                  value={state.motivationLetter} 
+                  onChange={(e) => setState({ ...state, motivationLetter: e.target.value })}
+                ></textarea>
               </div>
             </div>
           )}
 
-          {/* STEP 6: HUJJATLARNI YUKLASH VA IMTIYOZ CHECKBOX */}
+          {/* STEP 6 */}
           {currentStep === 6 && (
             <div id="step-6" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">6. Hujjatlarni yuklash</h3>
@@ -461,7 +501,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                 </div>
               </div>
 
-              {/* Imtiyoz uchun Qo'shimcha Qism */}
               <div className="w-full border-t pt-4 mt-2 space-y-3">
                 <label className="flex items-center gap-2 cursor-pointer font-semibold text-sm text-gray-700">
                   <input 

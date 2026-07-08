@@ -940,9 +940,9 @@
                 "en": "Enter your details to access the platform"
             },
             "subtitleRegister": {
-                "uz": "Yangi mas'ul boshqaruvchi profilini yarating",
-                "ru": "Создайте профиль нового администратора",
-                "en": "Create a new administrator profile"
+                "uz": "Yangi shaxsiy profilingizni yarating va a'rizangiz holatini kuzatib boring!",
+                "ru": "Создайте профиль нового",
+                "en": "Create a new profile"
             },
             "labelUsername": {
                 "uz": "Foydalanuvchi nomi",

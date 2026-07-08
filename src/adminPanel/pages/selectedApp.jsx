@@ -10,6 +10,7 @@ import {
   User,
   Users,
   X,
+  XCircle,
 } from "lucide-react";
 import { API_LINK, SITE_LINK } from "../cfg";
 import axios from "axios";
@@ -20,20 +21,27 @@ function SelectedApp({
   triggerToast,
   refresh,
   setRefresh,
-  adminInfo
+  adminInfo,
 }) {
   // So'rov ketayotganda tugmalarni bloklash va loading ko'rsatish uchun state
   const [loading, setLoading] = useState(false);
   const [comment, setComment] = useState(selectedApp.comment || ""); // Izohni saqlash uchun state
+console.log(selectedApp);
   function handleStatusChange(id, stat) {
     if (loading) return; // Agar so'rov ketayotgan bo'lsa, qayta bosishni oldini oladi
     setLoading(true);
-
+    
+    
     axios
-      .put(`${API_LINK}/apply/updatestatus`, { usernameId: id, status: stat, comment: comment, action:`Status changed to ${stat} by ${adminInfo.username}` })
+      .put(`${API_LINK}/apply/updatestatus`, {
+        usernameId: id,
+        status: stat,
+        comment: comment,
+        action: `Status changed to ${stat} by ${adminInfo.username}`,
+      })
       .then((d) => {
         console.log(d.data);
-        
+
         setRefresh(!refresh);
         setSelectedApp(null); // Muvaffaqiyatli yakunlangach modalni yopish
       })
@@ -132,7 +140,9 @@ function SelectedApp({
                     disabled={loading}
                     className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 transition-colors disabled:opacity-50"
                   >
-                    {loading ? "Kutilmoqda..." : "Kutilayotgan holatga qaytarish"}
+                    {loading
+                      ? "Kutilmoqda..."
+                      : "Kutilayotgan holatga qaytarish"}
                   </button>
                 )}
               </div>
@@ -198,7 +208,8 @@ function SelectedApp({
             {/* Section 2: O'qish Ma'lumotlari */}
             <div className="space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4" /> O'qish joyi va Akademik faoliyat
+                <GraduationCap className="w-4 h-4" /> O'qish joyi va Akademik
+                faoliyat
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                 <div className="md:col-span-2">
@@ -319,7 +330,22 @@ function SelectedApp({
                 </div>
               </div>
             </div>
-
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
+                <MessageSquare className="w-4 h-4" /> Motivatsion xat
+              </h4>
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                {selectedApp.motivationLetter ? (
+                  <div className="overflow-y-auto pr-2 md:text-sm text-[11px] text-slate-700 leading-relaxed whitespace-pre-wrap">
+                    {selectedApp.motivationLetter}
+                  </div>
+                ) : (
+                  <p className="text-sm text-slate-400 italic">
+                    Motivatsion xat kiritilmagan.
+                  </p>
+                )}
+              </div>
+            </div>
             {/* Section 4: Oila Ma'lumotlari */}
             <div className="space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
@@ -459,7 +485,8 @@ function SelectedApp({
             {/* Section 5: Yuklangan Hujjatlar */}
             <div className="space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
-                <Download className="w-4 h-4" /> Biriktirilgan akademik hujjatlar
+                <Download className="w-4 h-4" /> Biriktirilgan akademik
+                hujjatlar
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
@@ -510,7 +537,7 @@ function SelectedApp({
                         "text-sky-400",
                       )
                     }
-                    href={`${SITE_LINK}${selectedApp.cvFile}`} // Haqiqiy GPA fayl manzilini qo'yish tavsiya etiladi
+                    href={`${SITE_LINK}${selectedApp.gpaFile}`} // Haqiqiy GPA fayl manzilini qo'yish tavsiya etiladi
                     download={`${selectedApp.usernameId}gpa.pdf`}
                     target="_blank"
                     rel="noreferrer"
@@ -539,7 +566,7 @@ function SelectedApp({
                         "text-sky-400",
                       )
                     }
-                    href={`${SITE_LINK}${selectedApp.cvFile}`} // Haqiqiy ma'lumotnoma fayl manzilini qo'yish tavsiya etiladi
+                    href={`${SITE_LINK}${selectedApp.universityCertificate}`} // Haqiqiy ma'lumotnoma fayl manzilini qo'yish tavsiya etiladi
                     download={`${selectedApp.usernameId}otm_info.pdf`}
                     target="_blank"
                     rel="noreferrer"
@@ -547,6 +574,68 @@ function SelectedApp({
                   >
                     <Download className="w-5 h-5" />
                   </a>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-slate-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        Passport nusxasi
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    onClick={() =>
+                      triggerToast(
+                        "OTM ma'lumotnomasi yuklab olinmoqda...",
+                        <Download className="w-5 h-5" />,
+                        "text-sky-400",
+                      )
+                    }
+                    href={`${SITE_LINK}${selectedApp.passportFile}`} // Haqiqiy ma'lumotnoma fayl manzilini qo'yish tavsiya etiladi
+                    download={`${selectedApp.usernameId}passport_copy.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    <Download className="w-5 h-5" />
+                  </a>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-yellow-500 text-2xl">
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-medium text-slate-400 block">
+                        Imtiyoz hujjatlari
+                      </span>
+                    </div>
+                  </div>
+                  {!selectedApp.imtiyoz || selectedApp.imtiyoz.length === 0 ? (
+                    <span className="text-[10px] text-slate-400 italic">
+                      Imtiyoz hujjatlari mavjud emas
+                    </span>
+                  ) : (
+                    <a
+                      onClick={() =>
+                        triggerToast(
+                          "Imtiyoz hujjatlari yuklab olinmoqda...",
+                          <Download className="w-5 h-5" />,
+                          "text-sky-400",
+                        )
+                      }
+                      href={`${SITE_LINK}${selectedApp.imtiyoz}`}
+                      download={`${selectedApp.usernameId}privilege_docs.pdf`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-400 hover:text-indigo-600 transition-colors"
+                    >
+                      <Download className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -564,7 +653,8 @@ function SelectedApp({
                   className="w-full text-sm p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none bg-slate-50 disabled:opacity-50"
                 />
                 <p className="text-[10px] text-slate-400 mt-1">
-                  * Izoh kiritish majburiy emas, lekin rad etilganda sabab ko'rsatish tavsiya etiladi.
+                  * Izoh kiritish majburiy emas, lekin rad etilganda sabab
+                  ko'rsatish tavsiya etiladi.
                 </p>
               </div>
             </div>
@@ -575,9 +665,9 @@ function SelectedApp({
             <button
               onClick={() => setSelectedApp(null)}
               disabled={loading}
-              className="bg-white border border-slate-300 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors disabled:opacity-50"
+              className="bg-white border border-slate-300 text-slate-700 text-[12px] md:text-[18px]  p-2.5 rounded-xl font-semibold text-sm hover:bg-slate-50 transition-colors disabled:opacity-50"
             >
-              Yopish
+              <XCircle />
             </button>
             <div className="flex space-x-2">
               {selectedApp.status === "pending" ? (
@@ -587,7 +677,7 @@ function SelectedApp({
                       handleStatusChange(selectedApp.usernameId, "rejected")
                     }
                     disabled={loading}
-                    className="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-md shadow-rose-500/10 disabled:opacity-50"
+                    className="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 text-[12px] md:text-[18px] rounded-xl font-semibold text-sm transition-colors shadow-md shadow-rose-500/10 disabled:opacity-50"
                   >
                     {loading ? "Kutilmoqda..." : "Rad etish"}
                   </button>
@@ -596,7 +686,7 @@ function SelectedApp({
                       handleStatusChange(selectedApp.usernameId, "approved")
                     }
                     disabled={loading}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-md shadow-emerald-600/10 disabled:opacity-50"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white text-[12px] md:text-[18px]  px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-md shadow-emerald-600/10 disabled:opacity-50"
                   >
                     {loading ? "Kutilmoqda..." : "Ariza qabul qilinsin"}
                   </button>
@@ -607,7 +697,7 @@ function SelectedApp({
                     handleStatusChange(selectedApp.usernameId, "pending")
                   }
                   disabled={loading}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-md shadow-indigo-600/10 disabled:opacity-50"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white text-[12px] md:text-[18px]  px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-md shadow-indigo-600/10 disabled:opacity-50"
                 >
                   {loading ? "Kutilmoqda..." : "Kutilayotgan holatga o'tkazish"}
                 </button>

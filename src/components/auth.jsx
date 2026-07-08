@@ -5,7 +5,7 @@ import { API_LINK } from "../cfg";
 import { auth } from "../data/txt.json";
 
 function Auth({ setRefresh, refresh, L }) {
-  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -73,7 +73,7 @@ function Auth({ setRefresh, refresh, L }) {
   }
 
   return (
-    <div className="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-gradient-to-tr from-blue-50/70 via-slate-50 to-sky-50/40 px-4 py-8 relative overflow-hidden font-sans">
+    <div className="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-linear-to-tr from-blue-50/70 via-slate-50 to-sky-50/40 px-4 py-8 relative overflow-hidden font-sans">
       
       <div className="absolute top-10 left-10 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -100,7 +100,7 @@ function Auth({ setRefresh, refresh, L }) {
       >
         
         {/* --- LEFT VISUAL PANEL --- */}
-        <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-blue-50/60 rounded-xl border border-slate-100 min-h-[500px]">
+        <div className="hidden md:flex w-1/2 flex-col items-center justify-center p-8 bg-linear-to-br from-slate-50 to-blue-50/60 rounded-xl border border-slate-100 min-h-125">
           <div className="relative flex items-center justify-center">
             <div className="absolute w-44 h-44 bg-blue-200/40 rounded-full blur-3xl animate-pulse"></div>
             <svg 
@@ -117,17 +117,14 @@ function Auth({ setRefresh, refresh, L }) {
             <h3 className="text-xl font-bold text-slate-800 flex items-center justify-center gap-2">
               <ShieldCheck className="w-5 h-5 text-blue-600" /> {L(auth.panelTitle)}
             </h3>
-            <p className="text-slate-500 text-sm mt-2 leading-relaxed">
-              {L(auth.panelDesc)}
-            </p>
           </div>
         </div>
 
         {/* --- FORM PANEL --- */}
-        <div className="w-full md:w-[420px] flex flex-col justify-center px-1 md:px-6">
+        <div className="w-full md:w-105 flex flex-col justify-center px-1 md:px-6">
           
           <div className="flex md:hidden items-center justify-center mb-6">
-            <div className="w-14 h-14 bg-gradient-to-tr from-blue-600 to-sky-400 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 transform rotate-6">
+            <div className="w-14 h-14 bg-linear-to-tr from-blue-600 to-sky-400 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 transform rotate-6">
               <ShieldCheck className="w-7 h-7 text-white transform -rotate-6" />
             </div>
           </div>

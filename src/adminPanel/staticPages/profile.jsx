@@ -92,7 +92,7 @@ function Profile({adminInfo,setAdmin,handleRef, addToast}) {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
             Lavozim (Role)
           </label>
@@ -103,8 +103,10 @@ function Profile({adminInfo,setAdmin,handleRef, addToast}) {
           >
             <option value="Admin">Admin</option>
             <option value="Editor">Editor</option>
+            <option value="Checker">Checker</option>
+
           </select>
-        </div>
+        </div> */}
 
         <button
           type="submit"
