@@ -5,7 +5,8 @@ import {
   FileCheck, 
   Phone, 
   Mail, 
-  Calendar 
+  Calendar, 
+  Pen
 } from 'lucide-react';
 
 // application propiga default o'laroq null beramiz: { application = null }
@@ -41,12 +42,9 @@ const ApplicationCard = ({ application }) => {
     contractAmount,
     phoneNumber,
     emailAddress,
-    cvFile,
-    gpaFile,
-    universityCertificate,
-    passportFile
+    comment
   } = application;
-
+  
   const statusConfig = {
     pending: { text: "Ko'rib chiqilmoqda", bg: "bg-amber-50 text-amber-700 border-amber-200", dot: "bg-amber-500" },
     approved: { text: "Tasdiqlangan", bg: "bg-emerald-50 text-emerald-700 border-emerald-200", dot: "bg-emerald-500" },
@@ -125,7 +123,14 @@ const ApplicationCard = ({ application }) => {
             </div>
           </div>
         </div>
-
+        <div>
+          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+            <Pen className="w-4 h-4" /> Izoh
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
+            <p>{comment}</p>
+          </div>
+        </div>
         
       </div>
     </div>

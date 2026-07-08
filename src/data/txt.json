@@ -172,7 +172,7 @@
     },
     "navbar": {
         "navAbout": {
-            "uz": "Fond Haqida",
+            "uz": "Fond Yo'nalishlari",
             "ru": "О Фонде",
             "en": "About Foundation"
         },
@@ -923,96 +923,96 @@
             "en": "During their studies, our students were awarded the most prestigious state scholarships in our country."
         }
     },
-    "auth": {
-        "titleLogin": {
-            "uz": "Xush kelibsiz",
-            "ru": "Добро пожаловать",
-            "en": "Welcome"
-        },
-        "titleRegister": {
-            "uz": "Ro'yxatdan o'tish",
-            "ru": "Регистрация",
-            "en": "Sign Up"
-        },
-        "subtitleLogin": {
-            "uz": "Platformaga kirish uchun ma'lumotlarni kiriting",
-            "ru": "Введите данные для входа в платформу",
-            "en": "Enter your details to access the platform"
-        },
-        "subtitleRegister": {
-            "uz": "Yangi mas'ul boshqaruvchi profilini yarating",
-            "ru": "Создайте профиль нового администратора",
-            "en": "Create a new administrator profile"
-        },
-        "labelUsername": {
-            "uz": "Foydalanuvchi nomi",
-            "ru": "Имя пользователя",
-            "en": "Username"
-        },
-        "labelPassword": {
-            "uz": "Maxfiy parol",
-            "ru": "Секретный пароль",
-            "en": "Password"
-        },
-        "placeholderUsername": {
-            "uz": "Masalan: admin_olim",
-            "ru": "Например: admin_olim",
-            "en": "e.g., admin_olim"
-        },
-        "btnLoadingLogin": {
-            "uz": "Kirilmoqda...",
-            "ru": "Вход...",
-            "en": "Logging in..."
-        },
-        "btnLoadingRegister": {
-            "uz": "Profil yaratilmoqda...",
-            "ru": "Создание профиля...",
-            "en": "Creating profile..."
-        },
-        "btnSubmitLogin": {
-            "uz": "Tizimga kirish",
-            "ru": "Войти в систему",
-            "en": "Sign In"
-        },
-        "btnSubmitRegister": {
-            "uz": "Ro'yxatdan o'tkazish",
-            "ru": "Зарегистрировать",
-            "en": "Register"
-        },
-        "switchNeedAccount": {
-            "uz": "Yangi hisob kerakmi?",
-            "ru": "Нужен новый аккаунт?",
-            "en": "Need an account?"
-        },
-        "switchHaveAccount": {
-            "uz": "Allaqachon profilingiz bormi?",
-            "ru": "Уже есть профиль?",
-            "en": "Already have a profile?"
-        },
-        "switchActionRegister": {
-            "uz": "Ro'yxatdan o'tish",
-            "ru": "Зарегистрироваться",
-            "en": "Sign Up"
-        },
-        "switchActionLogin": {
-            "uz": "Kirish rejimiga o'tish",
-            "ru": "Перейти к входу",
-            "en": "Switch to Login"
-        },
-        "panelTitle": {
-            "uz": "Olim Fondi Tizimi",
-            "ru": "Система Фонда Олим",
-            "en": "Olim fondi System"
-        },
-        "panelDesc": {
-            "uz": "Boshqaruv paneli va mas'ul xodimlar uchun xavfsiz autentifikatsiya tarmog'i.",
-            "ru": "Безопасная сеть аутентификации для панели управления и ответственных сотрудников.",
-            "en": "Secure authentication network for the dashboard and authorized personnel."
-        },
-        "toastErrorConnection": {
-            "uz": "Tizimga ulanishda xatolik. Qayta urinib ko'ring!",
-            "ru": "Ошибка подключения к системе. Попробуйте еще раз!",
-            "en": "System connection error. Please try again!"
+        "auth": {
+            "titleLogin": {
+                "uz": "Xush kelibsiz",
+                "ru": "Добро пожаловать",
+                "en": "Welcome"
+            },
+            "titleRegister": {
+                "uz": "Ro'yxatdan o'tish",
+                "ru": "Регистрация",
+                "en": "Sign Up"
+            },
+            "subtitleLogin": {
+                "uz": "Platformaga kirish uchun ma'lumotlarni kiriting",
+                "ru": "Введите данные для входа в платформу",
+                "en": "Enter your details to access the platform"
+            },
+            "subtitleRegister": {
+                "uz": "Yangi mas'ul boshqaruvchi profilini yarating",
+                "ru": "Создайте профиль нового администратора",
+                "en": "Create a new administrator profile"
+            },
+            "labelUsername": {
+                "uz": "Foydalanuvchi nomi",
+                "ru": "Имя пользователя",
+                "en": "Username"
+            },
+            "labelPassword": {
+                "uz": "Maxfiy parol",
+                "ru": "Секретный пароль",
+                "en": "Password"
+            },
+            "placeholderUsername": {
+                "uz": "Masalan: admin_olim",
+                "ru": "Например: admin_olim",
+                "en": "e.g., admin_olim"
+            },
+            "btnLoadingLogin": {
+                "uz": "Kirilmoqda...",
+                "ru": "Вход...",
+                "en": "Logging in..."
+            },
+            "btnLoadingRegister": {
+                "uz": "Profil yaratilmoqda...",
+                "ru": "Создание профиля...",
+                "en": "Creating profile..."
+            },
+            "btnSubmitLogin": {
+                "uz": "Tizimga kirish",
+                "ru": "Войти в систему",
+                "en": "Sign In"
+            },
+            "btnSubmitRegister": {
+                "uz": "Ro'yxatdan o'tkazish",
+                "ru": "Зарегистрировать",
+                "en": "Register"
+            },
+            "switchNeedAccount": {
+                "uz": "Yangi hisob kerakmi?",
+                "ru": "Нужен новый аккаунт?",
+                "en": "Need an account?"
+            },
+            "switchHaveAccount": {
+                "uz": "Allaqachon profilingiz bormi?",
+                "ru": "Уже есть профиль?",
+                "en": "Already have a profile?"
+            },
+            "switchActionRegister": {
+                "uz": "Ro'yxatdan o'tish",
+                "ru": "Зарегистрироваться",
+                "en": "Sign Up"
+            },
+            "switchActionLogin": {
+                "uz": "Kirish rejimiga o'tish",
+                "ru": "Перейти к входу",
+                "en": "Switch to Login"
+            },
+            "panelTitle": {
+                "uz": "Olim Fondi Tizimi",
+                "ru": "Система Фонда Олим",
+                "en": "Olim fondi System"
+            },
+            "panelDesc": {
+                "uz": "Boshqaruv paneli va mas'ul xodimlar uchun xavfsiz autentifikatsiya tarmog'i.",
+                "ru": "Безопасная сеть аутентификации для панели управления и ответственных сотрудников.",
+                "en": "Secure authentication network for the dashboard and authorized personnel."
+            },
+            "toastErrorConnection": {
+                "uz": "Tizimga ulanishda xatolik. Qayta urinib ko'ring!",
+                "ru": "Ошибка подключения к системе. Попробуйте еще раз!",
+                "en": "System connection error. Please try again!"
+            }
         }
-    }
 }

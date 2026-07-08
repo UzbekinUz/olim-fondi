@@ -13,7 +13,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     birthDate: "",
     nationality: "O'zbekiston",
     permanentAddress: "",
-    phoneNumber: "",
+    phoneNumber: "+998", // Dastlabki qiymat
     emailAddress: "",
     passportSeria: "",
     passportNumber: "",
@@ -42,6 +42,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     motherPosition: "",
     motherBirthDate: "",
     motivationLetter: "",
+    hasPrivilege: false, // Imtiyoz bor-yo'qligi uchun state
   });
 
   // Fayllar uchun state
@@ -49,7 +50,8 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     cvFile: null,
     gpaFile: null,
     universityCertificate: null,
-    passportFile: null
+    passportFile: null,
+    privilegeFile: null // Imtiyoz fayli uchun state
   });
 
   // Aka-uka (siblings) uchun state
@@ -61,6 +63,39 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     const updated = [...siblings];
     updated[index][field] = value;
     setSiblings(updated);
+  };
+
+  // Telefon raqam formatlagich (+998 (90) 123-45-67 ko'rinishida)
+  const handlePhoneChange = (e) => {
+    let input = e.target.value.replace(/\D/g, ""); // Faqat raqamlarni qoldiramiz
+    
+    // Agar foydalanuvchi +998 ni o'chirib yubormoqchi bo'lsa, kodni qayta tiklaymiz
+    if (!input.startsWith("998")) {
+      input = "998" + input;
+    }
+
+    let formatted = "+998";
+    if (input.length > 3) {
+      formatted += " (" + input.substring(3, 5);
+    }
+    if (input.length > 5) {
+      formatted += ") " + input.substring(5, 8);
+    }
+    if (input.length > 8) {
+      formatted += "-" + input.substring(8, 10);
+    }
+    if (input.length > 10) {
+      formatted += "-" + input.substring(10, 12);
+    }
+
+    // Telefon to'liq kiritilgandagina HTML custom validity xatoligini tozalash
+    if (input.length === 12) {
+      e.target.setCustomValidity("");
+    } else {
+      e.target.setCustomValidity("Telefon raqamini to'liq kiriting (masalan: +998 (90) 123-45-67)");
+    }
+
+    setState({ ...state, phoneNumber: formatted });
   };
 
   // reportValidity orqali inputlarni tekshirish funksiyasi
@@ -117,7 +152,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
       "hasConferenceParticipation", "hasPublications", "usedPreviousGrants", "previousGrantDetails",
       "contractAmount", "familyMembersCount", "fatherFullName", "fatherWorkPlace", "fatherPosition",
       "fatherBirthDate", "motherFullName", "motherWorkPlace", "motherPosition", "motherBirthDate",
-      "motivationLetter"
+      "motivationLetter", "hasPrivilege"
     ];
 
     textFields.forEach(field => {
@@ -140,6 +175,11 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
     form.append("universityCertificate", files.universityCertificate);
     form.append("passportFile", files.passportFile);
 
+    // Agar imtiyoz mavjud bo'lsa va fayl tanlangan bo'lsa, jo'natamiz
+    if (state.hasPrivilege && files.privilegeFile) {
+      form.append("privilegeFile", files.privilegeFile);
+    }
+
     axios
       .post(`${API_LINK}/apply/add`, form, {
         headers: {
@@ -155,15 +195,16 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
           alert(msg || "Ariza muvaffaqiyatli qabul qilindi!");
           setState({
             studentFullName: "", birthDate: "", nationality: "O'zbekiston", permanentAddress: "",
-            phoneNumber: "", emailAddress: "", passportSeria: "", passportNumber: "", jshshir: "",
+            phoneNumber: "+998", emailAddress: "", passportSeria: "", passportNumber: "", jshshir: "",
             givenDate: "", expiresDate: "", givenBy: "", universityName: "", studyForm: "Kunduzgi",
             studyField: "", currentCourse: "", contractAmount: "", isDoingResearch: false, researchDetails: "",
             hasConferenceParticipation: false, hasPublications: false, usedPreviousGrants: false, previousGrantDetails: "",
             familyMembersCount: "", fatherFullName: "", fatherWorkPlace: "", fatherPosition: "", fatherBirthDate: "",
             motherFullName: "", motherWorkPlace: "", motherPosition: "", motherBirthDate: "", motivationLetter: "",
+            hasPrivilege: false
           });
           applyCheck();
-          setFiles({ cvFile: null, gpaFile: null, universityCertificate: null, passportFile: null });
+          setFiles({ cvFile: null, gpaFile: null, universityCertificate: null, passportFile: null, privilegeFile: null });
           setSiblings([]);
           setCurrentStep(1);
         }
@@ -232,7 +273,14 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                 
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-gray-600">Telefon raqam*</label>
-                  <input required type="tel" placeholder="+998901234567" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white focus:border-blue-500" value={state.phoneNumber} onChange={(e) => setState({ ...state, phoneNumber: e.target.value })} />
+                  <input 
+                    required 
+                    type="tel" 
+                    placeholder="+998 (90) 123-45-67" 
+                    className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white focus:border-blue-500" 
+                    value={state.phoneNumber} 
+                    onChange={handlePhoneChange} 
+                  />
                 </div>
               </div>
 
@@ -248,11 +296,10 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 2: PASPORT MA'LUMOTLARI */}
+          {/* STEP 2, 3, 4, 5 (O'zgarishsiz qoladi...) */}
           {currentStep === 2 && (
             <div id="step-2" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">2. Pasport / ID-karta ma'lumotlari</h3>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-gray-600">Pasport seriyasi (2 ta harf)*</label>
@@ -262,12 +309,10 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <label className="text-xs font-semibold text-gray-600">Pasport raqami (7 ta raqam)*</label>
                   <input required type="text" maxLength="7" placeholder="1234567" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.passportNumber} onChange={(e) => setState({ ...state, passportNumber: e.target.value })} />
                 </div>
-
                 <div className="flex flex-col gap-1 md:col-span-2">
                   <label className="text-xs font-semibold text-gray-600">JShShIR (PINFL - 14 ta raqam)*</label>
                   <input required type="text" maxLength="14" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.jshshir} onChange={(e) => setState({ ...state, jshshir: e.target.value })} />
                 </div>
-                
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-gray-600">Berilgan sana*</label>
                   <input required type="date" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.givenDate} onChange={(e) => setState({ ...state, givenDate: e.target.value })} />
@@ -277,7 +322,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <input required type="date" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.expiresDate} onChange={(e) => setState({ ...state, expiresDate: e.target.value })} />
                 </div>
               </div>
-
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-gray-600">Kim tomonidan berilgan*</label>
                 <input required type="text" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.givenBy} onChange={(e) => setState({ ...state, givenBy: e.target.value })} />
@@ -285,11 +329,9 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 3: TA'LIM VA TADQIQOT */}
           {currentStep === 3 && (
             <div id="step-3" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">3. Oliy ta'lim va Ilmiy faoliyat</h3>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-gray-600">Universitet nomi*</label>
@@ -308,29 +350,24 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <input required type="text" placeholder="Masalan: 3-kurs" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.currentCourse} onChange={(e) => setState({ ...state, currentCourse: e.target.value })} />
                 </div>
               </div>
-
               <div className="flex flex-col gap-1 md:w-1/2">
                 <label className="text-xs font-semibold text-gray-600">Yillik kontrakt miqdori (so'mda)*</label>
                 <input required type="text" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.contractAmount} onChange={(e) => setState({ ...state, contractAmount: e.target.value })} />
               </div>
-
               <div className="w-full space-y-3 border-t pt-4 mt-2 text-sm text-gray-700">
                 <label className="flex items-center gap-2 cursor-pointer font-medium">
                   <input type="checkbox" checked={state.isDoingResearch} onChange={(e) => setState({ ...state, isDoingResearch: e.target.checked })} className="w-4 h-4 cursor-pointer" />
                   Ilmiy tadqiqot ishlari bilan shug'ullanasizmi?
                 </label>
                 <input type="text" placeholder="Agar shug'ullansangiz, mavzusini yozing" className="w-full border border-gray-200 p-2 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.researchDetails} onChange={(e) => setState({ ...state, researchDetails: e.target.value })} />
-
                 <label className="flex items-center gap-2 cursor-pointer font-medium">
                   <input type="checkbox" checked={state.hasConferenceParticipation} onChange={(e) => setState({ ...state, hasConferenceParticipation: e.target.checked })} className="w-4 h-4 cursor-pointer" />
                   Konferensiyalarda ishtirok etganmisiz?
                 </label>
-
                 <label className="flex items-center gap-2 cursor-pointer font-medium">
                   <input type="checkbox" checked={state.hasPublications} onChange={(e) => setState({ ...state, hasPublications: e.target.checked })} className="w-4 h-4 cursor-pointer" />
                   Ilmiy maqolalaringiz chop etilganmi?
                 </label>
-
                 <label className="flex items-center gap-2 cursor-pointer font-medium">
                   <input type="checkbox" checked={state.usedPreviousGrants} onChange={(e) => setState({ ...state, usedPreviousGrants: e.target.checked })} className="w-4 h-4 cursor-pointer" />
                   Avval boshqa grantlardan foydalanganmisiz?
@@ -340,16 +377,13 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 4: OILA MA'LUMOTLARI */}
           {currentStep === 4 && (
             <div id="step-4" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">4. Oila a'zolari haqida ma'lumot</h3>
-              
               <div className="flex flex-col gap-1 md:w-1/2">
                 <label className="text-xs font-semibold text-gray-600">Oila a'zolaringiz soni*</label>
                 <input required type="number" className="w-full border border-gray-200 p-2.5 rounded-[8px] text-sm outline-none bg-gray-50/50 focus:bg-white" value={state.familyMembersCount} onChange={(e) => setState({ ...state, familyMembersCount: e.target.value })} />
               </div>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                 <div className="border border-gray-100 p-4 rounded-[12px] bg-gray-50/50 space-y-2">
                   <p className="text-xs font-bold text-gray-700 uppercase">Ota haqida ma'lumot:</p>
@@ -358,7 +392,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <input type="text" placeholder="Lavozimi" className="w-full border p-2 rounded-[6px] text-sm outline-none bg-white" value={state.fatherPosition} onChange={(e) => setState({ ...state, fatherPosition: e.target.value })} />
                   <input type="text" placeholder="Tug'ilgan yili" className="w-full border p-2 rounded-[6px] text-sm outline-none bg-white" value={state.fatherBirthDate} onChange={(e) => setState({ ...state, fatherBirthDate: e.target.value })} />
                 </div>
-
                 <div className="border border-gray-100 p-4 rounded-[12px] bg-gray-50/50 space-y-2">
                   <p className="text-xs font-bold text-gray-700 uppercase">Ona haqida ma'lumot:</p>
                   <input type="text" placeholder="F.I.SH" className="w-full border p-2 rounded-[6px] text-sm outline-none bg-white" value={state.motherFullName} onChange={(e) => setState({ ...state, motherFullName: e.target.value })} />
@@ -367,8 +400,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <input type="text" placeholder="Tug'ilgan yili" className="w-full border p-2 rounded-[6px] text-sm outline-none bg-white" value={state.motherBirthDate} onChange={(e) => setState({ ...state, motherBirthDate: e.target.value })} />
                 </div>
               </div>
-
-              {/* Dynamic Siblings */}
               <div className="w-full border-t pt-4 mt-2 space-y-3">
                 <div className="flex justify-between items-center w-full">
                   <span className="text-sm font-bold text-gray-700">Aka-uka / opa-singillar:</span>
@@ -392,7 +423,6 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 5: MOTIVATSION XAT */}
           {currentStep === 5 && (
             <div id="step-5" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">5. Motivatsion xat</h3>
@@ -403,7 +433,7 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
             </div>
           )}
 
-          {/* STEP 6: HUJJATLARNI YUKLASH */}
+          {/* STEP 6: HUJJATLARNI YUKLASH VA IMTIYOZ CHECKBOX */}
           {currentStep === 6 && (
             <div id="step-6" className="flex flex-col gap-4">
               <h3 className="text-xl font-bold text-blue-600 mb-2">6. Hujjatlarni yuklash</h3>
@@ -429,6 +459,32 @@ const ApplicationForm = ({ usernameId, applyCheck }) => {
                   <span className="text-sm font-semibold text-gray-700">Pasport / ID karta nusxasi* {files.passportFile && "✅"}</span>
                   <input required type="file" accept=".pdf,image/*" onChange={(e) => handleFileChange(e, 'passportFile')} className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-[6px] file:border-0 file:bg-black file:text-white file:text-xs cursor-pointer" />
                 </div>
+              </div>
+
+              {/* Imtiyoz uchun Qo'shimcha Qism */}
+              <div className="w-full border-t pt-4 mt-2 space-y-3">
+                <label className="flex items-center gap-2 cursor-pointer font-semibold text-sm text-gray-700">
+                  <input 
+                    type="checkbox" 
+                    checked={state.hasPrivilege} 
+                    onChange={(e) => setState({ ...state, hasPrivilege: e.target.checked })} 
+                    className="w-4 h-4 cursor-pointer" 
+                  />
+                  Sizda biror bir imtiyoz mavjudmi? (Ijtimoiy daftarlar, chin yetimlik, nogironlik va h.k.)
+                </label>
+
+                {state.hasPrivilege && (
+                  <div data-aos="fade-down" data-aos-duration="300" className="border border-dashed border-blue-300 p-4 rounded-[10px] flex flex-col gap-2 bg-blue-50/20 max-w-md">
+                    <span className="text-sm font-semibold text-blue-700">Imtiyozni tasdiqlovchi hujjat* {files.privilegeFile && "✅"}</span>
+                    <input 
+                      required={state.hasPrivilege} 
+                      type="file" 
+                      accept=".pdf,image/*" 
+                      onChange={(e) => handleFileChange(e, 'privilegeFile')} 
+                      className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-[6px] file:border-0 file:bg-blue-600 file:text-white file:text-xs cursor-pointer hover:file:bg-blue-700" 
+                    />
+                  </div>
+                )}
               </div>
             </div>
           )}

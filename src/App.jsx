@@ -152,7 +152,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/admin/password-12345678/user-admin" element={<AppAdmin/>}/>
+        <Route path="/admin" element={<AppAdmin/>}/>
       </Routes>
 
       <Footer scrollToSection={scrollToSection} L={L} />

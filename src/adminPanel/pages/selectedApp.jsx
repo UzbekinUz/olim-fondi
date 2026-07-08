@@ -6,6 +6,7 @@ import {
   FlaskConical,
   GraduationCap,
   Home,
+  MessageSquare,
   User,
   Users,
   X,
@@ -19,17 +20,20 @@ function SelectedApp({
   triggerToast,
   refresh,
   setRefresh,
+  adminInfo
 }) {
   // So'rov ketayotganda tugmalarni bloklash va loading ko'rsatish uchun state
   const [loading, setLoading] = useState(false);
-
+  const [comment, setComment] = useState(selectedApp.comment || ""); // Izohni saqlash uchun state
   function handleStatusChange(id, stat) {
     if (loading) return; // Agar so'rov ketayotgan bo'lsa, qayta bosishni oldini oladi
     setLoading(true);
 
     axios
-      .put(`${API_LINK}/apply/updatestatus`, { usernameId: id, status: stat })
-      .then(() => {
+      .put(`${API_LINK}/apply/updatestatus`, { usernameId: id, status: stat, comment: comment, action:`Status changed to ${stat} by ${adminInfo.username}` })
+      .then((d) => {
+        console.log(d.data);
+        
         setRefresh(!refresh);
         setSelectedApp(null); // Muvaffaqiyatli yakunlangach modalni yopish
       })
@@ -544,6 +548,24 @@ function SelectedApp({
                     <Download className="w-5 h-5" />
                   </a>
                 </div>
+              </div>
+            </div>
+            <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
+                <MessageSquare className="w-4 h-4" /> Qaror uchun izoh / Sabab
+              </h4>
+              <div>
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Ariza qabul qilinishi yoki rad etilishi sababini yozing (talabaga yuboriladi)..."
+                  disabled={loading}
+                  rows={3}
+                  className="w-full text-sm p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none bg-slate-50 disabled:opacity-50"
+                />
+                <p className="text-[10px] text-slate-400 mt-1">
+                  * Izoh kiritish majburiy emas, lekin rad etilganda sabab ko'rsatish tavsiya etiladi.
+                </p>
               </div>
             </div>
           </div>

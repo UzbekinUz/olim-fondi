@@ -8,24 +8,29 @@ import {
   Bell,
   Calendar,
   Users,
+  Settings2,
 } from "lucide-react";
 import { useState } from "react";
 import Dashboard from "../staticPages/dashboard";
 import Application from "../staticPages/application";
 import NewsManager from "./news";
 import RahbariyatAdmin from "./rahbariyat";
+import Settings from "../staticPages/settings";
+import axios from "axios";
+import { API_LINK } from "../cfg";
 
 function SideBar({
   news = [],
   apps = [],
-  handleStatusChange,
   currentDateStr,
   setSelectedApp,
   setAdmin,
   sidebarOpen,
   setSidebarOpen,
   setRefresh,
-  refresh
+  refresh,
+  adminInfo,
+  handleRef,
 }) {
   const [currentTab, setCurrentTab] = useState("dashboard");
   // Statistikani hisoblash
@@ -33,7 +38,17 @@ function SideBar({
   const statPending = apps.filter((a) => a.status === "pending").length;
   const statApproved = apps.filter((a) => a.status === "approved").length;
   const statRejected = apps.filter((a) => a.status === "rejected").length;
-
+  const handleLeave = () => {
+    axios.get(`${API_LINK}/admin/leave`, {
+      headers: {
+        "x-admin-token": `${localStorage.getItem("access_admin_token")}`, 
+      },
+    })
+      .then(() => {
+        localStorage.removeItem("access_admin_token");
+        handleRef();
+      });
+  };
   return (
     <div className="flex flex-1 h-full overflow-hidden">
       {/* Sidebar Menu */}
@@ -55,10 +70,12 @@ function SideBar({
         {/* User Info */}
         <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/50 flex items-center space-x-3">
           <div>
-            <h4 className="text-sm font-semibold text-slate-200">Bekzodbek</h4>
+            <h4 className="text-sm font-semibold text-slate-200">
+              {adminInfo?.username || "Admin"}
+            </h4>
             <p className="text-xs text-slate-400 flex items-center">
               <span className="w-2 h-2 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span>
-              Bosh Administrator
+              {adminInfo?.role || "Admin"}
             </p>
           </div>
         </div>
@@ -113,12 +130,24 @@ function SideBar({
               setCurrentTab("rahbariyat");
               setSidebarOpen(false);
             }}
-            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "news" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "rahbariyat" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
           >
             <Users
-              className={`mr-3 w-5 h-5 ${currentTab === "news" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+              className={`mr-3 w-5 h-5 ${currentTab === "rahbariyat" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
             />
             Rahbariyat
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("sozlamalar");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "sozlamalar" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <Settings2
+              className={`mr-3 w-5 h-5 ${currentTab === "rahbariyat" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Sozlamalar
           </button>
         </nav>
 
@@ -126,7 +155,7 @@ function SideBar({
         <div className="p-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center bg-slate-950">
           <span>© 2026 Olim Fondi</span>
           <button
-            onClick={() => setAdmin(false)}
+            onClick={() => handleLeave()}
             className="hover:text-slate-300 cursor-pointer flex items-center gap-1 bg-transparent border-none text-slate-500 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" /> Chiqish
@@ -153,6 +182,8 @@ function SideBar({
               {currentTab === "dashboard" && "Boshqaruv paneli"}
               {currentTab === "applications" && "Arizalar reyestri"}
               {currentTab === "news" && "Yangiliklar boshqaruvi (CMS)"}
+              {currentTab === "rahbariyat" && "Rahbariyat"}
+              {currentTab === "sozlamalar" && "Sozlamalar"}
             </span>
           </div>
           <div className="flex items-center space-x-6">
@@ -173,35 +204,38 @@ function SideBar({
         <div className="flex-1 overflow-y-auto p-4 md:p-8">
           {/* 1. DASHBOARD TAB */}
           {currentTab === "dashboard" && (
-            <Dashboard 
-              news={news} 
-              apps={apps} 
-              setCurrentTab={setCurrentTab} 
-              setSelectedApp={setSelectedApp} 
-              statTotal={statTotal} 
-              statPending={statPending} 
-              statApproved={statApproved} 
-              statRejected={statRejected} 
+            <Dashboard
+              news={news}
+              apps={apps}
+              setCurrentTab={setCurrentTab}
+              setSelectedApp={setSelectedApp}
+              statTotal={statTotal}
+              statPending={statPending}
+              statApproved={statApproved}
+              statRejected={statRejected}
             />
           )}
 
           {/* 2. APPLICATIONS TAB */}
           {currentTab === "applications" && (
-            <Application 
-              setRefresh={setRefresh} 
-              refresh={refresh} 
-              apps={apps} 
-              handleStatusChange={handleStatusChange} 
-              setSelectedApp={setSelectedApp} 
+            <Application
+              setRefresh={setRefresh}
+              refresh={refresh}
+              apps={apps}
+              setSelectedApp={setSelectedApp}
+              adminInfo={adminInfo}
             />
           )}
 
           {/* 3. NEWS CMS TAB */}
-          {currentTab === "news" && (
-            <NewsManager/>
-          )}
-          {currentTab === "rahbariyat" && (
-            <RahbariyatAdmin/>
+          {currentTab === "news" && <NewsManager />}
+          {currentTab === "rahbariyat" && <RahbariyatAdmin />}
+          {currentTab === "sozlamalar" && (
+            <Settings
+              adminInfo={adminInfo}
+              setAdmin={setAdmin}
+              handleRef={handleRef}
+            />
           )}
         </div>
       </main>

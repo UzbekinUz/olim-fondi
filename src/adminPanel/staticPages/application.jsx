@@ -14,15 +14,35 @@ function Application({
   setSelectedApp,
   apps = [], // Bo'sh massiv default qiymat sifatida
   setRefresh,
-  refresh
+  refresh,
+  adminInfo
 }) {
   const [stat, setStat] = useState("all");
   const [loadingId, setLoadingId] = useState(null); // API so'rov bajarilayotganda bloklash uchun
-
+  
   function ChangeStatus(id, newStat) {
+    // Tizim holatiga qarab prompt sarlavhasini moslashtiramiz
+    let actionText = "kutilayotgan holatga qaytarish";
+    if (newStat === "approved") actionText = "qabul qilish";
+    if (newStat === "rejected") actionText = "rad etish";
+
+    // Foydalanuvchidan izoh so'raymiz
+    const userComment = prompt(
+      `Ariza holatini "${actionText.toUpperCase()}" o'zgartirmoqchisiz.\nUshbu qaror uchun izoh yoki sababni kiriting:`
+    );
+
+    // Agar foydalanuvchi "Отмена" (Cancel) tugmasini bossa, funksiya to'xtaydi
+    if (userComment === null) return;
+
     setLoadingId(id); // Yuklanishni boshlash
+    
     axios
-      .put(`${API_LINK}/apply/updatestatus`, { usernameId: id, status: newStat })
+      .put(`${API_LINK}/apply/updatestatus`, { 
+        usernameId: id, 
+        status: newStat,
+        comment: userComment,
+        action:`Status changed to ${newStat} by ${adminInfo.username}` // Izoh status bilan birga yuborilmoqda
+      })
       .then(() => {
         setRefresh(!refresh);
       })
@@ -33,7 +53,6 @@ function Application({
         setLoadingId(null); // Yuklanishni tugatish
       });
   }
-
   // Massivni oldindan filtrlash (Samaradorlik va to'g'ri HTML tuzilishi uchun)
   const filteredApps = apps.filter(
     (app) => stat === "all" || app.status === stat
@@ -81,7 +100,7 @@ function Application({
       {/* Arizalar jadvali */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[950px]">
+          <table className="w-full text-left border-collapse min-w-237.5">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 text-xs font-semibold uppercase tracking-wider">
                 <th className="py-4 px-6">Talaba (F.I.SH)</th>
@@ -200,6 +219,9 @@ function Application({
                             Qaytarish
                           </button>
                         )}
+                      </div>
+                      <div className="flex">
+                        {app.action || "T"}
                       </div>
                     </td>
                   </tr>
