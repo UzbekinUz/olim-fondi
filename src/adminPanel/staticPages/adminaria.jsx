@@ -230,6 +230,8 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
                 const isEditorEditingEditor = adminInfo?.role === "Editor" && admin.role === "Editor";
                 const isSelf = admin._id === adminInfo._id || admin._id === adminInfo.adminId;
                 const isDisabled = isEditorEditingEditor || isSelf;
+                console.log(adminInfo.adminId!=="6a4df82ceae5501eb08e97a9");
+                
 
                 return (
                   <tr key={admin._id} className="hover:bg-slate-50/50 transition-colors">
@@ -246,7 +248,7 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
                     <td className="py-4 px-4 text-right flex justify-end gap-2">
                       {/* TAHRIRLASH (EDIT) TUGMASI */}
                       <button
-                        disabled={isDisabled}
+                        disabled={adminInfo.adminId!=="6a4df82ceae5501eb08e97a9"}
                         onClick={() => openEditModal(admin)}
                         className="p-2 text-blue-500 hover:bg-blue-50 border border-transparent hover:border-blue-200 rounded-xl transition-all disabled:opacity-20 disabled:pointer-events-none"
                         title={isEditorEditingEditor ? "Editor boshqa editorni tahrirlay olmaydi" : "Tahrirlash"}
@@ -258,7 +260,7 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
 
                       {/* O'CHIRISH TUGMASI */}
                       <button
-                        disabled={isDisabled}
+                        disabled={adminInfo.adminId!=="6a4df82ceae5501eb08e97a9"&&isDisabled}
                         onClick={() => handleDeleteAdmin(admin._id)}
                         className="p-2 text-red-500 hover:bg-red-50 border border-transparent hover:border-red-200 rounded-xl transition-all disabled:opacity-20 disabled:pointer-events-none"
                         title="O'chirish"

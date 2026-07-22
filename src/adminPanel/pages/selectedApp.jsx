@@ -2,6 +2,7 @@ import { useState } from "react"; // Loading holati uchun yuklandi
 import {
   Briefcase,
   Download,
+  Eye,
   FileText,
   FlaskConical,
   GraduationCap,
@@ -26,12 +27,24 @@ function SelectedApp({
   // So'rov ketayotganda tugmalarni bloklash va loading ko'rsatish uchun state
   const [loading, setLoading] = useState(false);
   const [comment, setComment] = useState(selectedApp.comment || ""); // Izohni saqlash uchun state
-console.log(selectedApp);
+  // Kontrakt miqdorini formatlash uchun
+  const formatContractAmount = (amount) => {
+    if (!amount) return "-";
+
+    // Matn ko'rinishida kelgan raqamlar ichidan faqat raqamlarni ajratib olamiz
+    const numericAmount = Number(amount.toString().replace(/\D/g, ""));
+
+    if (isNaN(numericAmount) || numericAmount === 0) return amount; // Agar raqam bo'lmasa asl holini qaytaradi
+
+    // 12500000 -> 12 500 000 ko'rinishiga keltiradi
+    const formatted = new Intl.NumberFormat("fr-FR").format(numericAmount);
+
+    return `${formatted} UZS`;
+  };
   function handleStatusChange(id, stat) {
     if (loading) return; // Agar so'rov ketayotgan bo'lsa, qayta bosishni oldini oladi
     setLoading(true);
-    
-    
+
     axios
       .put(`${API_LINK}/apply/updatestatus`, {
         usernameId: id,
@@ -249,7 +262,7 @@ console.log(selectedApp);
                     Yillik shartnoma (Kontrakt) summasi:
                   </label>
                   <p className="text-sm font-semibold text-slate-800 mt-0.5">
-                    {selectedApp.contractAmount} UZS
+                    {formatContractAmount(selectedApp.contractAmount)}
                   </p>
                 </div>
               </div>
@@ -334,17 +347,74 @@ console.log(selectedApp);
               <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
                 <MessageSquare className="w-4 h-4" /> Motivatsion xat
               </h4>
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                {selectedApp.motivationLetter ? (
-                  <div className="overflow-y-auto pr-2 md:text-sm text-[11px] text-slate-700 leading-relaxed whitespace-pre-wrap">
-                    {selectedApp.motivationLetter}
+
+              {selectedApp.motivationLetter ? (
+                selectedApp.motivationLetter.startsWith(
+                  "/public/applications",
+                ) ? (
+                  /* 1-HOLAT: Agar motivatsion xat fayl yo'li bo'lsa, uni hujjat ko'rinishida ko'rsatamiz */
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="text-red-500 text-2xl">
+                        <FileText className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-medium text-slate-400 block">
+                          Motivatsion xat (Fayl)
+                        </span>
+                        <span className="text-xs font-semibold text-slate-700 block truncate max-w-[150px] md:max-w-xs">
+                          {selectedApp.motivationLetter.split("/").pop()}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Amallar: Ko'rish va Yuklab olish tugmalari */}
+                    <div className="flex items-center gap-3">
+                      {/* Yangi oynada ko'rish tugmasi (Eye icon) */}
+                      <a
+                        href={`${SITE_LINK}${selectedApp.motivationLetter}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-slate-400 hover:text-indigo-600 transition-colors p-1"
+                        title="Yangi oynada ko'rish"
+                      >
+                        <Eye className="w-5 h-5" />
+                      </a>
+
+                      {/* Jismonan yuklab olish tugmasi (Download icon) */}
+                      <a
+                        onClick={() =>
+                          triggerToast(
+                            "Motivatsion xat yuklab olinmoqda...",
+                            <Download className="w-5 h-5" />,
+                            "text-sky-400",
+                          )
+                        }
+                        href={`${SITE_LINK}${selectedApp.motivationLetter}`}
+                        download={`${selectedApp.usernameId || "hujjat"}_motivation_letter`}
+                        className="text-slate-400 hover:text-green-600 transition-colors p-1"
+                        title="Yuklab olish"
+                      >
+                        <Download className="w-5 h-5" />
+                      </a>
+                    </div>
                   </div>
                 ) : (
+                  /* 2-HOLAT: Agar oddiy yozilgan matn bo'lsa, eski holaticha matnni chiqaramiz */
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div className="overflow-y-auto pr-2 md:text-sm text-[11px] text-slate-700 leading-relaxed whitespace-pre-wrap">
+                      {selectedApp.motivationLetter}
+                    </div>
+                  </div>
+                )
+              ) : (
+                /* 3-HOLAT: Agar umuman kiritilmagan bo'lsa */
+                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                   <p className="text-sm text-slate-400 italic">
                     Motivatsion xat kiritilmagan.
                   </p>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             {/* Section 4: Oila Ma'lumotlari */}
             <div className="space-y-4">

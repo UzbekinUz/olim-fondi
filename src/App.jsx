@@ -27,7 +27,7 @@ export default function App() {
   const [lang, setLang] = useState("uz");
   const [authCheck, setAuthCheck] = useState(false);
   const [app, setApp] = useState({ });
-  const [bor, setBor] = useState(false)
+  const [bor, setBor] = useState("false")
 
   const [admin, setAdmin] = useState({
     auth: false,
@@ -56,11 +56,16 @@ export default function App() {
         const { ok, data } = d.data;
         
         if (ok) {
-          setBor(true);
+          if (bor === "resend") {
+            setBor("resend");
+          } else {
+            setBor("true");
+          }
+          // setBor("true");
           setApp(data);
           
         } else {
-          setBor(false );
+          setBor("false");
         }
       });
     } catch (error) {
@@ -88,6 +93,7 @@ export default function App() {
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAdmin({ auth: false, usernameId: "", username: "" });
       return;
     }
@@ -109,6 +115,7 @@ export default function App() {
       .catch(() => {
         setAdmin({ auth: false, usernameId: "", username: "" });
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authCheck]);
 
   return (
@@ -149,6 +156,7 @@ export default function App() {
               bor={bor}
               applyCheck={applyCheck}
               authCheck={authCheck}
+              setBor={setBor}
             />
           }
         />

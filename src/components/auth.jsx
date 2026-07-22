@@ -73,7 +73,7 @@ function Auth({ setRefresh, refresh, L }) {
   }
 
   return (
-    <div className="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-linear-to-tr from-blue-50/70 via-slate-50 to-sky-50/40 px-4 py-8 relative overflow-hidden font-sans">
+    <div className="flex items-start md:items-center justify-center w-full min-h-[calc(100vh-80px)] bg-linear-to-tr from-blue-50/70 via-slate-50 to-sky-50/40 px-4 py-8 relative overflow-hidden font-sans">
       
       <div className="absolute top-10 left-10 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -195,7 +195,7 @@ function Auth({ setRefresh, refresh, L }) {
             <button 
               type="submit" 
               disabled={isLoading}
-              className="w-full mt-2 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-blue-400 disabled:to-indigo-400 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-200 active:scale-[0.99] text-sm flex items-center justify-center gap-2"
+              className="w-full mt-2 py-3 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-blue-400 disabled:to-indigo-400 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-200 active:scale-[0.99] text-sm flex items-center justify-center gap-2"
             >
               {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
               {isLoading 
