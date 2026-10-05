@@ -16,7 +16,9 @@ export default function AppAdmin() {
   const [appData, setAppData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_LINK}/apply/getall`).then((res) => {
+    axios.get(`${API_LINK}/apply/getall`,{headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        }}).then((res) => {
       const { ok, data } = res.data;
       if (ok) {
         setAppData(data);
@@ -93,7 +95,8 @@ export default function AppAdmin() {
         },
       })
       .then((res) => {
-        const { ok, adminInfo } = res.data;
+        const { ok, adminInfo } = res.data; 
+
         if (ok) {
           setAdmin(true);
           setAdminInfo(adminInfo);

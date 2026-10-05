@@ -37,7 +37,9 @@ function Application({
         status: newStat,
         comment: userComment,
         action: `Status changed to ${newStat} by ${adminInfo.username}`, // Izoh status bilan birga yuborilmoqda
-      })
+      },{headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        }})
       .then(() => {
         setRefresh(!refresh);
       })

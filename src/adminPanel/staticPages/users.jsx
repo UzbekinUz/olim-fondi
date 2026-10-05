@@ -1,9 +1,14 @@
 import axios from "axios";
 import { useState, useEffect, useMemo } from "react";
 import { API_LINK } from "../cfg";
-import { 
-  Search, User, UserCheck, UserX, 
-  ChevronLeft, ChevronRight, Users as UsersIcon 
+import {
+  Search,
+  User,
+  UserCheck,
+  UserX,
+  ChevronLeft,
+  ChevronRight,
+  Users as UsersIcon,
 } from "lucide-react";
 
 function Users({ handleRef, apps, setNeeded }) {
@@ -14,20 +19,31 @@ function Users({ handleRef, apps, setNeeded }) {
   const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
-    axios.get(`${API_LINK}/user/getall`).then((response) => {
-      // Oxirgi qo'shilganlar boshida turishi uchun reverse
-      setUsers(response.data.data.reverse());
-      setNeeded((prev) => ({ ...prev, totalUsers: response.data.data.length }));
-    });
-  }, [handleRef,setNeeded]);
+    axios
+      .get(`${API_LINK}/user/getall`, {
+        headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        },
+      })
+      .then((response) => {
+        // Oxirgi qo'shilganlar boshida turishi uchun reverse
+        setUsers(response.data.data.reverse());
+        setNeeded((prev) => ({
+          ...prev,
+          totalUsers: response.data.data.length,
+        }));
+      });
+  }, [handleRef, setNeeded]);
 
   // Qidiruv va Filtr logikasi
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
       const userId = user._id || user.id;
-      const matchesSearch = user.username.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = user.username
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
       const hasApplied = apps.some((app) => app.usernameId === userId);
-      
+
       if (statusFilter === "applied") return matchesSearch && hasApplied;
       if (statusFilter === "notApplied") return matchesSearch && !hasApplied;
       return matchesSearch;
@@ -55,7 +71,9 @@ function Users({ handleRef, apps, setNeeded }) {
             <div className="p-3 bg-indigo-100 text-indigo-600 rounded-2xl">
               <UsersIcon size={24} />
             </div>
-            <h2 className="text-2xl font-bold text-slate-800">Foydalanuvchilar</h2>
+            <h2 className="text-2xl font-bold text-slate-800">
+              Foydalanuvchilar
+            </h2>
             <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-semibold">
               {filteredUsers.length} ta
             </span>
@@ -64,16 +82,19 @@ function Users({ handleRef, apps, setNeeded }) {
 
         <div className="flex flex-wrap gap-3">
           <div className="relative flex-1 min-w-50">
-            <Search className="absolute left-3 top-2.5 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Username bo'yicha qidirish..." 
+            <Search
+              className="absolute left-3 top-2.5 text-slate-400"
+              size={18}
+            />
+            <input
+              type="text"
+              placeholder="Username bo'yicha qidirish..."
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
-          <select 
+
+          <select
             className="px-4 py-2.5 rounded-xl border border-slate-200 outline-none cursor-pointer hover:bg-slate-50"
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -84,8 +105,11 @@ function Users({ handleRef, apps, setNeeded }) {
 
           <div className="flex items-center gap-2 px-4 py-2.5 border border-slate-200 rounded-xl">
             <span className="text-sm text-slate-500">Ko'rsatish:</span>
-            <input 
-              type="number" value={itemsPerPage} min="5" max="50"
+            <input
+              type="number"
+              value={itemsPerPage}
+              min="5"
+              max="50"
               className="w-12 text-center outline-none font-bold"
               onChange={(e) => setItemsPerPage(Number(e.target.value))}
             />
@@ -108,14 +132,21 @@ function Users({ handleRef, apps, setNeeded }) {
               const userId = user._id || user.id;
               const hasApplied = apps.some((a) => a.usernameId === userId);
               return (
-                <tr key={user.id} className="hover:bg-indigo-50/30 transition-colors">
+                <tr
+                  key={user.id}
+                  className="hover:bg-indigo-50/30 transition-colors"
+                >
                   <td className="p-5 flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
                       <User size={16} />
                     </div>
-                    <span className="font-medium text-slate-700">{user.username}</span>
+                    <span className="font-medium text-slate-700">
+                      {user.username}
+                    </span>
                   </td>
-                  <td className="p-5 font-mono text-slate-500">{user.password}</td>
+                  <td className="p-5 font-mono text-slate-500">
+                    {user.password}
+                  </td>
                   <td className="p-5">
                     {hasApplied ? (
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-bold">
@@ -133,30 +164,32 @@ function Users({ handleRef, apps, setNeeded }) {
           </tbody>
         </table>
         {currentUsers.length === 0 && (
-          <div className="p-10 text-center text-slate-400">Natija topilmadi</div>
+          <div className="p-10 text-center text-slate-400">
+            Natija topilmadi
+          </div>
         )}
       </div>
 
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center mt-8 gap-2">
-          <button 
-            disabled={currentPage === 1} 
-            onClick={() => setCurrentPage(prev => prev - 1)}
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
             className="p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm disabled:opacity-40 hover:bg-slate-50 transition-all"
           >
             <ChevronLeft size={20} />
           </button>
-          
+
           <div className="flex gap-1 overflow-x-auto px-2 max-w-[60vw]">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button 
-                key={page} 
-                onClick={() => setCurrentPage(page)} 
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
                 className={`min-w-10 h-10 rounded-xl font-semibold transition-all ${
-                  currentPage === page 
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' 
-                    : 'bg-white border border-slate-200 hover:border-indigo-300'
+                  currentPage === page
+                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
+                    : "bg-white border border-slate-200 hover:border-indigo-300"
                 }`}
               >
                 {page}
@@ -164,9 +197,9 @@ function Users({ handleRef, apps, setNeeded }) {
             ))}
           </div>
 
-          <button 
-            disabled={currentPage === totalPages} 
-            onClick={() => setCurrentPage(prev => prev + 1)}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
             className="p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm disabled:opacity-40 hover:bg-slate-50 transition-all"
           >
             <ChevronRight size={20} />

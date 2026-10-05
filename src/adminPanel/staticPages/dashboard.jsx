@@ -27,7 +27,9 @@ function Dashboard({ setCurrentTab, setSelectedApp,adminInfo }) {
                 }
 
                 // Arizalarni yuklash (Backend yo'nalishingizga qarab moslang, masalan: /apps/getall)
-                const appsRes = await axios.get(`${API_LINK}/apply/getall`);
+                const appsRes = await axios.get(`${API_LINK}/apply/getall`,{headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        },});
                 if (appsRes.data.ok) {
                     const allApps = appsRes.data.data || [];
                     setApps(allApps);

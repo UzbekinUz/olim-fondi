@@ -28,7 +28,9 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
   const fetchAdmins = async () => {
     setLoadingAdmins(true);
     try {
-      const response = await axios.get(`${API_LINK}/admin/getall`);
+      const response = await axios.get(`${API_LINK}/admin/getall`,{headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        },});
       if (response.data.ok) {
         setAdminsList(response.data.data);
       } else {
@@ -159,7 +161,9 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
     // Rol bo'yicha filterlash
     if (roleFilter === "All") return true;
     if (roleFilter === "Editor") return admin.role === "Editor";
-    if (roleFilter === "Checker") return !admin.role || admin.role === "Checker" || admin.role === "Admin"; 
+    if (roleFilter === "Checker") return !admin.role || admin.role === "Checker" || admin.role === "Admin";
+    if (roleFilter === "Ekspert") return admin.role === "Ekspert";
+    if (roleFilter === "Bugalter") return admin.role === "Bugalter";
     return true;
   });
 
@@ -189,7 +193,7 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
 
       {/* --- FILTER TUGMALARI BO'LIMI --- */}
       <div className="flex flex-wrap gap-2 mb-6 p-1 bg-slate-100/80 rounded-xl w-fit border border-slate-200/50">
-        {["All", "Editor", "Checker"].map((filterType) => (
+        {["All", "Editor", "Checker", "Bugalter", "Ekspert"].map((filterType) => (
           <button
             key={filterType}
             onClick={() => setRoleFilter(filterType)}
@@ -202,6 +206,8 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
             {filterType === "All" && "Hammasi"}
             {filterType === "Editor" && "Editorlar"}
             {filterType === "Checker" && "Tekshiruvchilar (Checker)"}
+            {filterType === "Bugalter" && "Bugalter"}
+            {filterType === "Ekspert" && "Ekspertlar"}
           </button>
         ))}
       </div>
@@ -306,6 +312,9 @@ function Adminaria({ adminInfo, addToast, activeTab }) {
                   <option value="Admin">Admin</option>
                   <option value="Editor">Editor</option>
                   <option value="Checker">Checker (Tekshiruvchi)</option>
+                  <option value="Editor">Editor</option>
+                  <option value="Ekspert">Ekspert</option>
+                  <option value="Bugalter">Bugalter</option>
                 </select>
               </div>
               <div className="flex gap-3 pt-2">

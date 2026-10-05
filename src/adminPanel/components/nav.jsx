@@ -1,6 +1,24 @@
-import { FileText, LayoutDashboard, Newspaper, Settings2, User, Users2 } from "lucide-react";
+import {
+  AppWindowIcon,
+  ChartLineIcon,
+  ClipboardCheckIcon,
+  FileText,
+  LayoutDashboard,
+  Newspaper,
+  Settings2,
+  User,
+  Users2,
+  Waypoints,
+} from "lucide-react";
 
-function Navbar({adminInfo, currentTab, setCurrentTab, setSidebarOpen, statPending, needed}) {
+function Navbar({
+  adminInfo,
+  currentTab,
+  setCurrentTab,
+  setSidebarOpen,
+  statPending,
+  needed,
+}) {
   return (
     <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
       {adminInfo?.role === "Editor" ? (
@@ -77,6 +95,71 @@ function Navbar({adminInfo, currentTab, setCurrentTab, setSidebarOpen, statPendi
               </span>
             )}
           </button>
+          <button
+            onClick={() => {
+              setCurrentTab("stp");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "stp" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <Users2
+              className={`mr-3 w-5 h-5 ${currentTab === "stp" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Stipendiatlar
+            {needed.totalUsers > 0 && (
+              <span className="ml-auto bg-amber-500/20 text-amber-400 text-xs px-2 py-0.5 rounded-full border border-amber-500/30">
+                {needed.totalUsers}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("xronalogy");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "xronalogy" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <Waypoints
+              className={`mr-3 w-5 h-5 ${currentTab === "xronalogy" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Xronologiya
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("marking");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "marking" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <ClipboardCheckIcon
+              className={`mr-3 w-5 h-5 ${currentTab === "marking" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Baholash me'zonlari
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("stat");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "stat" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <ChartLineIcon
+              className={`mr-3 w-5 h-5 ${currentTab === "stat" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Statistika
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("stpapp");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "stpapp" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <AppWindowIcon
+              className={`mr-3 w-5 h-5 ${currentTab === "stpapp" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Stipendiat yutuqlar
+          </button>
         </>
       ) : adminInfo?.role === "Admin" ? (
         <>
@@ -125,7 +208,39 @@ function Navbar({adminInfo, currentTab, setCurrentTab, setSidebarOpen, statPendi
             )}
           </button>
         </>
+      ) : adminInfo?.role === "Ekspert" ? (
+        <button
+          onClick={() => {
+            setCurrentTab("stpapp");
+            setSidebarOpen(false);
+          }}
+          className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "stpapp" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+        >
+          <AppWindowIcon
+            className={`mr-3 w-5 h-5 ${currentTab === "stpapp" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+          />
+          Stipendiat yutuqlar
+        </button>
+      ):adminInfo.role === "Bugalter" ? (
+        <button
+            onClick={() => {
+              setCurrentTab("stp");
+              setSidebarOpen(false);
+            }}
+            className={`flex items-center w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${currentTab === "stp" ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "hover:bg-slate-800 hover:text-white text-slate-300"}`}
+          >
+            <Users2
+              className={`mr-3 w-5 h-5 ${currentTab === "stp" ? "text-white" : "text-slate-400 group-hover:text-indigo-400"}`}
+            />
+            Stipendiatlar
+            {needed.totalUsers > 0 && (
+              <span className="ml-auto bg-amber-500/20 text-amber-400 text-xs px-2 py-0.5 rounded-full border border-amber-500/30">
+                {needed.totalUsers}
+              </span>
+            )}
+          </button>
       ) : null}
+
       <button
         onClick={() => {
           setCurrentTab("sozlamalar");

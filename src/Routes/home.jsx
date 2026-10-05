@@ -4,12 +4,12 @@ import Hero from "../pages/hero";
 import Mission from "../pages/mission";
 import Qadryat from "../pages/qadryat";
 
-function Home({ scrollToSection, L }) {
+function Home({ scrollToSection, L , applyMode}) {
   return (
     <>
-      <Hero scrollToSection={scrollToSection} L={L} />
+      <Hero scrollToSection={scrollToSection} L={L} applyMode={applyMode} />
       <News />
-      <AboutM scrollToSection={scrollToSection} L={L} />
+      <AboutM scrollToSection={scrollToSection} L={L} applyMode={applyMode} />
       <Qadryat L={L} />
       <Mission L={L} />
     </>

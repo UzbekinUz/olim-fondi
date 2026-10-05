@@ -27,6 +27,7 @@ export default function Login({ setAdmin, handleRef }) {
     e.preventDefault();
     setError("");
     setLoading(true);
+    
 
     try {
       // Backendga so'rov yuborish (Siz yozgan res.send({ok, msg, data}) formatiga moslangan)
@@ -35,8 +36,7 @@ export default function Login({ setAdmin, handleRef }) {
         password,
       });
 
-      const resData = response.data;
-      
+      const resData = response.data; 
       if (resData.ok) {
         addToast("Tizimga muvaffaqiyatli kirdingiz!", "success");// Tokenni localStorage'ga saqlash
         localStorage.setItem("access_admin_token", resData.access_token);

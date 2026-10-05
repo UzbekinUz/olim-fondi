@@ -5,6 +5,7 @@ import Logo from "../assets/logo.png";
 import { navbar } from "../data/txt.json";
 import axios from "axios";
 import { API_LINK } from "../cfg";
+import { auth } from "../data/txt.json";
 
 function Header({
   scrollToSection,
@@ -13,11 +14,11 @@ function Header({
   language,
   setLanguage,
   L,
-  app,
   bor,
   authCheck,
   userInfo,
   setUserInfo,
+  applyMode
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -162,7 +163,8 @@ function Header({
             </div>
 
             {/* Profil yoki Ariza tugmasi - Eng oxirida chiqadi */}
-            <div 
+            {applyMode && (
+              <div 
               data-aos="fade-left" 
               data-aos-delay={(navItems.length + 1) * 100}
             >
@@ -221,6 +223,68 @@ function Header({
                 </button>
               )}
             </div>
+            )}
+
+            {!applyMode && (
+              <div 
+              data-aos="fade-left" 
+              data-aos-delay={(navItems.length + 1) * 100}
+            >
+              {userInfo.auth ? (
+                /* Foydalanuvchi profili Dropdown */
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center space-x-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 transition-all"
+                  >
+                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
+                      {userInfo.username?.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="max-w-30 truncate">{userInfo.username}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-400 transition-transform ${
+                        dropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl py-2 z-50 animate-fadeIn">
+                      <button
+                      disabled={true}
+                        onClick={() => {
+                          setDropdownOpen(false);
+                          handleApplyClick();
+                        }}
+                        className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                      >
+                        <FileText className="w-4 h-4" />
+                        <span>{bor ? "Arizam" : "Ariza topshirish"}</span>
+                      </button>
+                      <hr className="border-slate-100 my-1" />
+                      <button
+                        onClick={() => {
+                          setDropdownOpen(false);
+                          handleLogout();
+                        }}
+                        className="flex items-center space-x-2 w-full px-4 py-2.5 text-sm font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Chiqish</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={handleApplyClick}
+                  className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  {L(auth.titleRegister)}
+                </button>
+              )}
+            </div>
+            )}
           </div>
 
           {/* Mobile menu button */}

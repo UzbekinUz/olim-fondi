@@ -15,6 +15,12 @@ import axios from "axios";
 import { API_LINK } from "../cfg";
 import Navbar from "../components/nav";
 import Users from "../staticPages/users";
+import ScholarsPage from "../staticPages/stp";
+import Xronalogy from "../staticPages/xronalogy";
+import Marking from "../staticPages/marking";
+import Stat from "../staticPages/stat";
+import AdminDashboard from "../staticPages/stp/adminDashboard";
+
 
 function SideBar({
   news = [],
@@ -30,7 +36,7 @@ function SideBar({
   handleRef,
 }) {
   const [needed, setNeeded] = useState({});
-  const [currentTab, setCurrentTab] = useState("dashboard");
+  const [currentTab, setCurrentTab] = useState(adminInfo.role==="Ekspert"?"stpapp":"dashboard");
   // Statistikani hisoblash
   const statTotal = apps.length;
   const statPending = apps.filter((a) => a.status === "pending").length;
@@ -48,6 +54,8 @@ function SideBar({
         handleRef();
       });
   };
+  // console.log(adminInfo);
+  
   return (
     <div className="flex flex-1 h-full overflow-hidden">
       {/* Sidebar Menu */}
@@ -116,6 +124,13 @@ function SideBar({
               {currentTab === "rahbariyat" && "Rahbariyat"}
               {currentTab === "sozlamalar" && "Sozlamalar"}
               {currentTab === "foydalanuvchilar" && "Foydalanuvchilar"}
+              {currentTab === "stp" && "Stipendiatlar"}
+              {currentTab === "xronalogy" && "Xronologiya"}
+              {currentTab === "stat" && "Statistika"}
+              {currentTab === "stpapp" && "Stipendiat hujjatlari"}
+              {currentTab === "marking" && "Baholash me'zonlari"}
+
+
 
             </span>
           </div>
@@ -135,7 +150,6 @@ function SideBar({
 
         {/* Dynamic content wrapper */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8">
-          {/* 1. DASHBOARD TAB */}
           {currentTab === "dashboard" && (
             <Dashboard
             adminInfo={adminInfo}
@@ -149,8 +163,6 @@ function SideBar({
               statRejected={statRejected}
             />
           )}
-
-          {/* 2. APPLICATIONS TAB */}
           {currentTab === "applications" && (
             <Application
               setRefresh={setRefresh}
@@ -160,8 +172,6 @@ function SideBar({
               adminInfo={adminInfo}
             />
           )}
-
-          {/* 3. NEWS CMS TAB */}
           {currentTab === "news" && <NewsManager />}
           {currentTab === "rahbariyat" && <RahbariyatAdmin />}
           {currentTab === "sozlamalar" && (
@@ -172,6 +182,13 @@ function SideBar({
             />
           )}
           {currentTab === "foydalanuvchilar" && <Users apps={apps} handleRef={handleRef} setNeeded={setNeeded} />}
+          {currentTab === "stp" && <ScholarsPage userRole={adminInfo.role} />}
+          {currentTab === "xronalogy" && <Xronalogy />}
+          {currentTab === "marking" && <Marking />}
+          {currentTab === "stat" && <Stat/>}
+          {currentTab === "stpapp" && <AdminDashboard currentUser={adminInfo.adminId} userRole={adminInfo.role}/>}
+
+
         </div>
       </main>
     </div>

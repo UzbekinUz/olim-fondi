@@ -46,9 +46,9 @@
         "en": "Student's Academic Knowledge (GPA)"
       },
       "value": {
-        "uz": "60 BALL",
-        "ru": "60 БАЛЛОВ",
-        "en": "60 POINTS"
+        "uz": "50 BALL",
+        "ru": "50 БАЛЛОВ",
+        "en": "50 POINTS"
       },
       "desc": {
         "uz": "Talabaning o'quv faoliyati va baholar ko'rsatkichi",
@@ -64,9 +64,9 @@
         "en": "Scientific and Innovative Achievements"
       },
       "value": {
-        "uz": "10 BALL",
-        "ru": "10 БАЛЛОВ",
-        "en": "10 POINTS"
+        "uz": "15 BALL",
+        "ru": "15 БАЛЛОВ",
+        "en": "15 POINTS"
       },
       "desc": {
         "uz": "Maqolalar, patentlar va loyihalardagi ishtirok",
@@ -77,7 +77,7 @@
     },
     {
       "title": {
-        "uz": "Qo'shimcha ko'rsatkichlar",
+        "uz": "Shaxsiy kasbiy rivojlanish",
         "ru": "Дополнительные показатели",
         "en": "Additional Indicators"
       },
@@ -95,14 +95,14 @@
     },
     {
       "title": {
-        "uz": "Fond seminarlaridagi faollik",
-        "ru": "Активность на семинарах Фонда",
-        "en": "Activity in Fund Seminars"
+        "uz": "Ishtimoiy faollik",
+        "ru": "Активность",
+        "en": "Activity"
       },
       "value": {
-        "uz": "10 BALL",
-        "ru": "10 БАЛЛОВ",
-        "en": "10 POINTS"
+        "uz": "15 BALL",
+        "ru": "15 БАЛЛОВ",
+        "en": "15 POINTS"
       },
       "desc": {
         "uz": "Tashkil etilgan treninglar va darslardagi muntazam ishtirok",
@@ -113,9 +113,9 @@
     },
     {
       "title": {
-        "uz": "Volontyorlik faoliyati",
-        "ru": "Волонтерская деятельность",
-        "en": "Volunteering Activity"
+        "uz": "Fondagi faollik",
+        "ru": "Активность на Фонда",
+        "en": "Activity in Fund"
       },
       "value": {
         "uz": "10 BALL",

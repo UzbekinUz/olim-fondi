@@ -51,7 +51,9 @@ function SelectedApp({
         status: stat,
         comment: comment,
         action: `Status changed to ${stat} by ${adminInfo.username}`,
-      })
+      },{headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        }})
       .then((d) => {
         console.log(d.data);
 
