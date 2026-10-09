@@ -1,6 +1,8 @@
-import { X } from "lucide-react";
+import { GraduationCap, X } from "lucide-react";
 
 function Edit({ loadingAction, editItem, setEditItem, handleSaveEdit }) {
+  if (!editItem) return null;
+
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md border border-slate-100 overflow-hidden">
@@ -56,6 +58,69 @@ function Edit({ loadingAction, editItem, setEditItem, handleSaveEdit }) {
                   className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
                 />
               </div>
+
+              {/* Status */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
+                  Status
+                </label>
+                <select
+                  value={editItem.data.status || ""}
+                  onChange={(e) =>
+                    setEditItem({
+                      ...editItem,
+                      data: { ...editItem.data, status: e.target.value },
+                    })
+                  }
+                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none bg-white"
+                >
+                  <option value="">Statusni tanlang</option>
+                  <option value="active">Active</option>
+                  <option value="suspended">Suspended(chetlashtirilgan)</option>
+                  <option value="graduated">Graduated</option>
+                </select>
+              </div>
+
+              {/* Category */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
+                  Kategoriya
+                </label>
+                <input
+                  type="text"
+                  value={editItem.data.category || ""}
+                  onChange={(e) =>
+                    setEditItem({
+                      ...editItem,
+                      data: {
+                        ...editItem.data,
+                        category: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                />
+              </div>
+              <div className="relative">
+              <GraduationCap className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <select
+                value={editItem.data.type}
+                onChange={(e) =>
+                  setEditItem({
+                      ...editItem,
+                      data: { ...editItem.data, type: e.target.value },
+                    })
+                }
+                className="w-full pl-10 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition appearance-none cursor-pointer"
+              >
+                <option value="">Stipendiya turini tanlang</option>
+                <option value="Stipendiyali">Stipendiyali</option>
+                <option value="Stipendiyasiz">Stipendiyasiz</option>
+              </select>
+              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                ▼
+              </div>
+            </div>
             </>
           ) : (
             <>

@@ -1,6 +1,7 @@
 import {
   Award,
   Building,
+  Calendar,
   ChevronDown,
   ChevronUp,
   Edit,
@@ -11,17 +12,15 @@ import {
   IceCream,
   Mail,
   Phone,
-  Search,
   Trash2,
 } from "lucide-react";
 import { API_LINK, SITE_LINK } from "../../cfg";
 import AdminPaymentReceiptSection from "../stp/adddoc";
 import AchievementManager from "../stp/addAchivement";
 import axios from "axios";
+import ScholarsFilter from "./stpSearch";
 
 function Scholar({
-  searchTerm,
-  setSearchTerm,
   scholars,
   getId,
   docLabels,
@@ -31,6 +30,8 @@ function Scholar({
   expandedScholarId,
   toggleExpand,
   userRole,
+  filteredScholars,
+  setFilteredScholars,
 }) {
   // Takomillashtirilgan handleFreeze funksiyasi
   const handleFreeze = (currentFreezeState, id) => {
@@ -49,10 +50,11 @@ function Scholar({
         },
       )
       .then((res) => {
-        console.log("Freeze holati o'zgartirildi:", res.data);
         // Sahifadagi ma'lumotlarni qayta yuklab, UI ni yangilaymiz
-        if (fetchData) {
-          fetchData();
+        if (res.data.ok) {
+          if (fetchData) {
+            fetchData();
+          }
         }
       })
       .catch((err) => {
@@ -62,29 +64,11 @@ function Scholar({
 
   return (
     <div className="space-y-4">
-      <div className="relative">
-        <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-        <input
-          type="text"
-          placeholder="F.I.SH, Login yoki Universitet bo'yicha qidirish..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition shadow-xs text-sm"
-        />
-      </div>
+      <ScholarsFilter data={scholars} onFilterChange={(newFiltered) => setFilteredScholars(newFiltered)}/>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div className="divide-y divide-slate-100">
-          {scholars
-            .filter((s) => {
-              const term = searchTerm.toLowerCase();
-              return (
-                (s.fullName && s.fullName.toLowerCase().includes(term)) ||
-                (s.login && s.login.toLowerCase().includes(term)) ||
-                (s.university && s.university.toLowerCase().includes(term))
-              );
-            })
-            .map((scholar) => {
+          {filteredScholars.map((scholar) => {
               const scholarId = getId(scholar);
               const isExpanded = expandedScholarId === scholarId;
               if (userRole === "Bugalter") {
@@ -123,6 +107,9 @@ function Scholar({
                                 Chala
                               </span>
                             )}
+                            <span className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
+                              {scholar.status}
+                            </span>
                             {/* Muzlatilganlik holatini ko'rsatish (Ixtiyoriy) */}
                             {scholar.freeze && userRole === "Editor" && (
                               <span className="text-[10px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full border border-blue-200 font-medium">
@@ -210,9 +197,9 @@ function Scholar({
               } else {
                 return (
                   <div key={scholarId} className="transition">
-                    <div className="p-4 flex items-center justify-between hover:bg-slate-50/60 transition gap-4">
+                    <div className="p-4 flex items-start md:items-center justify-between md:flex-row  flex-col hover:bg-slate-50/60 transition gap-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold text-sm shrink-0 overflow-hidden">
+                        <div className="w-14 h-14 rounded-full bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold text-sm shrink-0 overflow-hidden">
                           {scholar.photo3x4 ? (
                             <img
                               src={
@@ -229,11 +216,21 @@ function Scholar({
                             "@"
                           )}
                         </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-slate-800 text-sm md:text-base">
-                              {scholar.fullName || `@${scholar.login}`}
-                            </h3>
+                        <div className="flex flex-col justify-start items-start">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h3 className="font-semibold text-slate-800 text-sm md:text-base">
+                                {scholar.fullName || `@${scholar.login}`}
+                              </h3>
+                            </div>
+                            <p className="text-xs text-slate-400 font-mono">
+                              @{scholar.login}{" "}
+                              {scholar.university
+                                ? `• ${scholar.university}`
+                                : ""}
+                            </p>
+                          </div>
+                          <div className="">
                             {scholar.isProfileCompleted ? (
                               <span className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
                                 To'liq
@@ -243,6 +240,9 @@ function Scholar({
                                 Chala
                               </span>
                             )}
+                            <span className="text-[10px] bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded-full border border-yellow-200 font-medium">
+                              {scholar.status}
+                            </span>
                             {/* Muzlatilganlik holatini ko'rsatish (Ixtiyoriy) */}
                             {scholar.freeze && userRole === "Editor" && (
                               <span className="text-[10px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full border border-blue-200 font-medium">
@@ -250,28 +250,9 @@ function Scholar({
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-slate-400 font-mono">
-                            @{scholar.login}{" "}
-                            {scholar.university
-                              ? `• ${scholar.university}`
-                              : ""}
-                          </p>
                         </div>
                       </div>
-
-                      <div className="flex items-center gap-2 shrink-0">
-                        <button
-                          onClick={() => toggleExpand(scholarId)}
-                          className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition cursor-pointer"
-                        >
-                          Batafsil
-                          {isExpanded ? (
-                            <ChevronUp className="w-4 h-4" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )}
-                        </button>
-
+                      <div className="flex w-full md:w-auto justify-end md:justify-center items-center gap-2 shrink-0">
                         <button
                           onClick={() =>
                             setEditItem({
@@ -298,10 +279,13 @@ function Scholar({
                           }
                           className={`p-2 rounded-lg transition cursor-pointer ${
                             userRole === "Editor"
-                              ? "text-slate-400 hover:text-blue-600 hover:bg-blue-50"
+                              ? "flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition cursor-pointer"
                               : "hidden"
                           }`}
                         >
+                          <span className="md:hidden flex ">
+                            {scholar.freeze ? "Unfreeze" : "Freeze"}
+                          </span>
                           <IceCream className="w-4 h-4" />
                         </button>
 
@@ -314,6 +298,18 @@ function Scholar({
                           }
                         >
                           <Trash2 className="w-4 h-4" />
+                        </button>
+
+                        <button
+                          onClick={() => toggleExpand(scholarId)}
+                          className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition cursor-pointer"
+                        >
+                          Batafsil
+                          {isExpanded ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
                         </button>
                       </div>
                     </div>
@@ -345,6 +341,11 @@ function Scholar({
                             <h4 className="font-bold text-slate-800 text-base border-b pb-2">
                               {scholar.fullName || "Ism ko'rsatilmagan"}
                             </h4>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
+                                  <strong>Kategoriya:</strong> {scholar.category || "—"}
+                                </span>
+                              </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-slate-600">
                               <div className="flex items-center gap-2">
                                 <Building className="w-4 h-4 text-slate-400" />
@@ -353,6 +354,7 @@ function Scholar({
                                   {scholar.university || "—"}
                                 </span>
                               </div>
+
                               <div className="flex items-center gap-2">
                                 <GraduationCap className="w-4 h-4 text-slate-400" />
                                 <span>
@@ -373,6 +375,20 @@ function Scholar({
                                   <strong>Tel:</strong> {scholar.phone || "—"}
                                 </span>
                               </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
+                                  {scholar.type || "—"}
+                                </span>
+                              </div>
+
+                              <div className="flex items-center gap-2">
+                                <Calendar className="w-4 h-4 text-slate-400" />
+                                <span>
+                                  <strong>Qabul qilingan yil:</strong>{" "}
+                                  {scholar.enteredYear || "—"}
+                                </span>
+                              </div>
+                              
                             </div>
                           </div>
                         </div>

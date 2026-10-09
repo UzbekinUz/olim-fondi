@@ -1,11 +1,10 @@
-import { useMemo, useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaCalendarAlt,
   FaCheckCircle,
   FaClock,
   FaPaperclip,
   FaEye,
-  FaTrash,
   FaPen,
   FaStar,
   FaCommentDots,
@@ -13,7 +12,8 @@ import {
   FaChevronUp,
   FaUserCheck,
 } from "react-icons/fa";
-import { SITE_LINK } from "../../cfg";
+import { API_LINK, SITE_LINK } from "../../cfg";
+import axios from "axios";
 
 function ApplicationList({
   loading,
@@ -21,22 +21,10 @@ function ApplicationList({
   userRole,
   currentUserId,
   handleOpenGradeModal,
-  handleDeleteApp,
 }) {
   const [openApps, setOpenApps] = useState({});
-  const visibleFiles = useMemo(() => {
-    if (!filteredApps?.files) return [];
-    if (userRole === "Editor") {
-      return filteredApps.files; // Editorga hammasi ko'rinadi
-    }
-    return filteredApps.files.filter((file) => file.markingId?.accept === true);
-  }, [filteredApps, userRole]);
-  const toggleAppFiles = (appId) => {
-    setOpenApps((prev) => ({
-      ...prev,
-      [appId]: !prev[appId],
-    }));
-  };
+  // Adminlar ma'lumotlarini ID bo'yicha keshlab saqlash: { [id]: { username: "..." } }
+  const [scorers, setScorers] = useState({});
 
   // Yordamchi funksiya: fayl ichidagi scores/score ni massiv shaklida xavfsiz olish
   const getScoresArray = (fileObj) => {
@@ -45,6 +33,47 @@ function ApplicationList({
     if (fileObj.score && typeof fileObj.score === "object")
       return [fileObj.score];
     return [];
+  };
+
+  // Editor rolidagi foydalanuvchilar uchun adminlar ma'lumotini yuklab olish
+  useEffect(() => {
+    if (userRole === "Editor" && filteredApps.length > 0) {
+      filteredApps.forEach((app) => {
+        (app.files || []).forEach((f) => {
+          const scores = getScoresArray(f);
+          scores.forEach((s) => {
+            const scorerId = s.whomark?._id || s.whomark;
+            // Agar scorerId mavjud bo'lsa va u hali yuklanmagan bo'lsa
+            if (scorerId && !scorers[scorerId]) {
+              axios
+                .get(`${API_LINK}/admin/getone/${scorerId}`, {
+                  headers: {
+                    "x-admin-token": localStorage.getItem("access_admin_token"),
+                  },
+                })
+                .then((d) => {
+                  if (d.data.ok) {
+                    setScorers((prev) => ({
+                      ...prev,
+                      [scorerId]: d.data.data,
+                    }));
+                  }
+                })
+                .catch((err) =>
+                  console.error("Scorer ma'lumotini olishda xatolik:", err)
+                );
+            }
+          });
+        });
+      });
+    }
+  }, [filteredApps, userRole]);
+
+  const toggleAppFiles = (appId) => {
+    setOpenApps((prev) => ({
+      ...prev,
+      [appId]: !prev[appId],
+    }));
   };
 
   if (loading) {
@@ -72,7 +101,7 @@ function ApplicationList({
         const files = app.files || [];
         const filesCount = files.length;
 
-        // 1. Joriy ekspert tomonidan baholangan fayllar sonini hisoblash
+        // Joriy ekspert tomonidan baholangan fayllar sonini hisoblash
         const gradedByMeCount = files.filter((f) => {
           const scoresArr = getScoresArray(f);
           return scoresArr.some((s) => {
@@ -86,7 +115,6 @@ function ApplicationList({
           });
         }).length;
 
-        // Joriy foydalanuvchi barcha fayllarni baholaganmi?
         const isGradedByMe = filesCount > 0 && gradedByMeCount === filesCount;
         const isOpen = !!openApps[app._id];
 
@@ -126,7 +154,6 @@ function ApplicationList({
               </div>
 
               <div className="flex items-center gap-2 flex-wrap">
-                {/* Ekspertning shaxsiy baholash statusi */}
                 {isGradedByMe ? (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
                     <FaCheckCircle className="text-emerald-500" /> Siz
@@ -139,14 +166,13 @@ function ApplicationList({
                   </span>
                 )}
 
-                {/* Ariza bo'yicha umumiy ball */}
                 {app.totalScore !== undefined && (
                   <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200/80">
-                    <FaStar className="text-amber-400" /> {Number(app?.totalScore || 0).toFixed(2)} ball
+                    <FaStar className="text-amber-400" />{" "}
+                    {Number(app?.totalScore || 0).toFixed(2)} ball
                   </span>
                 )}
 
-                {/* Baholash Tugmasi */}
                 <button
                   type="button"
                   onClick={() => handleOpenGradeModal(app)}
@@ -155,7 +181,6 @@ function ApplicationList({
                   <FaPen className="text-[10px]" />
                   {isGradedByMe ? "Qayta baholash" : "Baholash"}
                 </button>
-
               </div>
             </div>
 
@@ -192,13 +217,13 @@ function ApplicationList({
                     {files.map((f) => {
                       const scoresList = getScoresArray(f);
 
-                      // 2. .filter() o'rniga .find() ishlatiladi (yagona ob'ekt qaytaradi)
                       const myScoreObj = scoresList.find((s) => {
                         const scorerId = s.whomark?._id || s.whomark;
                         return String(scorerId) === String(currentUserId);
                       });
 
-                      const currentMark = myScoreObj?.mark ?? myScoreObj?.score;
+                      const currentMark =
+                        myScoreObj?.mark ?? myScoreObj?.score;
 
                       const hasMyScore =
                         !!myScoreObj &&
@@ -208,8 +233,8 @@ function ApplicationList({
                       const fileList = Array.isArray(f.file)
                         ? f.file
                         : f.file
-                          ? [f.file]
-                          : [];
+                        ? [f.file]
+                        : [];
 
                       return (
                         <div
@@ -221,9 +246,7 @@ function ApplicationList({
                           }`}
                         >
                           {/* Fayl Sarlavhasi va Link */}
-                          <div
-                            className={`flex items-start justify-between gap-2`}
-                          >
+                          <div className="flex items-start justify-between gap-2">
                             <div className="flex items-start gap-2 overflow-hidden">
                               <FaPaperclip className="text-slate-400 shrink-0 mt-0.5 text-xs" />
                               <div className="truncate">
@@ -262,17 +285,40 @@ function ApplicationList({
                           {/* Qo'yilgan Ball va Izoh Qismi */}
                           <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs">
                             {hasMyScore ? (
-                              <div className="w-full flex items-center justify-between gap-2">
+                              <div className="w-full flex items-center justify-between gap-2 flex-wrap">
                                 <span className="font-extrabold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-md text-[11px] flex items-center gap-1">
                                   <FaUserCheck className="text-emerald-600 text-[10px]" />
                                   Siz: {currentMark} / {f.markingId?.mark ?? 0}
                                 </span>
 
+                                {/* Editor roli bo'lganda baholagan adminlar username'ini ko'rsatish */}
+                                {userRole === "Editor" &&
+                                  scoresList.map((s, idx) => {
+                                    const scorerId = s.whomark?._id || s.whomark;
+                                    const scorerData = scorers[scorerId];
+                                    
+                                    return (
+                                      <span
+                                        key={s._id || scorerId || idx}
+                                        className="inline-flex items-center gap-1 text-[10px] font-medium bg-slate-200/80 text-slate-700 px-2 py-0.5 rounded-md"
+                                      >
+                                        <FaUserCheck className="w-2.5 h-2.5 text-slate-500" />
+                                        <strong className="text-blue-600">
+                                          {scorerData
+                                            ? scorerData.username+"  ("+s.mark+")"
+                                            : "Yuklanmoqda..."}
+                                        </strong>
+                                      </span>
+                                    );
+                                  })}
+
                                 {myScoreObj.comment ||
                                 myScoreObj.adminComment ? (
                                   <span
-                                    className="text-[11px] text-slate-600 flex items-center gap-1 bg-white border border-slate-200 px-2 py-0.5 rounded-md truncate max-w-32.5"
-                                    title={`Izohingiz: ${myScoreObj.comment || myScoreObj.adminComment}`}
+                                    className="text-[11px] text-slate-600 flex items-center gap-1 bg-white border border-slate-200 px-2 py-0.5 rounded-md truncate max-w-[130px]"
+                                    title={`Izohingiz: ${
+                                      myScoreObj.comment || myScoreObj.adminComment
+                                    }`}
                                   >
                                     <FaCommentDots className="text-slate-400 shrink-0" />
                                     <span className="truncate">

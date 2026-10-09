@@ -174,7 +174,7 @@ function GradeModel({
                       <span className="text-[10px] font-medium text-slate-500 self-center">
                         Boshqa baholar:
                       </span>
-                      {existingScores.map((s, idx) => (
+                      {userRole === "Editor" ? existingScores.map((s, idx) => (
                         <span
                           key={idx}
                           className="inline-flex items-center gap-1 text-[10px] font-medium bg-slate-200/80 text-slate-700 px-2 py-0.5 rounded-md"
@@ -182,7 +182,7 @@ function GradeModel({
                           <FaUserCheck className="w-2.5 h-2.5 text-slate-500" />
                            <strong className="text-blue-600">{s.mark}b</strong>
                         </span>
-                      ))}
+                      )): null}
                     </div>
                   )}
 

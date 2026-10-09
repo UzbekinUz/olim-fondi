@@ -11,6 +11,8 @@ import {
   FaLock,
   FaSave,
   FaSnowflake,
+  FaDownload,
+  FaFileWord,
 } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
 import { SITE_LINK } from "../cfg";
@@ -56,8 +58,8 @@ function ProfilForm({
   stpdata = {},
   files = {},
   handleRef,
-  full = false,      // Parentdan kelgan holat
-  setFull,           // Parentdagi stateni yangilovchi funksiya
+  full = false, // Parentdan kelgan holat
+  setFull, // Parentdagi stateni yangilovchi funksiya
 }) {
   const [uploadingDocId, setUploadingDocId] = useState(null);
 
@@ -68,12 +70,14 @@ function ProfilForm({
   useEffect(() => {
     // 1. Barcha majburiy text inputlar to'ldirilganmi?
     const areFieldsValid = REQUIRED_FIELDS.every(
-      (field) => formData[field] && formData[field].toString().trim() !== ""
+      (field) => formData[field] && formData[field].toString().trim() !== "",
     );
 
     // 2. 3x4 rasm va barcha majburiy PDF hujjatlar yuklanganmi?
     const hasPhoto = Boolean(files.photo3x4);
-    const areDocsValid = REQUIRED_DOCUMENTS.every((doc) => Boolean(files[doc.id]));
+    const areDocsValid = REQUIRED_DOCUMENTS.every((doc) =>
+      Boolean(files[doc.id]),
+    );
 
     // Umumiy holat
     const isComplete = areFieldsValid && hasPhoto && areDocsValid;
@@ -83,8 +87,6 @@ function ProfilForm({
       setFull(isComplete);
     }
   }, [formData, files, full, setFull]);
-
-  const isProfileCompleted = stpdata?.isProfileCompleted || full;
 
   // Fayl yuklash handler
   const handleFileChange = (e, fieldName) => {
@@ -139,9 +141,12 @@ function ProfilForm({
             <FaSnowflake className="text-xl animate-spin-slow" />
           </div>
           <div>
-            <h4 className="font-extrabold text-sm">Profil ma'lumotlari muzlatilgan</h4>
+            <h4 className="font-extrabold text-sm">
+              Profil ma'lumotlari muzlatilgan
+            </h4>
             <p className="text-xs text-sky-700">
-              Profil holati muzlatilganligi sababli ma'lumotlarni o'zgartirish yoki yangi hujjat topshirish imkoniyati cheklangan.
+              Profil holati muzlatilganligi sababli ma'lumotlarni o'zgartirish
+              yoki yangi hujjat topshirish imkoniyati cheklangan.
             </p>
           </div>
         </div>
@@ -158,9 +163,7 @@ function ProfilForm({
         <div className="flex items-center gap-4">
           <div
             className={`p-3.5 rounded-2xl shrink-0 shadow-sm ${
-              full
-                ? "bg-emerald-500 text-white"
-                : "bg-amber-500 text-white"
+              full ? "bg-emerald-500 text-white" : "bg-amber-500 text-white"
             }`}
           >
             {full ? (
@@ -351,15 +354,40 @@ function ProfilForm({
                 <option value="Bakalavr">Bakalavr</option>
                 <option value="Magistr">Magistr</option>
                 <option value="PhD">PhD</option>
-                <option value="Mustaqil izlanuvchi">Mustaqil izlanuvchi</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                Stipendiya yutgan yilingiz{" "}
+                <span className="text-rose-500">*</span>
+              </label>
+              <select
+                name="enteredYear"
+                disabled={isFrozen}
+                value={formData.enteredYear || ""}
+                onChange={handleChange}
+                className="w-full p-3 border border-slate-200/90 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition bg-slate-50/30 focus:bg-white disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed cursor-pointer"
+                required
+              >
+                <option value="" disabled>
+                  Yilni tanlang
+                </option>
+                {Array.from({ length: 10 }, (_, i) => {
+                  const year = new Date().getFullYear() - i;
+                  return (
+                    <option key={year} value={year}>
+                      {year}-yil
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
         </div>
 
         {/* 3. MAJBURIY HUJJATLAR YUKLASH SEKSIYASI */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-6">
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
             <h2 className="text-lg font-black text-slate-800 flex items-center gap-2">
               <HiDocumentText className="text-blue-600 text-xl" /> Profil
               Hujjatlari
@@ -369,7 +397,33 @@ function ProfilForm({
             </span>
           </div>
 
-          <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+          {/* NAMUNAVIY OBYEKTIVKA NAMUNASI UCHUN YUKLAB OLISH BLOKI */}
+          <div className="bg-blue-50/60 border border-blue-200/80 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-blue-600 text-white rounded-xl shrink-0">
+                <FaFileWord className="text-xl" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-800">
+                  Namunaviy obyektivka (Ma'lumotnoma)
+                </h4>
+                <p className="text-[11px] text-slate-500 mt-0.5">
+                  Obyektivkani to'ldirishdan oldin rasmiy namunani yuklab olib, tanishib chiqing.
+                </p>
+              </div>
+            </div>
+            <a
+              href='/Namuna.doc'
+              download="Namunaviy_obyektivka.doc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-blue-50 text-blue-600 border border-blue-200/80 rounded-xl text-xs font-bold transition shadow-xs shrink-0"
+            >
+              <FaDownload className="text-sm" /> Namunani yuklab olish
+            </a>
+          </div>
+
+          <p className="text-xs text-slate-500 leading-relaxed">
             Stipendiya talablariga muvofiq, quyidagi barcha hujjatlarni to'liq
             va sifatli shaklda yuklashingiz shart:
           </p>
@@ -439,8 +493,8 @@ function ProfilForm({
                         isFrozen
                           ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
                           : isUploading
-                          ? "bg-slate-100 text-slate-400 border-slate-300 cursor-wait"
-                          : "bg-white text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer"
+                            ? "bg-slate-100 text-slate-400 border-slate-300 cursor-wait"
+                            : "bg-white text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer"
                       }`}
                     >
                       <FaCloudUploadAlt className="text-base" />
@@ -462,7 +516,11 @@ function ProfilForm({
       </div>
 
       {/* Shartnoma va to'lov sektsiyasi */}
-      <ContractAndPaymentSection stpdata={stpdata} ref={handleRef} isFrozen={isFrozen} />
+      <ContractAndPaymentSection
+        stpdata={stpdata}
+        ref={handleRef}
+        isFrozen={isFrozen}
+      />
 
       {/* PASTDAGI ASOIY SAQLASH TUGMASI (ACTION BAR) */}
       <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200/80 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 sticky bottom-4 z-10 backdrop-blur-md">
@@ -474,14 +532,14 @@ function ProfilForm({
         <button
           type="submit"
           disabled={loading || isFrozen}
-          className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white rounded-xl font-bold text-xs transition shadow-lg hover:shadow-blue-500/25 disabled:bg-slate-300 disabled:shadow-none disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0"
+          className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white rounded-xl font-bold text-xs transition shadow-lg hover:shadow-blue-500/25 disabled:bg-slate-300 disabled:shadow-none disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0 cursor-pointer"
         >
           <FaSave className="text-sm" />
           {loading
             ? "Saqlanmoqda..."
             : isFrozen
-            ? "O'zgartirish muzlatilgan"
-            : "Barcha ma'lumotlarni saqlash"}
+              ? "O'zgartirish muzlatilgan"
+              : "Barcha ma'lumotlarni saqlash"}
         </button>
       </div>
     </form>

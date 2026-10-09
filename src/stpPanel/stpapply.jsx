@@ -69,7 +69,7 @@ function StpApplicationForm({ bor1, stpinfo, stpCheck }) {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > 15 * 1024 * 1024) {
       setErrors((prev) => ({
         ...prev,
         [markingId]: "Fayl hajmi 5MB dan oshmasligi kerak!",
@@ -138,7 +138,7 @@ function StpApplicationForm({ bor1, stpinfo, stpCheck }) {
   // HOLAT 1: YUKLANISH JARAYONI
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-20 min-h-[300px]">
+      <div className="flex justify-center items-center py-20 min-h-75">
         <div className="animate-spin rounded-full h-10 w-10 border-2 border-blue-600 border-t-transparent"></div>
       </div>
     );

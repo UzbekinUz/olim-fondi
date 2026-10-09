@@ -133,7 +133,7 @@ function Users({ handleRef, apps, setNeeded }) {
               const hasApplied = apps.some((a) => a.usernameId === userId);
               return (
                 <tr
-                  key={user.id}
+                  key={user._id}
                   className="hover:bg-indigo-50/30 transition-colors"
                 >
                   <td className="p-5 flex items-center gap-3">

@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import {
-  Edit,
-  X,
-} from "lucide-react";
 import axios from "axios";
 import { API_LINK } from "../cfg";
 import TopTabBar from "./stpDetails/topTabBar";
@@ -10,10 +6,12 @@ import Scholar from "./stpDetails/scholar";
 import Expert from "./stpDetails/epert";
 import AddS from "./stpDetails/addStp";
 import AddExpert from "./stpDetails/addExpert";
+import Edit from "./stpDetails/edit";
 
 export default function ScholarPage({ addToast,userRole }) {
   const [activeTab, setActiveTab] = useState("scholars"); // 'scholars' | 'experts'
   const [expandedScholarId, setExpandedScholarId] = useState(null);
+  const [filteredScholars, setFilteredScholars] = useState([]);
 
   // Modallar
   const [isAddScholarModal, setIsAddScholarModal] = useState(false);
@@ -21,8 +19,6 @@ export default function ScholarPage({ addToast,userRole }) {
   const [editItem, setEditItem] = useState(null);
 
   // Qidiruv va Yuklanish
-  const [searchTerm, setSearchTerm] = useState("");
-  const [load, setLoad] = useState(false);
   const [loadingAction, setLoadingAction] = useState(false);
 
   // Statelar
@@ -30,7 +26,7 @@ export default function ScholarPage({ addToast,userRole }) {
   const [experts, setExperts] = useState([]);
 
   // Form statelari
-  const [scholarForm, setScholarForm] = useState({ login: "", password: "" });
+  const [scholarForm, setScholarForm] = useState({ login: "", password: "",type:"",category:"" });
   const [expertForm, setExpertForm] = useState({
     username: "",
     password: "",
@@ -57,7 +53,6 @@ export default function ScholarPage({ addToast,userRole }) {
 
   // Stipendiatlarni olish
   function fetchData() {
-    setLoad(true);
     axios
       .get(`${API_LINK}/stipendiat/getall`, {
         headers: {
@@ -67,12 +62,12 @@ export default function ScholarPage({ addToast,userRole }) {
       .then((res) => {
         if (res.data.ok) {
           setScholars(res.data.data);
+          setFilteredScholars(res.data.data); // Dastlab barcha stipendiatlarni ko'rsatish
         }
       })
       .catch((err) => {
         console.error("Stipendiatlarni olishda xatolik:", err);
-      })
-      .finally(() => setLoad(false));
+      });
   }
 
   // Ekspertlarni backenddan olish
@@ -106,13 +101,15 @@ export default function ScholarPage({ addToast,userRole }) {
   const handleAddScholar = async (e) => {
     e.preventDefault();
 
-    if (!scholarForm.login.trim() || !scholarForm.password.trim()) {
+    if (!scholarForm.login.trim() || !scholarForm.password.trim() || scholarForm.type==="" ) {
       notify("Iltimos, login va parolni to'liq kiriting!", "error");
       return;
     }
 
     setLoadingAction(true);
     try {
+      console.log(scholarForm);
+      
       const response = await axios.post(
         `${API_LINK}/stipendiat/add`,
         scholarForm,
@@ -125,7 +122,7 @@ export default function ScholarPage({ addToast,userRole }) {
 
       if (response.data.ok || response.data.status === "success") {
         notify("Stipendiat muvaffaqiyatli qo'shildi!", "success");
-        setScholarForm({ login: "", password: "" });
+        setScholarForm({ login: "", password: "",type:"",category:"" });
         setIsAddScholarModal(false);
         fetchData();
       } else {
@@ -305,6 +302,8 @@ export default function ScholarPage({ addToast,userRole }) {
     setScholarForm({
       login: `stipendiat_${rnd}`,
       password: Math.random().toString(36).slice(-8),
+      type: "Stipendiyali",
+      category: "Odatiy",
     });
   };
 
@@ -349,8 +348,6 @@ export default function ScholarPage({ addToast,userRole }) {
         {activeTab === "scholars" && (
           <Scholar
           userRole={userRole}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
             scholars={scholars}
             getId={getId}
             docLabels={docLabels}
@@ -359,6 +356,8 @@ export default function ScholarPage({ addToast,userRole }) {
             fetchData={fetchData}
             expandedScholarId={expandedScholarId}
             toggleExpand={toggleExpand}
+            setFilteredScholars={setFilteredScholars}
+            filteredScholars={filteredScholars}
           />
         )}
 
@@ -398,127 +397,9 @@ export default function ScholarPage({ addToast,userRole }) {
 
         {/* MODAL: EDIT */}
         {editItem && (
-          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md border border-slate-100 overflow-hidden">
-        <div className="flex items-center justify-between p-5 border-b border-slate-100">
-          <h3 className="font-bold text-slate-800">
-            {editItem.type === "scholar"
-              ? "Stipendiatni Tahrirlash"
-              : "Ekspertni Tahrirlash"}
-          </h3>
-          <button
-            onClick={() => setEditItem(null)}
-            className="text-slate-400 hover:text-slate-600 cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <form onSubmit={handleSaveEdit} className="p-5 space-y-4">
-          {editItem.type === "scholar" ? (
-            <>
-              
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">
-                  Login
-                </label>
-                <input
-                  type="text"
-                  value={editItem.data.login || ""}
-                  onChange={(e) =>
-                    setEditItem({
-                      ...editItem,
-                      data: { ...editItem.data, login: e.target.value },
-                    })
-                  }
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">
-                 Yangi parol
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    setEditItem({
-                      ...editItem,
-                      data: {
-                        ...editItem.data,
-                        password: e.target.value,
-                      },
-                    })
-                  }
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">
-                  Foydalanuvchi nomi (Username)
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={editItem.data.username || ""}
-                  onChange={(e) =>
-                    setEditItem({
-                      ...editItem,
-                      data: {
-                        ...editItem.data,
-                        username: e.target.value,
-                      },
-                    })
-                  }
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">
-                  Yangi Parol (O'zgartirmaslik uchun bo'sh qoldiring)
-                </label>
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  value={editItem.data.password || ""}
-                  onChange={(e) =>
-                    setEditItem({
-                      ...editItem,
-                      data: {
-                        ...editItem.data,
-                        password: e.target.value,
-                      },
-                    })
-                  }
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
-                />
-              </div>
-            </>
-          )}
-
-          <div className="flex justify-end gap-2 pt-2">
-            <button
-              type="button"
-              onClick={() => setEditItem(null)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition cursor-pointer"
-            >
-              Bekor qilish
-            </button>
-            <button
-              type="submit"
-              disabled={loadingAction}
-              className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition cursor-pointer disabled:opacity-50"
-            >
-              {loadingAction ? "Saqlanmoqda..." : "Saqlash"}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+          <Edit  editItem={editItem} setEditItem={setEditItem} handleSaveEdit={handleSaveEdit} />
         )}
       </div>
-    </div>
+    </div >
   );
 }
