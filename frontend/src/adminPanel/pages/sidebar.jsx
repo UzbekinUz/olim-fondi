@@ -1,0 +1,198 @@
+import {
+  GraduationCap,
+  LogOut,
+  ChevronRight,
+  Bell,
+  Calendar
+} from "lucide-react";
+import { useState } from "react";
+import Dashboard from "../staticPages/dashboard";
+import Application from "../staticPages/application";
+import NewsManager from "./news";
+import RahbariyatAdmin from "./rahbariyat";
+import Settings from "../staticPages/settings";
+import axios from "axios";
+import { API_LINK } from "../cfg";
+import Navbar from "../components/nav";
+import Users from "../staticPages/users";
+import ScholarsPage from "../staticPages/stp";
+import Xronalogy from "../staticPages/xronalogy";
+import Marking from "../staticPages/marking";
+import Stat from "../staticPages/stat";
+import AdminDashboard from "../staticPages/stp/adminDashboard";
+
+
+function SideBar({
+  news = [],
+  apps = [],
+  currentDateStr,
+  setSelectedApp,
+  setAdmin,
+  sidebarOpen,
+  setSidebarOpen,
+  setRefresh,
+  refresh,
+  adminInfo,
+  handleRef,
+}) {
+  const [needed, setNeeded] = useState({});
+  const [currentTab, setCurrentTab] = useState(adminInfo.role==="Ekspert"?"stpapp":"dashboard");
+  // Statistikani hisoblash
+  const statTotal = apps.length;
+  const statPending = apps.filter((a) => a.status === "pending").length;
+  const statApproved = apps.filter((a) => a.status === "approved").length;
+  const statRejected = apps.filter((a) => a.status === "rejected").length;
+  const handleLeave = () => {
+    axios
+      .get(`${API_LINK}/admin/leave`, {
+        headers: {
+          "x-admin-token": `${localStorage.getItem("access_admin_token")}`,
+        },
+      })
+      .then(() => {
+        localStorage.removeItem("access_admin_token");
+        handleRef();
+      });
+  };
+  // console.log(adminInfo);
+  
+  return (
+    <div className="flex flex-1 h-full overflow-hidden">
+      {/* Sidebar Menu */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:flex md:flex-col shadow-2xl`}
+      >
+        {/* Brand header */}
+        <div className="hidden md:flex items-center space-x-3 px-6 py-5 border-b border-slate-800 bg-slate-950">
+          <div className="bg-indigo-600/20 p-2 rounded-xl border border-indigo-500/30">
+            <GraduationCap className="text-yellow-400 w-6 h-6" />
+          </div>
+          <div>
+            <h1 className="font-bold text-white text-sm tracking-wide leading-none">
+              OLIM FONDI
+            </h1>
+          </div>
+        </div>
+
+        {/* User Info */}
+        <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/50 flex items-center space-x-3">
+          <div>
+            <h4 className="text-sm font-semibold text-slate-200">
+              {adminInfo?.username || "Admin"}
+            </h4>
+            <p className="text-xs text-slate-400 flex items-center">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span>
+              {adminInfo?.role || "Admin"}
+            </p>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <Navbar adminInfo={adminInfo} needed={needed} currentTab={currentTab} setCurrentTab={setCurrentTab} setSidebarOpen={setSidebarOpen} statPending={statPending} />
+
+        {/* Bottom logout info */}
+        <div className="p-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center bg-slate-950">
+          <span>© 2026 Olim Fondi</span>
+          <button
+            onClick={() => handleLeave()}
+            className="hover:text-slate-300 cursor-pointer flex items-center gap-1 bg-transparent border-none text-slate-500 transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" /> Chiqish
+          </button>
+        </div>
+      </aside>
+
+      {/* Sidebar Overlay (Mobile only) */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity"
+        />
+      )}
+
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col overflow-hidden bg-slate-100">
+        {/* Header bar (Desktop only) */}
+        <header className="hidden md:flex items-center justify-between bg-white px-8 py-4 border-b border-slate-200 shadow-sm z-10">
+          <div className="flex items-center space-x-1">
+            <span className="text-slate-400 text-sm">Tizim</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400 mx-1" />
+            <span className="font-medium text-slate-800 text-sm">
+              {currentTab === "dashboard" && "Boshqaruv paneli"}
+              {currentTab === "applications" && "Arizalar reyestri"}
+              {currentTab === "news" && "Yangiliklar boshqaruvi (CMS)"}
+              {currentTab === "rahbariyat" && "Rahbariyat"}
+              {currentTab === "sozlamalar" && "Sozlamalar"}
+              {currentTab === "foydalanuvchilar" && "Foydalanuvchilar"}
+              {currentTab === "stp" && "Stipendiatlar"}
+              {currentTab === "xronalogy" && "Xronologiya"}
+              {currentTab === "stat" && "Statistika"}
+              {currentTab === "stpapp" && "Stipendiat hujjatlari"}
+              {currentTab === "marking" && "Baholash me'zonlari"}
+
+
+
+            </span>
+          </div>
+          <div className="flex items-center space-x-6">
+            <div className="relative cursor-pointer hover:text-indigo-600 transition-colors">
+              <Bell className="w-5 h-5 text-slate-500" />
+              {statPending > 0 && (
+                <span className="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+              )}
+            </div>
+            <div className="text-sm font-medium text-slate-500 flex items-center bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+              <Calendar className="mr-2 text-indigo-500 w-4 h-4" />
+              <span>{currentDateStr}</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Dynamic content wrapper */}
+        <div className="flex-1 overflow-y-auto p-4 md:p-8">
+          {currentTab === "dashboard" && (
+            <Dashboard
+            adminInfo={adminInfo}
+              news={news}
+              apps={apps}
+              setCurrentTab={setCurrentTab}
+              setSelectedApp={setSelectedApp}
+              statTotal={statTotal}
+              statPending={statPending}
+              statApproved={statApproved}
+              statRejected={statRejected}
+            />
+          )}
+          {currentTab === "applications" && (
+            <Application
+              setRefresh={setRefresh}
+              refresh={refresh}
+              apps={apps}
+              setSelectedApp={setSelectedApp}
+              adminInfo={adminInfo}
+            />
+          )}
+          {currentTab === "news" && <NewsManager />}
+          {currentTab === "rahbariyat" && <RahbariyatAdmin />}
+          {currentTab === "sozlamalar" && (
+            <Settings
+              adminInfo={adminInfo}
+              setAdmin={setAdmin}
+              handleRef={handleRef}
+            />
+          )}
+          {currentTab === "foydalanuvchilar" && <Users apps={apps} handleRef={handleRef} setNeeded={setNeeded} />}
+          {currentTab === "stp" && <ScholarsPage userRole={adminInfo.role} />}
+          {currentTab === "xronalogy" && <Xronalogy />}
+          {currentTab === "marking" && <Marking />}
+          {currentTab === "stat" && <Stat/>}
+          {currentTab === "stpapp" && <AdminDashboard currentUser={adminInfo.adminId} userRole={adminInfo.role}/>}
+
+
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default SideBar;

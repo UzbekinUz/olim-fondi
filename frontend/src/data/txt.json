@@ -1,0 +1,1018 @@
+{
+    "about": {
+        "historyTitle": {
+            "uz": "Tashkil etilish tarixi",
+            "ru": "История создания",
+            "en": "History of Establishment"
+        },
+        "mainTitle": {
+            "uz": "Olim Hasanov Xotirasiga Bag'ishlanadi",
+            "ru": "Посвящается памяти Олима Хасанова",
+            "en": "Dedicated to the Memory of Olim Hasanov"
+        },
+        "portraitAlt": {
+            "uz": "[Olim Hasanov xotirasiga bag'ishlangan portret]",
+            "ru": "[Портрет, посвященный памяти Олима Хасанова]",
+            "en": "[Portrait dedicated to the memory of Olim Hasanov]"
+        },
+        "personName": {
+            "uz": "Olim Hasanov",
+            "ru": "Олим Хасанов",
+            "en": "Olim Hasanov"
+        },
+        "personRole": {
+            "uz": "Fond Ilhomlantiruvchisi",
+            "ru": "Вдохновитель фонда",
+            "en": "Foundation Inspirer"
+        },
+        "quoteText": {
+            "uz": "\"Olim fondi — Olim Hasanov xotirasiga bag'ishlab tashkil etilgan xayriya jamg'armasi boʻlib, yordamga muhtoj, ammo iqtidorli va faol talabalarni qo'llab-quvvatlashni maqsad qiladi. Bu fond 2020-yilda tashkil etilgan.\"",
+            "ru": "\"Фонд Олима — это благотворительный фонд, созданный в память об Олиме Хасанове, целью которого является поддержка нуждающихся, но одаренных и активных студентов. Этот фонд был основан в 2020 году.\"",
+            "en": "\"The Olim fondi is a charitable foundation established in memory of Olim Hasanov, aiming to support students in need who are talented and active. This foundation was established in 2020.\""
+        },
+        "descriptionParagraph1": {
+            "uz": "Fond tashkil etilishining sababi shuki, Olim Xasanov juda iqtidorli inson bo'lib, kelajakda iqtidorli talabalarning universitet kontraktlarini to'lab berish kabi keng ko'lamli xayriya ishlarini amalga oshirishni rejalashtirib yurgan edi. Afsuski, umrining qisqaligi sababli bu rejalari to'liq amalga oshmay qolgan.",
+            "ru": "Причина создания фонда заключается в том, что Олим Хасанов был очень одаренным человеком и планировал в будущем осуществлять масштабную благотворительную деятельность, такую как оплата университетских контрактов талантливых студентов. К сожалению, из-за его короткой жизни эти планы не были полностью реализованы.",
+            "en": "The reason for establishing the foundation is that Olim Hasanov was a very talented person who planned to carry out large-scale charitable work in the future, such as paying the university tuition fees of talented students. Unfortunately, due to his short life, these plans were not fully realized."
+        },
+        "descriptionParagraph2": {
+            "uz": "Shuning uchun uning oila a'zolari va yaqinlari uning ushbu ezgu niyatini davom ettirish maqsadida Olim fondini tashkil etishgan va shu orqali iqtidorli talabalarga ta'lim olish, jamiyatga munosib kadr bo'lib yetishish imkoniyatini yaratib berishmoqda.",
+            "ru": "Поэтому члены его семьи и близкие создали фонд Олима, чтобы продолжить его благие намерения, и тем самым создают возможности для одаренных студентов получить образование и стать достойными кадрами для общества.",
+            "en": "Therefore, his family members and loved ones established the Olim fondi to continue his noble intentions, thereby creating opportunities for talented students to receive an education and become worthy professionals for society."
+        },
+        "feature1Title": {
+            "uz": "Universitet kontraktlari",
+            "ru": "Университетские контракты",
+            "en": "University tuition fees"
+        },
+        "feature1Description": {
+            "uz": "Iqtidorli va ko'makka muhtoj talabalarning kontraktlari to'lab beriladi.",
+            "ru": "Оплачиваются контракты одаренных и нуждающихся студентов.",
+            "en": "The tuition fees of talented and needy students are paid."
+        },
+        "feature2Title": {
+            "uz": "Doimiy murabbiylik (Mentorship)",
+            "ru": "Постоянное наставничество (Менторство)",
+            "en": "Continuous Mentorship"
+        },
+        "feature2Description": {
+            "uz": "Tajribali kuratorlar va ekspertlar tomonidan rivojlanish dasturlari olib boriladi.",
+            "ru": "Проводятся программы развития опытными кураторами и экспертами.",
+            "en": "Development programs are conducted by experienced curators and experts."
+        },
+        "missionTitle": {
+            "uz": "Bizning Oliy Maqsadimiz va Qadriyatimiz",
+            "ru": "Наша высшая цель и ценности",
+            "en": "Our Ultimate Goal and Values"
+        },
+        "missionParagraph1": {
+            "uz": "<strong>Olim fondi</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>Olim fondi</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>Olim fondi</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+        },
+        "missionParagraph2": {
+            "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
+            "ru": "Посредством своей деятельности фонд стремится создать возможности для каждого одаренного и стремящегося к знаниям студента для реализации своих копившихся желаний и мечтаний.",
+            "en": "Through its activities, the foundation aims to create opportunities for every talented and knowledge-seeking student to realize their dreams."
+        },
+        "missionQuote": {
+            "uz": "«Biz ishonamizki, ta'limga kiritilgan sarmoya — jamiyat kelajagiga kiritilgan eng muhim sarmoyadir.»",
+            "ru": "«Мы верим, что инвестиции в образование — это самые важные инвестиции в будущее общества.»",
+            "en": "«We believe that investment in education is the most important investment in the future of society.»"
+        }
+    },
+    "aboutM": {
+        "missionTitle": {
+            "uz": "Bizning Oliy Maqsadimiz va Qadriyatimiz",
+            "ru": "Наша высшая цель и ценности",
+            "en": "Our Ultimate Goal and Values"
+        },
+        "missionParagraph1": {
+            "uz": "<strong>Olim fondi</strong> — iqtidorli yoshlarni qo'llab-quvvatlash, ta'limda teng imkoniyatlar yaratish va mamlakatning intellektual salohiyatini rivojlantirishga xizmat qiluvchi nodavlat xayriya fondidir.",
+            "ru": "<strong>Olim fondi</strong> — это негосударственный благотворительный фонд, который служит поддержке одаренной молодежи, созданию равных возможностей в образовании и развитию интеллектуального потенциала страны.",
+            "en": "<strong>Olim fondi</strong> is a non-governmental charitable foundation that serves to support talented youth, create equal opportunities in education, and develop the intellectual potential of the country."
+        },
+        "missionParagraph2": {
+            "uz": "Fond o'z faoliyati orqali har bir iqtidorli va bilimga intiluvchan talabaga o'z orzularini ro'yobga chiqarish uchun imkoniyat yaratishni maqsad qiladi.",
+            "ru": "Посредством своей деятельности фонд стремится создать возможности для каждого одаренного и стремящегося к знаниям студента для реализации своих копившихся желаний и мечтаний.",
+            "en": "Through its activities, the foundation aims to create opportunities for every talented and knowledge-seeking student to realize their dreams."
+        },
+        "missionQuote": {
+            "uz": "«Biz ishonamizki, ta'limga kiritilgan sarmoya — jamiyat kelajagiga kiritilgan eng muhim sarmoyadir.»",
+            "ru": "«Мы верим, что инвестиции в образование — это самые важные инвестиции в будущее общества.»",
+            "en": "«We believe that investment in education is the most important investment in the future of society.»"
+        },
+        "teamTag": {
+            "uz": "Bizning Ahil Jamoamiz",
+            "ru": "Наша дружная команда",
+            "en": "Our Dedicated Team"
+        },
+        "teamTitle": {
+            "uz": "Xayrli ishlar ortida turgan insonlar",
+            "ru": "Люди, стоящие за добрыми делами",
+            "en": "The People Behind the Good Deeds"
+        },
+        "teamDescription": {
+            "uz": "Fondimiz jamoasi — ta'lim kelajagiga befarq bo'lmagan, yoshlarni qo'llab-quvvatlash yo'lida bir maqsad sari birlashgan professionallar va fidoyi ko'ngillilardan iborat. Biz birgalikda har bir yosh iqtidor egasiga to'g'ri yo'l ko'rsatish va imkoniyatlar eshigini ochish uchun mehnat qilamiz.",
+            "ru": "Команда нашего фонда состоит из профессионалов и преданных своему делу волонтеров, которым небезразлично будущее образования и которые объединены одной целью — поддержкой молодежи. Вместе мы работаем над тем, чтобы направить каждого молодого таланта и открыть для него двери возможностей.",
+            "en": "The team at our foundation consists of professionals and dedicated volunteers who care deeply about the future of education and are united under one goal: supporting youth. Together, we work to guide every young talent and open doors of opportunity for them."
+        },
+        "feature1Title": {
+            "uz": "Shaffoflik va Ishonch",
+            "ru": "Прозрачность и Доверие",
+            "en": "Transparency & Trust"
+        },
+        "feature1Desc": {
+            "uz": "Har bir loyiha va xayriya sarmoyalari to'liq shaffof amalga oshiriladi.",
+            "ru": "Каждый проект и благотворительные инвестиции осуществляются полностью прозрачно.",
+            "en": "Every project and charitable investment is executed with complete transparency."
+        },
+        "feature2Title": {
+            "uz": "Aniq Natijalar",
+            "ru": "Конкретные Результаты",
+            "en": "Tangible Impact"
+        },
+        "feature2Desc": {
+            "uz": "Biz jarayonga emas, yoshlar hayotidagi real va ijobiy o'zgarishlarga intilamiz.",
+            "ru": "Мы стремимся не к процессу, а к реальным и позитивным изменениям в жизни молодежи.",
+            "en": "We strive for real and positive changes in the lives of youth, not just the process."
+        }
+    },
+    "chart1": {
+        "subtitle": {
+            "uz": "Karyera natijalari",
+            "ru": "Результаты карьеры",
+            "en": "Career Results"
+        },
+        "mainTitle": {
+            "uz": "Bitirgan Stipendiyantlar Natijalari",
+            "ru": "Результаты выпускников-стипендиатов",
+            "en": "Results of Graduated Scholars"
+        },
+        "description": {
+            "uz": "Talabalarimiz universitetni tamomlab, nufuzli tashkilotlarda professional faoliyat yuritishmoqda",
+            "ru": "Наши студенты после окончания университета ведут профессиональную деятельность в престижных организациях",
+            "en": "Our students, having graduated from the university, are pursuing professional careers in prestigious organizations"
+        },
+        "tagMinistries": {
+            "uz": "Vazirliklar",
+            "ru": "Министерства",
+            "en": "Ministries"
+        },
+        "tagBanks": {
+            "uz": "Xalqaro banklar",
+            "ru": "Международные банки",
+            "en": "International Banks"
+        },
+        "tagUniversities": {
+            "uz": "OTMlar",
+            "ru": "ВУЗы",
+            "en": "Universities"
+        }
+    },
+    "navbar": {
+        "navAbout": {
+            "uz": "Fond Yo'nalishlari",
+            "ru": "О Фонде",
+            "en": "About Foundation"
+        },
+        "navStructure": {
+            "uz": "Tuzilma",
+            "ru": "Структура",
+            "en": "Structure"
+        },
+        "navMission": {
+            "uz": "Stipendiyantlar",
+            "ru": "Стипендиаты",
+            "en": "Scholars"
+        },
+        "navCriteria": {
+            "uz": "Baholash",
+            "ru": "Оценка",
+            "en": "Criteria"
+        },
+        "navNews": {
+            "uz": "Yangiliklar",
+            "ru": "Новости",
+            "en": "News"
+        },
+        "navStats": {
+            "uz": "Statistika",
+            "ru": "Статистика",
+            "en": "Statistics"
+        },
+        "navTimeline": {
+            "uz": "Xronologiya",
+            "ru": "Хронология",
+            "en": "Timeline"
+        },
+        "applyBtn": {
+            "uz": "Ariza topshirish",
+            "ru": "Подать заявку",
+            "en": "Apply Now"
+        }
+    },
+    "criteria1": {
+        "subtitle": {
+            "uz": "Qanday talabalar qabul qilinadi?",
+            "ru": "Какие студенты принимаются?",
+            "en": "What kind of students are accepted?"
+        },
+        "title": {
+            "uz": "Stipendiyaga Tanlov Baholash Tizimi",
+            "ru": "Система оценки отбора на стипендию",
+            "en": "Scholarship Selection Evaluation System"
+        },
+        "description": {
+            "uz": "Saralashda fond faoliyatining asosiy yo'nalishlari — ijtimoiy imkoniyati cheklangan talabalar (60%) hamda iqtidorli va yuqori salohiyatli yoshlar (40%) inobatga olinadi.",
+            "ru": "При отборе учитываются основные направления деятельности фонда — студенты с ограниченными социальными возможностями (60%) и одаренная, высокопотенциальная молодежь (40%).",
+            "en": "The selection process takes into account the main directions of the foundation's activities — students with limited social opportunities (60%) and talented, high-potential youth (40%)."
+        },
+        "criterionLabel": {
+            "uz": "Mezon",
+            "ru": "Критерий",
+            "en": "Criterion"
+        },
+        "maxScore": {
+            "uz": "Maksimal ball",
+            "ru": "Максимальный балл",
+            "en": "Maximum score"
+        },
+        "bannerTitle": {
+            "uz": "Saralash mezonlari (Talaba baholash tizimi)",
+            "ru": "Критерии отбора (Система оценки студентов)",
+            "en": "Selection Criteria (Student Evaluation System)"
+        },
+        "needTitle": {
+            "uz": "Himoya reyestriga mansub",
+            "ru": "Нуждаемость в помощи",
+            "en": "Need for Assistance"
+        },
+        "needDesc": {
+            "uz": "Ijtimoiy ahvoli, shartnoma to'lovini mustaqil amalga oshira olmaslik darajasi",
+            "ru": "Социальное положение, степень неспособности самостоятельно оплатить контракт",
+            "en": "Social status, degree of inability to pay the contract independently"
+        },
+        "potentialTitle": {
+            "uz": "Potensiali Yuqori",
+            "ru": "Высокий потенциал",
+            "en": "High Potential"
+        },
+        "potentialDesc": {
+            "uz": "Ilmiy ishlari, ixtirolari, akademik ko'rsatkichlari (GPA) va kelajak istiqboli",
+            "ru": "Научные работы, изобретения, академические показатели (GPA) и перспективы на будущее",
+            "en": "Scientific work, inventions, academic performance (GPA), and future prospects"
+        },
+        "activityTitle": {
+            "uz": "Harakatchanlik",
+            "ru": "Активность",
+            "en": "Proactivity"
+        },
+        "activityDesc": {
+            "uz": "Jamoaviy ishlarga moyilligi, shaxsiy tashabbuskorligi va faollik darajasi",
+            "ru": "Склонность к командной работе, личная инициатива и уровень активности",
+            "en": "Propensity for teamwork, personal initiative, and level of activity"
+        },
+        "directionTitle": {
+            "uz": "Fond faoliyatining asosiy yo'nalishlari",
+            "ru": "Основные направления деятельности фонда",
+            "en": "Main Directions of the Foundation's Activities"
+        },
+        "socialTitle": {
+            "uz": "Ijtimoiy imkoniyati cheklangan talabalar",
+            "ru": "Студенты с ограниченными социальными возможностями",
+            "en": "Students with Limited Social Opportunities"
+        },
+        "socialDesc": {
+            "uz": "Fondning asosiy ustuvor yo'nalishi — moddiy yoki ijtimoiy qiyinchiliklarga duch kelgan, ammo ta'lim olishga intilayotgan talabalarni qo'llab-quvvatlash.",
+            "ru": "Основной приоритет фонда — поддержка студентов, столкнувшихся с материальными или социальными трудностями, но стремящихся к образованию.",
+            "en": "The main priority of the foundation is to support students facing financial or social difficulties but striving for education."
+        },
+        "socialItems": {
+            "uz": [
+                "Ta'lim grantlari",
+                "Kontrakt to'lovlarida ko'mak",
+                "Stipendiyalar",
+                "O'quv qurollari va resurslar",
+                "Mentorlik va kasbiy rivojlanish dasturlari"
+            ],
+            "ru": [
+                "Образовательные гранты",
+                "Помощь в оплате контрактов",
+                "Стипендии",
+                "Учебные пособия и ресурсы",
+                "Программы менторства и профессионального развития"
+            ],
+            "en": [
+                "Educational grants",
+                "Assistance with tuition fees",
+                "Scholarships",
+                "Educational tools and resources",
+                "Mentorship and professional development programs"
+            ]
+        },
+        "talentedTitle": {
+            "uz": "Iqtidorli va yuqori salohiyatli talabalar",
+            "ru": "Одаренные и высокопотенциальные студенты",
+            "en": "Talented and High-Potential Students"
+        },
+        "talentedDesc": {
+            "uz": "Fond yuqori akademik natijalarga erishgan, innovatsion g'oyalarga ega va kelajakda jamiyat taraqqiyotiga hissa qo'shish imkoniyati yuqori bo'lgan talabalarni ham qo'llab-quvvatlaydi.",
+            "ru": "Фонд также поддерживает студентов, достигших высоких академических результатов, имеющих инновационные идеи и высокий потенциал вклада в развитие общества.",
+            "en": "The foundation also supports students who have achieved high academic results, possess innovative ideas, and have a high potential to contribute to society."
+        },
+        "talentedItems": {
+            "uz": [
+                "Maxsus stipendiyalar",
+                "Ilmiy va innovatsion loyihalar",
+                "Xalqaro ta'lim imkoniyatlari",
+                "Liderlik dasturlari",
+                "Startap va tadqiqot tashabbuslari"
+            ],
+            "ru": [
+                "Специальные стипендии",
+                "Научные и инновационные проекты",
+                "Международные образовательные возможности",
+                "Лидерские программы",
+                "Стартап и исследовательские инициативы"
+            ],
+            "en": [
+                "Special scholarships",
+                "Scientific and innovative projects",
+                "International educational opportunities",
+                "Leadership programs",
+                "Startup and research initiatives"
+            ]
+        }
+    },
+    "footer1": {
+        "description": {
+            "uz": "Olim Fondi - iqtidorli yoshlarni qo'llab-quvvatlaydi.",
+            "ru": "Olim Fondi - поддерживает талантливую молодежь.",
+            "en": "Olim Fondi - supporting talented youth."
+        },
+        "footerLinksTitle": {
+            "uz": "Foydali havolalar",
+            "ru": "Полезные ссылки",
+            "en": "Useful links"
+        },
+        "linkAbout": {
+            "uz": "Fond haqida",
+            "ru": "О фонде",
+            "en": "About the foundation"
+        },
+        "linkStructure": {
+            "uz": "Tashkiliy tuzilma",
+            "ru": "Организационная структура",
+            "en": "Organizational structure"
+        },
+        "linkMission": {
+            "uz": "Missiyamiz",
+            "ru": "Наша миссия",
+            "en": "Our mission"
+        },
+        "linkCriteria": {
+            "uz": "Saralash mezonlari",
+            "ru": "Критерии отбора",
+            "en": "Selection criteria"
+        },
+        "linkApply": {
+            "uz": "Ariza topshirish",
+            "ru": "Подать заявку",
+            "en": "Apply"
+        },
+        "statsTitle": {
+            "uz": "Fond erishgan natijalar",
+            "ru": "Достижения фонда",
+            "en": "Foundation achievements"
+        },
+        "stat1": {
+            "uz": "60 dan ortiq to'liq qoplangan kontraktlar",
+            "ru": "Более 60 полностью оплаченных контрактов",
+            "en": "Over 60 fully covered tuition fees"
+        },
+        "stat2": {
+            "uz": "18 ta nomdor davlat stipendiyasi sohibi",
+            "ru": "Обладатели 18 именных государственных стипендий",
+            "en": "18 holders of prestigious state scholarships"
+        },
+        "stat3": {
+            "uz": "300 dan ortiq xalqaro ilmiy maqola",
+            "ru": "Более 300 международных научных статей",
+            "en": "Over 300 international scientific articles"
+        },
+        "stat4": {
+            "uz": "7 ta xalqaro tanlov g'oliblari",
+            "ru": "Победители 7 международных конкурсов",
+            "en": "Winners of 7 international competitions"
+        },
+        "contactTitle": {
+            "uz": "Aloqa va manzillar",
+            "ru": "Контакты и адреса",
+            "en": "Contacts and addresses"
+        },
+        "address": {
+            "uz": "Samarqand viloyati, Samarqand shahri, Amir Temur ko'chasi 163-uy",
+            "ru": "Самаркандская область, г. Самарканд, ул. Амира Темура, 163",
+            "en": "Samarkand region, Samarkand city, Amir Temur street 163"
+        },
+        "copyright": {
+            "uz": "Olim Fondi Xayriya Jamg'armasi. Barcha huquqlar himoyalangan.",
+            "ru": "Благотворительный фонд «Olim Fondi». Все права защищены.",
+            "en": "Olim Fondi Charitable Foundation. All rights reserved."
+        }
+    },
+    "structure": {
+        "title": {
+            "uz": "Tashkiliy tuzilma",
+            "ru": "Организационная структура",
+            "en": "Organizational Structure"
+        },
+        "subtitle": {
+            "uz": "Raxbariyat va Jamoa a'zolari",
+            "ru": "Руководство и члены команды",
+            "en": "Management and Team Members"
+        },
+        "description": {
+            "uz": "Fond faoliyatini rivojlantirish va talabalarga ko'maklashish bo'yicha maxsus tashkiliy komissiya tarkibi",
+            "ru": "Состав специальной организационной комиссии по развитию деятельности фонда и поддержке студентов",
+            "en": "Composition of the special organizational commission for the development of the fund's activities and student support"
+        },
+        "tabs": {
+            "barchasi": {
+                "uz": "Barchasi",
+                "ru": "Все",
+                "en": "All"
+            },
+            "rahbariyat": {
+                "uz": "Rahbariyat",
+                "ru": "Руководство",
+                "en": "Management"
+            },
+            "ekspertlar": {
+                "uz": "Ekspertlar",
+                "ru": "Эксперты",
+                "en": "Experts"
+            },
+            "kuratorlar": {
+                "uz": "Kuratorlar",
+                "ru": "Кураторы",
+                "en": "Curators"
+            },
+            "volontyorlar": {
+                "uz": "Volontyorlar",
+                "ru": "Волонтеры",
+                "en": "Volunteers"
+            }
+        },
+        "imageAlt": {
+            "uz": "rasmi",
+            "ru": "фото",
+            "en": "picture"
+        }
+    },
+    "hero": {
+        "badge": {
+            "uz": "OLIM FONDI — 6 YOSHDA",
+            "ru": "ФОНД ОЛИМ — 6 ЛЕТ",
+            "en": "Olim fondi — 6 YEARS OLD"
+        },
+        "description": {
+            "uz": "Mamlakat yoshlarini parvoz etishiga imkoniyat ochib beruvchi qoʻllar! Iqtidorli, harakatchan va ko'makka muhtoj talabalarning kelajagiga sarmoya kiritamiz.",
+            "ru": "Руки, открывающие возможности для взлета молодежи страны! Мы инвестируем в будущее талантливых, целеустремленных и нуждающихся в поддержке студентов.",
+            "en": "Hands that open opportunities for the country's youth to take flight! We invest in the future of talented, driven, and supportive students."
+        },
+        "applyBtn": {
+            "uz": "Stipendiyaga ariza topshirish",
+            "ru": "Подать заявку на стипендию",
+            "en": "Apply for a scholarship"
+        },
+        "moreBtn": {
+            "uz": "Batafsil ma'lumot",
+            "ru": "Подробная информация",
+            "en": "More details"
+        },
+        "stats": {
+            "scholars": {
+                "uz": "Stipendiantlar",
+                "ru": "Стипендиаты",
+                "en": "Scholars"
+            },
+            "applications": {
+                "uz": "Yillik Arizalar",
+                "ru": "Ежегодные заявки",
+                "en": "Annual Applications"
+            },
+            "established": {
+                "uz": "Tashkil etilgan",
+                "ru": "Основан",
+                "en": "Established"
+            }
+        },
+        "imageAlt": {
+            "uz": "Iqtidorli talabalar jamoasi rasm",
+            "ru": "Фото команды талантливых студентов",
+            "en": "Picture of a team of talented students"
+        },
+        "mottoTitle": {
+            "uz": "Bizning Shior:",
+            "ru": "Наш девиз:",
+            "en": "Our Motto:"
+        },
+        "mottoText": {
+            "uz": "\"Xayrli ishlar va bilimli yoshlar jamiyatimiz ertasi va kelajagidir.\"",
+            "ru": "\"Добрые дела и образованная молодежь — это завтрашний день и будущее нашего общества.\"",
+            "en": "\"Good deeds and educated youth are the tomorrow and future of our society.\""
+        }
+    },
+    "mission": {
+        "badge": {
+            "uz": "Jamg'arma Missiyasi & Strategiyasi",
+            "ru": "Миссия и стратегия фонда",
+            "en": "Foundation Mission & Strategy"
+        },
+        "missionTitle": {
+            "uz": "Bizning Missiyamiz",
+            "ru": "Наша миссия",
+            "en": "Our Mission"
+        },
+        "missionDesc": {
+            "uz": "Yoshlarning ta'lim olish imkoniyatlarini kengaytirish, iqtidor va salohiyatni rivojlantirish hamda ijtimoiy tenglikni ta'minlash orqali kelajak liderlari, olimlari va mutaxassislarini tarbiyalash.",
+            "ru": "Воспитывать будущих лидеров, ученых и специалистов путем расширения образовательных возможностей молодежи, развития талантов и потенциала, а также обеспечения социального равенства.",
+            "en": "To nurture future leaders, scientists, and professionals by expanding educational opportunities for youth, developing talent and potential, and ensuring social equality."
+        },
+        "goalTitle": {
+            "uz": "Bizning Maqsadimiz",
+            "ru": "Наша цель",
+            "en": "Our Goal"
+        },
+        "goalDesc": {
+            "uz": "Talabalarning bilim olishi, shaxsiy va kasbiy rivojlanishi uchun munosib shart-sharoitlar yaratish hamda ularning jamiyat taraqqiyotiga munosib hissa qo'shishiga ko'maklashish.",
+            "ru": "Создание достойных условий для образования, личного и профессионального развития студентов, а также содействие их достойному вкладу в развитие общества.",
+            "en": "To create decent conditions for students' education, personal, and professional development, and to assist them in making a worthy contribution to the progress of society."
+        },
+        "dreamTitle": {
+            "uz": "Bizning Orzuyimiz",
+            "ru": "Наша мечта",
+            "en": "Our Dream"
+        },
+        "dreamDesc": {
+            "uz": "Hech bir iqtidorli talaba moddiy qiyinchiliklar sababli ta'limdan chetda qolmasligi, har bir iqtidor esa o'z imkoniyatini to'liq namoyon qilishi uchun munosib muhit yaratish.",
+            "ru": "Создать достойную среду для того, чтобы ни один талантливый студент не остался вне образования из-за материальных трудностей, а каждый талант смог полностью реализовать свой потенциал.",
+            "en": "To create a decent environment so that no talented student is left out of education due to financial difficulties, and every talent can fully realize their potential."
+        },
+        "principlesSubtitle": {
+            "uz": "Biz amal qiladigan prinsiplar",
+            "ru": "Принципы, которым мы следуем",
+            "en": "Principles we follow"
+        },
+        "principlesTitle": {
+            "uz": "Fondning Asosiy Qadriyatlari",
+            "ru": "Основные ценности фонда",
+            "en": "Core Values of the Foundation"
+        },
+        "values": [
+            {
+                "title": {
+                    "uz": "Ta'lim",
+                    "ru": "Образование",
+                    "en": "Education"
+                },
+                "desc": {
+                    "uz": "Ta'lim – taraqqiyotning asosi.",
+                    "ru": "Образование – основа прогресса.",
+                    "en": "Education is the foundation of progress."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Teng imkoniyat",
+                    "ru": "Равные возможности",
+                    "en": "Equal Opportunity"
+                },
+                "desc": {
+                    "uz": "Har bir yosh o'z salohiyatini namoyon qilish huquqiga ega.",
+                    "ru": "Каждый молодой человек имеет право проявить свой потенциал.",
+                    "en": "Every young person has the right to demonstrate their potential."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Adolat",
+                    "ru": "Справедливость",
+                    "en": "Justice"
+                },
+                "desc": {
+                    "uz": "Shaffof va xolis tanlov.",
+                    "ru": "Прозрачный и объективный отбор.",
+                    "en": "Transparent and unbiased selection."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Inson kapitali",
+                    "ru": "Человеческий капитал",
+                    "en": "Human Capital"
+                },
+                "desc": {
+                    "uz": "Millatning eng katta boyligi.",
+                    "ru": "Самое большое богатство нации.",
+                    "en": "The greatest wealth of the nation."
+                }
+            },
+            {
+                "title": {
+                    "uz": "Mas'uliyat",
+                    "ru": "Ответственность",
+                    "en": "Responsibility"
+                },
+                "desc": {
+                    "uz": "Kelajak avlod oldidagi burch.",
+                    "ru": "Долг перед будущим поколением.",
+                    "en": "A duty to the future generation."
+                }
+            }
+        ]
+    },
+    "shans1": {
+        "subtitle": {
+            "uz": "Stipendiyantlarimizga nimalar beriladi?",
+            "ru": "Что предоставляется нашим стипендиатам?",
+            "en": "What is provided to our scholars?"
+        },
+        "title": {
+            "uz": "Fond Beradigan Imkoniyatlar",
+            "ru": "Возможности, предоставляемые фондом",
+            "en": "Opportunities Provided by the Foundation"
+        }
+    },
+    "stats": {
+        "badge": {
+            "uz": "Yillik Hisobotlar",
+            "ru": "Ежегодные отчеты",
+            "en": "Annual Reports"
+        },
+        "title": {
+            "uz": "Ariza Kelib Tushish Dinamikasi",
+            "ru": "Динамика поступления заявок",
+            "en": "Application Dynamics"
+        },
+        "subtitle": {
+            "uz": "2021-yildan 2025-yilgacha bo'lgan talabgorlar va g'olib bo'lgan talabalar ko'rsatkichi",
+            "ru": "Показатели заявителей и победителей с 2021 по 2025 год",
+            "en": "Indicators of applicants and winners from 2021 to 2025"
+        },
+        "chartTitle": {
+            "uz": "Ariza topshiruvchilar sonining o'sish dinamikasi (2021-2025)",
+            "ru": "Динамика роста количества заявителей (2021-2025)",
+            "en": "Growth dynamics of the number of applicants (2021-2025)"
+        },
+        "yearSuffix": {
+            "uz": "-yil",
+            "ru": "год",
+            "en": "year"
+        },
+        "applicationsCount": {
+            "uz": "ta ariza",
+            "ru": "заявок",
+            "en": "applications"
+        },
+        "note": {
+            "uz": "*Izoh: 2025-yilda talabgorlar rekord darajaga yetib, 1000 nafardan oshdi. Shundan yakuniy 14 nafar eng munosib talabalar fond stipendianti bo'ldi.",
+            "ru": "*Примечание: В 2025 году количество претендентов достигло рекордного уровня и превысило 1000 человек. Из них 14 самых достойных студентов стали стипендиатами фонда.",
+            "en": "*Note: In 2025, the number of applicants reached a record high, exceeding 1,000. Of these, the final 14 most deserving students became foundation scholars."
+        },
+        "tableTitle": {
+            "uz": "Saralash Bosqichlari Statistikasi",
+            "ru": "Статистика этапов отбора",
+            "en": "Selection Stages Statistics"
+        },
+        "tableHeaders": {
+            "year": {
+                "uz": "Yil",
+                "ru": "Год",
+                "en": "Year"
+            },
+            "applied": {
+                "uz": "Topshirgan",
+                "ru": "Подали заявку",
+                "en": "Applied"
+            },
+            "stage2": {
+                "uz": "2-bosqich",
+                "ru": "2-й этап",
+                "en": "2nd Stage"
+            },
+            "stage3": {
+                "uz": "3-bosqich",
+                "ru": "3-й этап",
+                "en": "3rd Stage"
+            },
+            "winners": {
+                "uz": "G'olib",
+                "ru": "Победители",
+                "en": "Winners"
+            }
+        },
+        "achievementsTitle": {
+            "uz": "Qisqa yutuqlar ko'rsatkichi:",
+            "ru": "Краткие показатели достижений:",
+            "en": "Brief achievement indicators:"
+        },
+        "achievements": {
+            "stat1": {
+                "uz": "18 ta",
+                "ru": "18",
+                "en": "18"
+            },
+            "desc1": {
+                "uz": "Nomdor davlat stipendiyalari",
+                "ru": "Именные государственные стипендии",
+                "en": "Prestigious state scholarships"
+            },
+            "stat2": {
+                "uz": "300 dan ortiq",
+                "ru": "Более 300",
+                "en": "Over 300"
+            },
+            "desc2": {
+                "uz": "Xalqaro maqola va sertifikatlar",
+                "ru": "Международные статьи и сертификаты",
+                "en": "International articles and certificates"
+            }
+        }
+    },
+    "timeline1": {
+        "subtitle": {
+            "uz": "Fond Rivojlanish Yo'li",
+            "ru": "Путь развития фонда",
+            "en": "Foundation Development Path"
+        },
+        "title": {
+            "uz": "Fond Rivojlanish Xronologiyasi",
+            "ru": "Хронология развития фонда",
+            "en": "Foundation Development Timeline"
+        },
+        "description": {
+            "uz": "Jamg'armaning tashkil topgan kunidan boshlab, kelajakdagi maqsadlarigacha bo'lgan rivojlanish bosqichlari",
+            "ru": "Этапы развития с момента создания фонда до будущих целей",
+            "en": "Development stages from the foundation's inception to future goals"
+        },
+        "stage": {
+            "uz": "• bosqich",
+            "ru": "• этап",
+            "en": "• stage"
+        }
+    },
+    "founder": {
+        "pageTitle": {
+            "uz": "Ta'sischi Murojaati",
+            "ru": "Обращение основателя",
+            "en": "Founder's Appeal"
+        },
+        "greeting": {
+            "uz": "Aziz yoshlar!",
+            "ru": "Дорогие молодые люди!",
+            "en": "Dear Youth!"
+        },
+        "paragraph1": {
+            "uz": "Har bir buyuk yutuq ortida bilim, mehnat va imkoniyat turadi. Ammo hayotda shunday iqtidorli yoshlar borki, ular moddiy yoki ijtimoiy sharoit tufayli o'z orzulariga erishishda qiyinchiliklarga duch kelishadi. Yana shunday talabalar borki, ularning iste'dodi va salohiyati mamlakatimiz kelajagi uchun katta ahamiyatga ega.",
+            "ru": "За каждым великим достижением стоят знания, труд и возможности. Однако в жизни есть такие талантливые молодые люди, которые из-за материальных или социальных условий сталкиваются с трудностями в достижении своих копившихся мечтаний. Есть также студенты, чей талант и потенциал имеют огромное значение для будущего нашей страны.",
+            "en": "Behind every great achievement lies knowledge, hard work, and opportunity. However, there are talented youth in life who face difficulties in achieving their dreams due to financial or social circumstances. There are also students whose talent and potential are of great importance for the future of our country."
+        },
+        "accentText": {
+            "uz": "Olim fondi aynan shu yoshlarni qo'llab-quvvatlash maqsadida tashkil etildi.",
+            "ru": "Olim fondi был создан именно для поддержки таких молодых людей.",
+            "en": "Olim fondi was established specifically to support these young individuals."
+        },
+        "paragraph2": {
+            "uz": "Bizning ishonchimiz komilki, ta'limga kiritilgan har bir sarmoya – millat kelajagiga qo'shilgan eng qimmatli hissadir. Biz nafaqat talabalarga moddiy ko'mak berishni, balki ularning bilimli, vatanparvar va mas'uliyatli shaxs bo'lib yetishishiga hissa qo'shishni o'z oldimizga maqsad qilib qo'yganmiz.",
+            "ru": "Мы убеждены, что каждая инвестиция в образование — это самый ценный вклад в будущее нации. Мы стремимся не только оказывать финансовую помощь студентам, но и способствовать их становлению как образованных, патриотичных и ответственных личностей.",
+            "en": "We are confident that every investment in education is the most valuable contribution to the future of the nation. We aim not only to provide financial support to students but also to contribute to their development as educated, patriotic, and responsible individuals."
+        },
+        "paragraph3": {
+            "uz": "Bizning orzuyimiz – hech bir iqtidorli yosh imkoniyatsiz qolmasligi va har bir mehnatkash talaba o'z salohiyatini to'liq namoyon eta olishi.",
+            "ru": "Наша мечта — чтобы ни один талантливый молодой человек не остался без возможностей, и чтобы каждый трудолюбивый студент мог полностью реализовать свой потенциал.",
+            "en": "Our dream is that no talented young person is left without opportunity, and every hardworking student can fully demonstrate their potential."
+        },
+        "closing": {
+            "uz": "Olim fondi – bu nafaqat fond, balki bilim, ezgulik va kelajakka ishonch harakatidir.",
+            "ru": "Olim fondi — это не просто фонд, это движение знаний, добра и веры в будущее.",
+            "en": "Olim fondi is not just a foundation, but a movement of knowledge, goodness, and faith in the future."
+        },
+        "imageAlt": {
+            "uz": "Fond ta'sischisi portreti",
+            "ru": "Портрет основателя фонда",
+            "en": "Portrait of the Foundation Founder"
+        },
+        "signatureTitle": {
+            "uz": "Fond Ta'sischisi va Rahbariyati",
+            "ru": "Основатель и руководство фонда",
+            "en": "Foundation Founder & Management"
+        }
+    },
+    "activitiesPage": {
+        "title": {
+            "uz": "Faoliyat Yo'nalishlari",
+            "ru": "Направления деятельности",
+            "en": "Areas of Activity"
+        },
+        "subtitle": {
+            "uz": "Jamg'armaning jamiyat va yoshlar rivoji yo'lidagi strategik strategiyasi",
+            "ru": "Стратегический план фонда на благо общества и развития молодежи",
+            "en": "The foundation's strategic plan for the benefit of society and youth development"
+        },
+        "mottoTitle": {
+            "uz": "Fondning shiori",
+            "ru": "Девиз фонда",
+            "en": "Foundation's Motto"
+        },
+        "mottoText": {
+            "uz": "«Ilm bilan yuksalamiz, ezgulik bilan birlashamiz.»",
+            "ru": "«Возвышаемся через знания, объединяемся через добро.»",
+            "en": "«We rise through knowledge, we unite through goodness.»"
+        },
+        "directions": [
+            {
+                "title": {
+                    "uz": "Ta'lim",
+                    "ru": "Образование",
+                    "en": "Education"
+                },
+                "color": "blue",
+                "items": [
+                    {
+                        "uz": "Iqtidorli va ehtiyojmand talabalar uchun stipendiyalar.",
+                        "ru": "Стипендии для одаренных и нуждающихся студентов.",
+                        "en": "Scholarships for talented and needy students."
+                    },
+                    {
+                        "uz": "Kitobxonlik va ta'lim loyihalari.",
+                        "ru": "Проекты по чтению книг и образованию.",
+                        "en": "Book reading and educational projects."
+                    },
+                    {
+                        "uz": "Ilmiy tadqiqotlar va yosh olimlarni qo'llab-quvvatlash.",
+                        "ru": "Поддержка научных исследований и молодых ученых.",
+                        "en": "Support for scientific research and young scientists."
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "uz": "Yoshlar rivoji",
+                    "ru": "Развитие молодежи",
+                    "en": "Youth Development"
+                },
+                "color": "indigo",
+                "items": [
+                    {
+                        "uz": "Kasbiy ta'lim va malaka oshirish.",
+                        "ru": "Профессиональное обучение и повышение квалификации.",
+                        "en": "Vocational training and professional development."
+                    },
+                    {
+                        "uz": "Liderlik va tadbirkorlik dasturlari.",
+                        "ru": "Программы лидерства и предпринимательства.",
+                        "en": "Leadership and entrepreneurship programs."
+                    },
+                    {
+                        "uz": "Sport va madaniy tashabbuslar.",
+                        "ru": "Спортивные и культурные инициативы.",
+                        "en": "Sports and cultural initiatives."
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "uz": "Ma'naviy meros",
+                    "ru": "Духовное наследие",
+                    "en": "Spiritual Heritage"
+                },
+                "color": "amber",
+                "items": [
+                    
+                    {
+                        "uz": "Ilmiy-ma'rifiy tadbirlar tashkil etish.",
+                        "ru": "Организация научно-просветительских мероприятий.",
+                        "en": "Organizing scientific and educational events."
+                    },
+                    {
+                        "uz": "Jamiyatda ezgulik va bag'rikenglik g'oyalarini mustahkamlash.",
+                        "ru": "Укрепление идей добра и толерантности в обществе.",
+                        "en": "Strengthening the ideas of goodness and tolerance in society."
+                    }
+                ]
+            }
+        ]
+    },
+    "winners": {
+        "subtitle": {
+            "uz": "Biz faxrlanamiz",
+            "ru": "Мы гордимся",
+            "en": "We are proud"
+        },
+        "title": {
+            "uz": "Nomdor Davlat Stipendiyalari G'oliblari",
+            "ru": "Победители престижных государственных стипендий",
+            "en": "Winners of Prestigious State Scholarships"
+        },
+        "description": {
+            "uz": "Bizning talabalar o'qish davrida mamlakatimizdagi eng nufuzli nomdor davlat stipendiyalariga sazovor bo'lishdi.",
+            "ru": "Во время учебы наши студенты были удостоены самых престижных именных государственных стипендий нашей страны.",
+            "en": "During their studies, our students were awarded the most prestigious state scholarships in our country."
+        }
+    },
+        "auth": {
+            "titleLogin": {
+                "uz": "Xush kelibsiz",
+                "ru": "Добро пожаловать",
+                "en": "Welcome"
+            },
+            "titleRegister": {
+                "uz": "Ro'yxatdan o'tish",
+                "ru": "Регистрация",
+                "en": "Sign Up"
+            },
+            "subtitleLogin": {
+                "uz": "Platformaga kirish uchun ma'lumotlarni kiriting",
+                "ru": "Введите данные для входа в платформу",
+                "en": "Enter your details to access the platform"
+            },
+            "subtitleRegister": {
+                "uz": "Yangi shaxsiy profilingizni yarating va a'rizangiz holatini kuzatib boring!",
+                "ru": "Создайте профиль нового",
+                "en": "Create a new profile"
+            },
+            "labelUsername": {
+                "uz": "Foydalanuvchi nomi",
+                "ru": "Имя пользователя",
+                "en": "Username"
+            },
+            "labelPassword": {
+                "uz": "Maxfiy parol",
+                "ru": "Секретный пароль",
+                "en": "Password"
+            },
+            "placeholderUsername": {
+                "uz": "Masalan: admin_olim",
+                "ru": "Например: admin_olim",
+                "en": "e.g., admin_olim"
+            },
+            "btnLoadingLogin": {
+                "uz": "Kirilmoqda...",
+                "ru": "Вход...",
+                "en": "Logging in..."
+            },
+            "btnLoadingRegister": {
+                "uz": "Profil yaratilmoqda...",
+                "ru": "Создание профиля...",
+                "en": "Creating profile..."
+            },
+            "btnSubmitLogin": {
+                "uz": "Tizimga kirish",
+                "ru": "Войти в систему",
+                "en": "Sign In"
+            },
+            "btnSubmitRegister": {
+                "uz": "Ro'yxatdan o'tkazish",
+                "ru": "Зарегистрировать",
+                "en": "Register"
+            },
+            "switchNeedAccount": {
+                "uz": "Yangi hisob kerakmi?",
+                "ru": "Нужен новый аккаунт?",
+                "en": "Need an account?"
+            },
+            "switchHaveAccount": {
+                "uz": "Allaqachon profilingiz bormi?",
+                "ru": "Уже есть профиль?",
+                "en": "Already have a profile?"
+            },
+            "switchActionRegister": {
+                "uz": "Ro'yxatdan o'tish",
+                "ru": "Зарегистрироваться",
+                "en": "Sign Up"
+            },
+            "switchActionLogin": {
+                "uz": "Kirish rejimiga o'tish",
+                "ru": "Перейти к входу",
+                "en": "Switch to Login"
+            },
+            "panelTitle": {
+                "uz": "Olim Fondi Tizimi",
+                "ru": "Система Фонда Олим",
+                "en": "Olim fondi System"
+            },
+            "panelDesc": {
+                "uz": "Boshqaruv paneli va mas'ul xodimlar uchun xavfsiz autentifikatsiya tarmog'i.",
+                "ru": "Безопасная сеть аутентификации для панели управления и ответственных сотрудников.",
+                "en": "Secure authentication network for the dashboard and authorized personnel."
+            },
+            "toastErrorConnection": {
+                "uz": "Tizimga ulanishda xatolik. Qayta urinib ko'ring!",
+                "ru": "Ошибка подключения к системе. Попробуйте еще раз!",
+                "en": "System connection error. Please try again!"
+            }
+        }
+}

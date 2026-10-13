@@ -1,0 +1,168 @@
+{
+  "initialApplications": [
+    {
+      "id": 1,
+      "studentFullName": "Anvarov Sardorbek Baxtiyor o'g'li",
+      "birthDate": "2003-05-12",
+      "nationality": "O'zbekiston",
+      "permanentAddress": "Toshkent shahri, Chilonzor tumani, 5-mavze, 12-uy",
+      "phoneNumber": "+998 90 123 45 67",
+      "emailAddress": "sardor.anvarov@gmail.com",
+      "universityName": "Toshkent Davlat Texnika Universiteti",
+      "studyForm": "Kunduzgi",
+      "studyField": "Axborot xavfsizligi",
+      "currentCourse": "3-kurs",
+      "isDoingResearch": true,
+      "researchDetails": "Kriptografiya va ma'lumotlarni shifrlashning yangi usullari bo'yicha ilmiy maqolalar tayyorlash.",
+      "hasConferenceParticipation": true,
+      "hasPublications": true,
+      "usedPreviousGrants": false,
+      "previousGrantDetails": "",
+      "contractAmount": "12,400,000",
+      "familyMembersCount": 5,
+      "fatherFullName": "Anvarov Baxtiyor",
+      "fatherWorkPlace": "Toshkent Shakar MCHJ",
+      "fatherPosition": "Injinir-texnolog",
+      "fatherBirthDate": "1975-02-18",
+      "motherFullName": "Anvarova Shohida",
+      "motherWorkPlace": "Maktabgacha ta'lim muassasasi",
+      "motherPosition": "Tarbiyachi",
+      "motherBirthDate": "1979-11-23",
+      "siblings": [
+        {
+          "name": "Anvarova Diyora",
+          "role": "Sinfdosh / Maktab o'quvchisi",
+          "birth": "2010"
+        },
+        {
+          "name": "Anvarov Asilbek",
+          "role": "Kollej talabasi",
+          "birth": "2006"
+        }
+      ],
+      "cvFile": "sardor_rezyume.pdf",
+      "gpaFile": "gpa_sardor.pdf",
+      "universityCertificate": "turt_cert_anvarov.pdf",
+      "status": "pending",
+      "createdAt": "2026-06-12 14:30"
+    },
+    {
+      "id": 2,
+      "studentFullName": "Kamola Rustamova G'ayrat qizi",
+      "birthDate": "2002-09-30",
+      "nationality": "O'zbekiston",
+      "permanentAddress": "Samarqand viloyati, Kattaqo'rg'on tumani, Oydin ko'chasi 44",
+      "phoneNumber": "+998 94 987 65 43",
+      "emailAddress": "rustamova.k@edu.uz",
+      "universityName": "O'zbekiston Milliy Universiteti",
+      "studyForm": "Kunduzgi",
+      "studyField": "Fizika-Matematika va Kosmik Tadqiqotlar",
+      "currentCourse": "4-kurs",
+      "isDoingResearch": true,
+      "researchDetails": "Yarimo'tkazgichlar fizikasi va quyosh panellari effektivligini oshirish.",
+      "hasConferenceParticipation": true,
+      "hasPublications": false,
+      "usedPreviousGrants": true,
+      "previousGrantDetails": "2024-yilda jamg'arma tomonidan kichik tadqiqot granti ajratilgan.",
+      "contractAmount": "9,800,000",
+      "familyMembersCount": 4,
+      "fatherFullName": "G'ayratov Rustam",
+      "fatherWorkPlace": "Samarqand Suv Ta'minoti",
+      "fatherPosition": "Operator",
+      "fatherBirthDate": "1971-04-05",
+      "motherFullName": "G'ayratova Manzura",
+      "motherWorkPlace": "Sog'liqni Saqlash Tizimi",
+      "motherPosition": "Hamshira",
+      "motherBirthDate": "1976-08-12",
+      "siblings": [
+        {
+          "name": "Rustamov Diyor",
+          "role": "Talaba (SamDU)",
+          "birth": "2004"
+        }
+      ],
+      "cvFile": "kamola_cv.pdf",
+      "gpaFile": "kamola_gpa_4_5.pdf",
+      "universityCertificate": "spravka_kamola.pdf",
+      "status": "approved",
+      "createdAt": "2026-06-10 10:15"
+    },
+    {
+      "id": 3,
+      "studentFullName": "Jamshid Qodirov Tolibovich",
+      "birthDate": "2004-01-15",
+      "nationality": "O'zbekiston",
+      "permanentAddress": "Farg'ona viloyati, Qo'qon shahri, Do'stlik ko'chasi 9",
+      "phoneNumber": "+998 93 456 12 34",
+      "emailAddress": "qodirov_j@bk.ru",
+      "universityName": "Farg'ona Davlat Universiteti",
+      "studyForm": "Sirtqi",
+      "studyField": "Biologiya va Mikrobiologiya",
+      "currentCourse": "2-kurs",
+      "isDoingResearch": false,
+      "researchDetails": "",
+      "hasConferenceParticipation": false,
+      "hasPublications": false,
+      "usedPreviousGrants": false,
+      "previousGrantDetails": "",
+      "contractAmount": "11,200,000",
+      "familyMembersCount": 6,
+      "fatherFullName": "Qodirov Tolib",
+      "fatherWorkPlace": "Kasanachilik",
+      "fatherPosition": "Hunarmand",
+      "fatherBirthDate": "1968-05-15",
+      "motherFullName": "Qodirova Jamila",
+      "motherWorkPlace": "Uy bekasi",
+      "motherPosition": "Ishlamaydi",
+      "motherBirthDate": "1972-10-10",
+      "siblings": [
+        {
+          "name": "Qodirova Laylo",
+          "role": "Maktab o'quvchisi",
+          "birth": "2012"
+        },
+        {
+          "name": "Qodirova Sevara",
+          "role": "Kollej talabasi",
+          "birth": "2008"
+        },
+        {
+          "name": "Qodirov Begzod",
+          "role": "Bog'cha bolasi",
+          "birth": "2021"
+        }
+      ],
+      "cvFile": "jamshid_bio_cv.pdf",
+      "gpaFile": "gpa_jamshid.pdf",
+      "universityCertificate": "fardu_spravka.pdf",
+      "status": "rejected",
+      "createdAt": "2026-06-08 09:00"
+    }
+  ],
+  "initialNews": [
+    {
+      "id": 1,
+      "title": "2026-yilgi Yozgi Ilmiy Grantlar Tanlovi E'lon qilindi",
+      "category": "Grant",
+      "date": "2026-06-14",
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600",
+      "content": "Olim Fondi yosh tadqiqotchilar va faol talabalarni qo'llab-quvvatlash uchun 2026-yilgi yozgi bosqich grantlarini e'lon qiladi. Arizalar joriy yilning 30-iyuniga qadar qabul qilinadi. Grant miqdori jami kontrakt summasining 100% gacha bo'lgan qismini qamrab oladi."
+    },
+    {
+      "id": 2,
+      "title": "Respublika Yosh Olimlarining Simpoziumi bo'lib o'tdi",
+      "category": "Tadbir",
+      "date": "2026-06-11",
+      "image": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=600",
+      "content": "Toshkent shahridagi simpoziumda jamg'arma stipendiatlari o'z ilmiy loyihalarini taqdim qildilar. Eng faol 3 ta innovatsion tadqiqot mualliflariga xorijiy laboratoriyalarda malaka oshirish sertifikati berildi."
+    },
+    {
+      "id": 3,
+      "title": "Hujjatlar qabul qilish jarayonida yangi tahrirdagi shartlar",
+      "category": "E'lon",
+      "date": "2026-06-05",
+      "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&q=80&w=600",
+      "content": "Diqqat! Joriy mavsumdan boshlab arizachilarning ilmiy rahbarlaridan olingan tavsiyanomalari ham talab qilinadi. Barcha fayllarni faqat PDF formatda va aniq skaner qilingan ko'rinishda taqdim etishingiz so'raladi."
+    }
+  ]
+}
